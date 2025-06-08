@@ -458,7 +458,7 @@ body::after {
 .content-wrapper {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 100px 2rem;
+    padding: 60px 2rem;
 }
 
 .section-title {
@@ -485,6 +485,7 @@ body::after {
 /* ------------------- */
 .skills-section {
     padding-bottom: 5rem;
+    margin-top: 5rem;
 }
 
 .skills-grid {
@@ -695,7 +696,7 @@ body {
     }
 
     .hero-section {
-        padding-top: 150px; /* Account for header */
+        padding-top: 120px; /* Account for header */
         padding-bottom: 50px;
     }
     
