@@ -1,19 +1,12 @@
-// script.js
-
 document.addEventListener('DOMContentLoaded', () => {
-
-    // --- 1. Preloader ---
     const preloader = document.querySelector('.preloader');
     window.addEventListener('load', () => {
         setTimeout(() => {
             preloader.classList.add('loaded');
             document.body.style.overflowY = 'auto';
-        }, 1000); // Ensures a minimum display time for the preloader
+        }, 1000); 
     });
     document.body.style.overflowY = 'hidden';
-
-
-    // --- 2. Custom Cursor ---
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
     let cursorTimeout;
@@ -29,12 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             left: `${posX}px`,
             top: `${posY}px`
         }, { duration: 500, fill: "forwards" });
-        
-        // Show cursor on move
         cursorDot.style.opacity = '1';
         cursorOutline.style.opacity = '1';
-
-        // Hide cursor after a delay of inactivity
         clearTimeout(cursorTimeout);
         cursorTimeout = setTimeout(() => {
             cursorDot.style.opacity = '0';
@@ -52,9 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cursorOutline.style.backgroundColor = 'rgba(0, 225, 255, 0.1)';
         });
     });
-
-
-    // --- 3. Header Scroll Effect ---
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
@@ -63,9 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
     });
-
-
-    // --- 4. Card Glow Effect on Mouse Move ---
     const glowingCards = document.querySelectorAll('.card-glow');
     glowingCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -77,8 +60,6 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.setProperty('--y', `${y}px`);
         });
     });
-
-    // --- 5. Animate on Reveal (Intersection Observer) ---
     const revealElements = document.querySelectorAll('.anim-reveal');
     const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -96,9 +77,6 @@ document.addEventListener('DOMContentLoaded', () => {
     revealElements.forEach(el => {
         revealObserver.observe(el);
     });
-
-
-    // --- 6. Skill Progress Circle Animation ---
     const skillCards = document.querySelectorAll('.skill-card');
     const skillObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
@@ -122,7 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     skillCards.forEach(card => {
         skillObserver.observe(card);
-        // Add SVG gradient definition to the body once
         if (!document.getElementById('progress-gradient-def')) {
             const svgDef = `
                 <svg class="hidden-svg" id="progress-gradient-def">
@@ -136,8 +113,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.insertAdjacentHTML('beforeend', svgDef);
         }
     });
-
-    // --- 7. Experience Card 3D Tilt Effect ---
     const experienceCards = document.querySelectorAll('.experience-card');
 
     experienceCards.forEach(card => {
@@ -147,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const y = e.clientY - rect.top;
             const { width, height } = rect;
 
-            const rotateX = (y - height / 2) / (height / 2) * -7; // Max rotation 7 degrees
-            const rotateY = (x - width / 2) / (width / 2) * 7;   // Max rotation 7 degrees
+            const rotateX = (y - height / 2) / (height / 2) * -7; 
+            const rotateY = (x - width / 2) / (width / 2) * 7;   
 
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
         });
