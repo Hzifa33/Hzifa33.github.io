@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hzifa33 | Digital Portfolio</title>
+    <title data-lang="pageTitle">Hzifa33 | Digital Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Poppins:wght@300;400;600;700&family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
@@ -22,11 +23,49 @@
     <div class="main-container">
         
         <header class="header">
-            <a href="#experience" class="cv-button card-glow">
-                <span>View CV</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </a>
             <div class="logo">Hzifa33</div>
+
+            <div class="header-controls">
+                 <div class="language-switcher">
+                    <button class="language-button">
+                        <i class="fas fa-globe"></i>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" data-lang-switch="en">English</a>
+                        <a href="#" data-lang-switch="ar">العربية</a>
+                        <a href="#" data-lang-switch="es">Español</a>
+                        <a href="#" data-lang-switch="arz">عامية</a>
+                    </div>
+                </div>
+
+                <label for="theme-toggle" class="celestial-switch">
+    <input type="checkbox" id="theme-toggle">
+    <div class="sky-background">
+        <div class="stars">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="shooting-star"></div>
+        </div>
+        <div class="clouds">
+            <div class="cloud"></div>
+            <div class="cloud"></div>
+        </div>
+    </div>
+    <div class="celestial-body">
+        <div class="moon"></div>
+        <div class="sun"></div>
+    </div>
+</label>
+
+
+               
+                <a href="#experience" class="cv-button card-glow">
+                    <span data-lang="cvButton">View CV</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                </a>
+            </div>
         </header>
 
         <section id="hero" class="hero-section">
@@ -35,33 +74,18 @@
                     <img src="https://i.postimg.cc/NLL6Yx0P/1740266616396.jpg" alt="Hzifa33 Profile Picture" class="profile-picture">
                 </div>
                 <h1 class="hero-name anim-reveal">Hzifa33</h1>
-                <p class="hero-title anim-reveal">Senior Front-End Developer & Reverse Engineer</p>
+                <p class="hero-title anim-reveal" data-lang="heroTitle">Senior Front-End Developer & Reverse Engineer</p>
 
                <div class="social-icons anim-reveal">
-    <a href="https://instagram.com/Hzifa33" target="_blank" class="social-icon" aria-label="Instagram">
-        <svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg>
-    </a>
-    <a href="https://t.me/Hzifa33" target="_blank" class="social-icon" aria-label="Telegram">
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <g id="SVGRepo_iconCarrier"> 
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.43 8.85893C11.2629 9.3444 8.93015 10.3492 5.43191 11.8733C4.86385 12.0992 4.56628 12.3202 4.53919 12.5363C4.4934 12.9015 4.95073 13.0453 5.57349 13.2411C5.6582 13.2678 5.74598 13.2954 5.83596 13.3246C6.44866 13.5238 7.27284 13.7568 7.70131 13.766C8.08996 13.7744 8.52375 13.6142 9.00266 13.2853C12.2712 11.079 13.9584 9.96381 14.0643 9.93977C14.1391 9.92281 14.2426 9.90148 14.3128 9.96385C14.3829 10.0262 14.3761 10.1443 14.3686 10.176C14.3233 10.3691 12.5281 12.0381 11.5991 12.9018C11.3095 13.171 11.1041 13.362 11.0621 13.4056C10.968 13.5034 10.8721 13.5958 10.78 13.6846C10.2108 14.2333 9.78393 14.6448 10.8036 15.3168C11.2937 15.6397 11.6858 15.9067 12.077 16.1731C12.5042 16.4641 12.9303 16.7543 13.4816 17.1157C13.6221 17.2078 13.7562 17.3034 13.8869 17.3965C14.3841 17.751 14.8308 18.0694 15.3826 18.0186C15.7033 17.9891 16.0345 17.6876 16.2027 16.7884C16.6002 14.6632 17.3816 10.0585 17.5622 8.16098C17.5781 7.99473 17.5582 7.78197 17.5422 7.68858C17.5262 7.59518 17.4928 7.46211 17.3714 7.3636C17.2276 7.24694 17.0057 7.22234 16.9064 7.22408C16.455 7.23204 15.7626 7.47282 12.43 8.85893Z"/> 
-        </g>
-    </svg>
-</a>
-
-    <a href="https://github.com/Hzifa33" target="_blank" class="social-icon" aria-label="GitHub">
-        <svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21V19.21C6.73,19.64 6.14,17.93 6.14,17.93C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.73C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.83,16.41C14.17,16.72 14.5,17.33 14.5,18.26V21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" /></svg>
-    </a>
-    <a href="https://facebook.com/Hzifa33" target="_blank" class="social-icon" aria-label="Facebook">
-        <svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.32 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z" /></svg>
-    </a>
-    <a href="https://x.com/Hzifa33" target="_blank" class="social-icon" aria-label="X (Twitter)">
-        <svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-    </a>
-</div>
+                <a href="https://instagram.com/Hzifa33" target="_blank" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg></a>
+                <a href="https://t.me/Hzifa33" target="_blank" class="social-icon" aria-label="Telegram"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_iconCarrier"><path fill-rule="evenodd" clip-rule="evenodd" d="M24 12C24 18.6274 18.6274 24 12 24C5.37258 24 0 18.6274 0 12C0 5.37258 5.37258 0 12 0C18.6274 0 24 5.37258 24 12ZM12.43 8.85893C11.2629 9.3444 8.93015 10.3492 5.43191 11.8733C4.86385 12.0992 4.56628 12.3202 4.53919 12.5363C4.4934 12.9015 4.95073 13.0453 5.57349 13.2411C5.6582 13.2678 5.74598 13.2954 5.83596 13.3246C6.44866 13.5238 7.27284 13.7568 7.70131 13.766C8.08996 13.7744 8.52375 13.6142 9.00266 13.2853C12.2712 11.079 13.9584 9.96381 14.0643 9.93977C14.1391 9.92281 14.2426 9.90148 14.3128 9.96385C14.3829 10.0262 14.3761 10.1443 14.3686 10.176C14.3233 10.3691 12.5281 12.0381 11.5991 12.9018C11.3095 13.171 11.1041 13.362 11.0621 13.4056C10.968 13.5034 10.8721 13.5958 10.78 13.6846C10.2108 14.2333 9.78393 14.6448 10.8036 15.3168C11.2937 15.6397 11.6858 15.9067 12.077 16.1731C12.5042 16.4641 12.9303 16.7543 13.4816 17.1157C13.6221 17.2078 13.7562 17.3034 13.8869 17.3965C14.3841 17.751 14.8308 18.0694 15.3826 18.0186C15.7033 17.9891 16.0345 17.6876 16.2027 16.7884C16.6002 14.6632 17.3816 10.0585 17.5622 8.16098C17.5781 7.99473 17.5582 7.78197 17.5422 7.68858C17.5262 7.59518 17.4928 7.46211 17.3714 7.3636C17.2276 7.24694 17.0057 7.22234 16.9064 7.22408C16.455 7.23204 15.7626 7.47282 12.43 8.85893Z" /></g></svg></a>
+                <a href="https://github.com/Hzifa33" target="_blank" class="social-icon" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12C2,16.42 4.87,20.17 8.84,21.5C9.34,21.58 9.5,21.27 9.5,21V19.21C6.73,19.64 6.14,17.93 6.14,17.93C5.68,16.81 5.03,16.5 5.03,16.5C4.12,15.88 5.1,15.9 5.1,15.9C6.1,15.97 6.63,16.93 6.63,16.93C7.5,18.45 8.97,18 9.54,17.73C9.63,17.11 9.89,16.67 10.17,16.42C7.95,16.17 5.62,15.31 5.62,11.5C5.62,10.39 6,9.5 6.65,8.79C6.55,8.54 6.2,7.5 6.75,6.15C6.75,6.15 7.59,5.88 9.5,7.17C10.29,6.95 11.15,6.84 12,6.84C12.85,6.84 13.71,6.95 14.5,7.17C16.41,5.88 17.25,6.15 17.25,6.15C17.8,7.5 17.45,8.54 17.35,8.79C18,9.5 18.38,10.39 18.38,11.5C18.38,15.32 16.04,16.16 13.83,16.41C14.17,16.72 14.5,17.33 14.5,18.26V21C14.5,21.27 14.66,21.59 15.17,21.5C19.14,20.16 22,16.42 22,12A10,10 0 0,0 12,2Z" /></svg></a>
+                <a href="https://facebook.com/Hzifa33" target="_blank" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.32 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C18.34 21.21 22 17.06 22 12.06C22 6.53 17.5 2.04 12 2.04Z" /></svg></a>
+                <a href="https://x.com/Hzifa33" target="_blank" class="social-icon" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a>
+            </div>
             </div>
             <div class="scroll-down-prompt">
-                <span>Scroll Down</span>
+                <span data-lang="scrollDown">Scroll Down</span>
                 <div class="mouse">
                     <div class="wheel"></div>
                 </div>
@@ -69,151 +93,106 @@
         </section>
 
         <main class="content-wrapper">
-            
             <section id="experience" class="experience-section">
-                <h2 class="section-title anim-reveal">Professional Experience</h2>
+                <h2 class="section-title anim-reveal" data-lang="expTitle">Professional Experience</h2>
                 <div class="experience-grid">
-                    
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Senior Front-End Developer</h3>
-                            <span class="experience-duration">5+ Years</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp1Title">Senior Front-End Developer</h3><span class="experience-duration" data-lang="exp1Duration">5+ Years</span></div>
                         <ul class="experience-details">
-                            <li>Developed modern, responsive web and mobile user interfaces.</li>
-                            <li>Proficient in HTML5, CSS3, JavaScript, and modern frameworks like React, Vue.js, and Tailwind CSS.</li>
-                            <li>Strong understanding of UI/UX principles and performance optimization.</li>
-                            <li>Built cross-platform applications with clean, maintainable code.</li>
-                            <li>Skilled in Figma and Adobe XD for interface design and prototyping.</li>
+                            <li data-lang="exp1Det1">Developed modern, responsive web and mobile user interfaces.</li>
+                            <li data-lang="exp1Det2">Proficient in HTML5, CSS3, JavaScript, and modern frameworks like React, Vue.js, and Tailwind CSS.</li>
+                            <li data-lang="exp1Det3">Strong understanding of UI/UX principles and performance optimization.</li>
+                            <li data-lang="exp1Det4">Built cross-platform applications with clean, maintainable code.</li>
+                            <li data-lang="exp1Det5">Skilled in Figma and Adobe XD for interface design and prototyping.</li>
                         </ul>
                     </div>
-                    
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Reverse Engineer (Android Focused)</h3>
-                            <span class="experience-duration">Expert</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp2Title">Reverse Engineer (Android Focused)</h3><span class="experience-duration" data-lang="exp2Duration">Expert</span></div>
                         <ul class="experience-details">
-                            <li>Expertise in analyzing, decompiling, and modifying Android applications (APK).</li>
-                            <li>Skilled in using tools like JADX, Ghidra, IDA Pro, and APKTool.</li>
-                            <li>Experienced in bypassing obfuscation and decoding logic.</li>
-                            <li>Solid understanding of smali, Java bytecode, and Android internals.</li>
+                            <li data-lang="exp2Det1">Expertise in analyzing, decompiling, and modifying Android applications (APK).</li>
+                            <li data-lang="exp2Det2">Skilled in using tools like JADX, Ghidra, IDA Pro, and APKTool.</li>
+                            <li data-lang="exp2Det3">Experienced in bypassing obfuscation and decoding logic.</li>
+                            <li data-lang="exp2Det4">Solid understanding of smali, Java bytecode, and Android internals.</li>
                         </ul>
                     </div>
-
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">UI/UX & Video Designer</h3>
-                            <span class="experience-duration">5+ Years</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp3Title">UI/UX & Video Designer</h3><span class="experience-duration" data-lang="exp3Duration">5+ Years</span></div>
                         <ul class="experience-details">
-                            <li>Designed visual content, social media posts, and video content.</li>
-                            <li>Proficient in Adobe Premiere, After Effects, Photoshop, and Canva.</li>
-                            <li>Created branding and promotional content for high-reach pages.</li>
+                            <li data-lang="exp3Det1">Designed visual content, social media posts, and video content.</li>
+                            <li data-lang="exp3Det2">Proficient in Adobe Premiere, After Effects, Photoshop, and Canva.</li>
+                            <li data-lang="exp3Det3">Created branding and promotional content for high-reach pages.</li>
                         </ul>
                     </div>
-
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Social Media Manager</h3>
-                            <span class="experience-duration">4+ Years</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp4Title">Social Media Manager</h3><span class="experience-duration" data-lang="exp4Duration">4+ Years</span></div>
                         <ul class="experience-details">
-                            <li>Managed celebrity and influencer accounts.</li>
-                            <li>Created content plans, optimized engagement, and tracked analytics.</li>
+                            <li data-lang="exp4Det1">Managed celebrity and influencer accounts.</li>
+                            <li data-lang="exp4Det2">Created content plans, optimized engagement, and tracked analytics.</li>
                         </ul>
                     </div>
-
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Data Entry Specialist</h3>
-                            <span class="experience-duration">2 Years</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp5Title">Data Entry Specialist</h3><span class="experience-duration" data-lang="exp5Duration">2 Years</span></div>
                         <ul class="experience-details">
-                            <li>Worked with multinational companies on large data volumes.</li>
-                            <li>Maintained high speed and accuracy in data handling.</li>
+                            <li data-lang="exp5Det1">Worked with multinational companies on large data volumes.</li>
+                            <li data-lang="exp5Det2">Maintained high speed and accuracy in data handling.</li>
                         </ul>
                     </div>
-                    
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Quran & Arabic Language Instructor</h3>
-                            <span class="experience-duration">10+ Years</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp6Title">Quran & Arabic Language Instructor</h3><span class="experience-duration" data-lang="exp6Duration">10+ Years</span></div>
                         <ul class="experience-details">
-                            <li>10+ years teaching Quran memorization.</li>
-                            <li>8 years teaching "Noor Al-Bayan" to native and non-native speakers.</li>
-                            <li>Strong background in Arabic grammar, morphology, and rhetoric.</li>
+                            <li data-lang="exp6Det1">10+ years teaching Quran memorization.</li>
+                            <li data-lang="exp6Det2">8 years teaching "Noor Al-Bayan" to native and non-native speakers.</li>
+                            <li data-lang="exp6Det3">Strong background in Arabic grammar, morphology, and rhetoric.</li>
                         </ul>
                     </div>
-
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Islamic Studies Teacher</h3>
-                            <span class="experience-duration">Extensive</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp7Title">Islamic Studies Teacher</h3><span class="experience-duration" data-lang="exp7Duration">Extensive</span></div>
                         <ul class="experience-details">
-                            <li>Taught Fiqh, Aqeedah, Tafsir, Hadith, and Usul.</li>
-                            <li>Designed lesson plans combining traditional texts with modern pedagogy.</li>
+                            <li data-lang="exp7Det1">Taught Fiqh, Aqeedah, Tafsir, Hadith, and Usul.</li>
+                            <li data-lang="exp7Det2">Designed lesson plans combining traditional texts with modern pedagogy.</li>
                         </ul>
                     </div>
-                    
                     <div class="experience-card anim-reveal card-glow">
-                        <div class="experience-header">
-                            <h3 class="experience-title">Spanish and English Language Tutor</h3>
-                            <span class="experience-duration">Skilled</span>
-                        </div>
+                        <div class="experience-header"><h3 class="experience-title" data-lang="exp8Title">Spanish and English Language Tutor</h3><span class="experience-duration" data-lang="exp8Duration">Skilled</span></div>
                         <ul class="experience-details">
-                            <li>Taught Arabic to non-Arabic speakers through Spanish and English.</li>
+                            <li data-lang="exp8Det1">Taught Arabic to non-Arabic speakers through Spanish and English.</li>
                         </ul>
                     </div>
-
                 </div>
             </section>
             
             <section id="skills" class="skills-section">
-                <h2 class="section-title anim-reveal">Language Skills</h2>
+                <h2 class="section-title anim-reveal" data-lang="skillsTitle">Language Skills</h2>
                 <div class="skills-grid">
                     <div class="skill-card anim-reveal card-glow">
                         <div class="skill-progress" data-progress="100">
-                            <svg class="progress-ring" width="120" height="120">
-                                <circle class="progress-ring-circle-bg" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                                <circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                            </svg>
-                            <span class="skill-level">Native</span>
+                            <svg class="progress-ring" width="120" height="120"><circle class="progress-ring-circle-bg" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/><circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/></svg>
+                            <span class="skill-level" data-lang="skill1Level">Native</span>
                         </div>
-                        <h3 class="skill-name">Arabic</h3>
+                        <h3 class="skill-name" data-lang="skill1Name">Arabic</h3>
                     </div>
                     <div class="skill-card anim-reveal card-glow">
                         <div class="skill-progress" data-progress="85">
-                           <svg class="progress-ring" width="120" height="120">
-                                <circle class="progress-ring-circle-bg" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                                <circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                            </svg>
+                           <svg class="progress-ring" width="120" height="120"><circle class="progress-ring-circle-bg" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/><circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/></svg>
                             <span class="skill-level">B2</span>
                         </div>
-                        <h3 class="skill-name">Spanish</h3>
+                        <h3 class="skill-name" data-lang="skill2Name">Spanish</h3>
                     </div>
                     <div class="skill-card anim-reveal card-glow">
                         <div class="skill-progress" data-progress="70">
-                            <svg class="progress-ring" width="120" height="120">
-                                <circle class="progress-ring-circle-bg" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                                <circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
-                            </svg>
+                            <svg class="progress-ring" width="120" height="120"><circle class="progress-ring-circle-bg" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/><circle class="progress-ring-circle" stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/></svg>
                             <span class="skill-level">B1</span>
                         </div>
-                        <h3 class="skill-name">English</h3>
+                        <h3 class="skill-name" data-lang="skill3Name">English</h3>
                     </div>
                 </div>
             </section>
         </main>
         
         <footer class="footer">
-            <p>&copy; 2025 Hzifa33. All rights reserved. Designed with passion.</p>
+            <p data-lang="footerText">&copy; 2025 Hzifa33. All rights reserved. Designed with passion.</p>
         </footer>
-
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
