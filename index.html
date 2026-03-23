@@ -1,27 +1,1968 @@
-<!doctype html>
-<html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Hozaifa Abozaid | Portfolio</title>
-    <meta name="description" content="Hozaifa Abozaid - Customer Care Service, Front-End Developer & IT Specialist" />
-    <meta name="theme-color" content="#030712" />
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-i18n="pageTitle">Hzifa33 Portfolio</title>
+    <meta name="description" content="Professional Digital Portfolio - Senior Front-End Developer & Reverse Engineer">
+    <meta name="theme-color" content="#0a0a0f">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cairo:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
     <style>
-      html.dark {
-        background-color: #030712;
-        color-scheme: dark;
-      }
-      html:not(.dark) {
-        background-color: #ffffff;
-        color-scheme: light;
-      }
+        :root {
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.4);
+            --secondary: #06b6d4;
+            --secondary-glow: rgba(6, 182, 212, 0.4);
+            --accent: #8b5cf6;
+            
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: rgba(18, 18, 26, 0.8);
+            --bg-glass: rgba(18, 18, 26, 0.6);
+            
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-hover: rgba(255, 255, 255, 0.2);
+            
+            --nav-bg: rgba(18, 18, 26, 0.95);
+            
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-arabic: 'Cairo', 'Tajawal', sans-serif;
+            
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+            --nav-height: 70px;
+--aurora-1: rgba(99, 102, 241, 0.5);
+            --aurora-2: rgba(6, 182, 212, 0.5);
+            --aurora-3: rgba(139, 92, 246, 0.3);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.9);
+            --bg-glass: rgba(255, 255, 255, 0.8);
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(0, 0, 0, 0.15);
+            
+            --nav-bg: rgba(255, 255, 255, 0.95);
+--aurora-1: rgba(244, 114, 182, 0.4);
+            --aurora-2: rgba(56, 189, 248, 0.4);
+            --aurora-3: rgba(251, 146, 60, 0.3);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            min-height: 100dvh;
+            transition: background var(--transition-medium), color var(--transition-medium);
+        }
+[dir="rtl"] body,
+        [dir="rtl"] .hero-title,
+        [dir="rtl"] .exp-details li,
+        [dir="rtl"] .settings-label span,
+        [dir="rtl"] .settings-value,
+        [dir="rtl"] .scroll-indicator span,
+        [dir="rtl"] .footer p,
+        [dir="rtl"] .exp-duration,
+        [dir="rtl"] .section-title,
+        [dir="rtl"] .exp-title,
+        [dir="rtl"] .skill-name,
+        [dir="rtl"] .skill-level,
+        .arabic-text {
+            font-family: var(--font-arabic) !important;
+        }
+.aurora-bg {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: var(--bg-primary);
+        }
+
+        .aurora-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(60px);
+        }
+
+        .aurora-layer::before,
+        .aurora-layer::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+        }
+.aurora-layer-1::before {
+            width: 80vmax;
+            height: 80vmax;
+            background: var(--aurora-1);
+            top: -40%;
+            left: -30%;
+            animation: aurora-move-1 8s ease-in-out infinite;
+        }
+
+        .aurora-layer-1::after {
+            width: 70vmax;
+            height: 70vmax;
+            background: var(--aurora-2);
+            bottom: -40%;
+            right: -30%;
+            animation: aurora-move-2 10s ease-in-out infinite;
+        }
+.aurora-layer-2::before {
+            width: 60vmax;
+            height: 60vmax;
+            background: var(--aurora-2);
+            top: 20%;
+            left: 30%;
+            animation: aurora-move-3 12s ease-in-out infinite;
+        }
+
+        .aurora-layer-2::after {
+            width: 50vmax;
+            height: 50vmax;
+            background: var(--aurora-1);
+            bottom: 10%;
+            right: 20%;
+            animation: aurora-move-4 9s ease-in-out infinite;
+        }
+.aurora-layer-3::before {
+            width: 40vmax;
+            height: 40vmax;
+            background: var(--aurora-3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: aurora-pulse 6s ease-in-out infinite;
+        }
+
+        @keyframes aurora-move-1 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(15%, 20%) scale(1.1) rotate(5deg);
+            }
+            50% {
+                transform: translate(25%, 10%) scale(0.9) rotate(-5deg);
+            }
+            75% {
+                transform: translate(10%, 25%) scale(1.05) rotate(3deg);
+            }
+        }
+
+        @keyframes aurora-move-2 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(-20%, -15%) scale(1.15) rotate(-5deg);
+            }
+            50% {
+                transform: translate(-10%, -25%) scale(0.95) rotate(5deg);
+            }
+            75% {
+                transform: translate(-25%, -10%) scale(1.1) rotate(-3deg);
+            }
+        }
+
+        @keyframes aurora-move-3 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(-30%, 20%) scale(1.2);
+            }
+            66% {
+                transform: translate(20%, -30%) scale(0.8);
+            }
+        }
+
+        @keyframes aurora-move-4 {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(25%, -25%) scale(1.15);
+            }
+            66% {
+                transform: translate(-20%, 15%) scale(0.85);
+            }
+        }
+
+        @keyframes aurora-pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0.8;
+            }
+        }
+.aurora-blend {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, var(--bg-primary) 70%);
+            pointer-events: none;
+        }
+::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+.preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .preloader-logo {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .preloader-bar {
+            width: 180px;
+            height: 3px;
+            background: var(--border-color);
+            border-radius: 3px;
+            margin-top: 1.5rem;
+            overflow: hidden;
+        }
+
+        .preloader-bar::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            animation: loading 1.5s ease-out forwards;
+        }
+
+        @keyframes loading {
+            to { width: 100%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.02); }
+        }
+.header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: transparent;
+            transition: all var(--transition-medium);
+        }
+
+        .header.scrolled {
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: clamp(1.1rem, 4vw, 1.4rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all var(--transition-fast);
+        }
+
+        .logo:hover {
+            filter: brightness(1.2);
+        }
+
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+.theme-toggle {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 13px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--primary);
+        }
+
+        .theme-toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            transition: left var(--transition-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle.light .theme-toggle-slider {
+            left: 26px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+        }
+
+        .theme-toggle-slider ion-icon {
+            font-size: 12px;
+            color: white;
+        }
+.lang-switcher {
+            position: relative;
+        }
+
+        .lang-btn {
+            width: 34px;
+            height: 34px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .lang-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            min-width: 130px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            backdrop-filter: blur(20px);
+            overflow: hidden;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all var(--transition-fast);
+            z-index: 110;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        .lang-switcher.active .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown a {
+            display: block;
+            padding: 0.7rem 1rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            cursor: pointer;
+            font-family: var(--font-arabic), var(--font-body);
+        }
+
+        .lang-dropdown a:hover,
+        .lang-dropdown a.active {
+            background: var(--primary-glow);
+            color: var(--text-primary);
+        }
+
+        [dir="rtl"] .lang-dropdown {
+            right: auto;
+            left: 0;
+        }
+.app-container {
+            padding-top: 60px;
+            padding-bottom: calc(var(--nav-height) + var(--safe-bottom) + 30px);
+            min-height: 100vh;
+        }
+.section {
+            padding: 2rem 1rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.4rem, 5vw, 2rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            color: var(--text-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+.hero {
+            min-height: calc(100vh - 60px - var(--nav-height));
+            min-height: calc(100dvh - 60px - var(--nav-height));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+            position: relative;
+        }
+
+        .profile-container {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-ring {
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            animation: rotate 4s linear infinite;
+            opacity: 0.8;
+        }
+
+        .profile-ring::before {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            border-radius: 50%;
+            background: var(--bg-primary);
+        }
+
+        @keyframes rotate {
+            to { transform: rotate(360deg); }
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            width: clamp(130px, 30vw, 170px);
+            height: clamp(130px, 30vw, 170px);
+            border-radius: 50%;
+            padding: 4px;
+            background: var(--bg-primary);
+            z-index: 1;
+            transition: transform var(--transition-medium);
+        }
+
+        .profile-container:hover .profile-img-wrapper {
+            transform: scale(1.05);
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .hero-name {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 7vw, 3rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-title {
+            font-size: clamp(0.85rem, 3vw, 1rem);
+            color: var(--text-secondary);
+            max-width: 380px;
+            margin-bottom: 1.5rem;
+        }
+.social-links {
+            display: flex;
+            justify-content: center;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all var(--transition-medium);
+        }
+
+        .social-link:hover {
+            transform: translateY(-4px);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 8px 25px var(--primary-glow);
+        }
+
+        .social-link svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+            transition: fill var(--transition-fast);
+        }
+.scroll-indicator {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.6;
+            transition: opacity var(--transition-fast);
+        }
+
+        .scroll-indicator:hover {
+            opacity: 1;
+        }
+
+        .scroll-indicator span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .scroll-mouse {
+            width: 22px;
+            height: 34px;
+            border: 2px solid var(--text-muted);
+            border-radius: 11px;
+            position: relative;
+        }
+
+        .scroll-wheel {
+            width: 3px;
+            height: 6px;
+            background: var(--text-muted);
+            border-radius: 2px;
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: scroll 1.5s ease-in-out infinite;
+        }
+
+        @keyframes scroll {
+            0% { top: 5px; opacity: 1; }
+            100% { top: 18px; opacity: 0; }
+        }
+.experience-grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .experience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .experience-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-medium);
+        }
+
+        .experience-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15), 0 0 0 1px var(--primary-glow);
+        }
+
+        .exp-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .exp-icon {
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            transition: transform var(--transition-medium);
+        }
+
+        .experience-card:hover .exp-icon {
+            transform: scale(1.1);
+        }
+
+        .exp-title-wrapper {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .exp-title {
+            font-family: var(--font-display);
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+            transition: color var(--transition-fast);
+        }
+
+        .experience-card:hover .exp-title {
+            color: var(--primary);
+        }
+
+        .exp-duration {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.2rem 0.6rem;
+            background: var(--primary-glow);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .exp-details {
+            list-style: none;
+        }
+
+        .exp-details li {
+            position: relative;
+            padding-left: 1.2rem;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .exp-details li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 6px;
+            height: 6px;
+            background: var(--secondary);
+            border-radius: 50%;
+        }
+
+        [dir="rtl"] .exp-details li {
+            padding-left: 0;
+            padding-right: 1.2rem;
+        }
+
+        [dir="rtl"] .exp-details li::before {
+            left: auto;
+            right: 0;
+        }
+#skills {
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .skills-grid {
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-medium);
+            flex: 1;
+            min-width: 140px;
+            max-width: 180px;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .skill-progress {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin: 0 auto 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .skill-progress {
+                width: 70px;
+                height: 70px;
+            }
+            .skill-card {
+                min-width: 100px;
+                max-width: 140px;
+                padding: 1rem 0.5rem;
+            }
+        }
+
+        .progress-ring {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+
+        .progress-ring-bg {
+            fill: none;
+            stroke: var(--border-color);
+            stroke-width: 6;
+        }
+
+        .progress-ring-fill {
+            fill: none;
+            stroke: url(#progressGradient);
+            stroke-width: 6;
+            stroke-linecap: round;
+            stroke-dasharray: 201;
+            stroke-dashoffset: 201;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .skill-level {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: clamp(0.75rem, 2.5vw, 0.95rem);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .skill-name {
+            font-family: var(--font-display);
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+.settings-content {
+            max-width: 450px;
+            margin: 0 auto;
+        }
+
+        .settings-group {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            overflow: visible;
+            backdrop-filter: blur(10px);
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: background var(--transition-fast);
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-item:hover {
+            background: var(--bg-glass);
+        }
+
+        .settings-label {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .settings-label ion-icon {
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
+
+        .settings-value {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+.theme-toggle-big {
+            position: relative;
+            width: 54px;
+            height: 28px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .theme-toggle-big:hover {
+            border-color: var(--primary);
+        }
+
+        .theme-slider-big {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            transition: left var(--transition-medium);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle-big.light .theme-slider-big {
+            left: 28px;
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+        }
+
+        .theme-slider-big ion-icon {
+            font-size: 13px;
+            color: white;
+        }
+.lang-bar {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .lang-bar-item {
+            padding: 0.4rem 0.8rem;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .lang-bar-item:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .lang-bar-item.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-color: transparent;
+            color: white;
+        }
+
+        .lang-bar-item.arabic-text {
+            font-family: var(--font-arabic) !important;
+        }
+.footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-glass);
+            backdrop-filter: blur(10px);
+        }
+.bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: calc(var(--nav-height) + var(--safe-bottom));
+            padding-bottom: var(--safe-bottom);
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 350px;
+            height: var(--nav-height);
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .nav-list {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            list-style: none;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .nav-item {
+            position: relative;
+            z-index: 10;
+            width: 25%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            transition: color var(--transition-fast);
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .nav-item.active .nav-icon {
+            color: white;
+            transform: translateY(-36px);
+        }
+.nav-indicator {
+            position: absolute;
+            top: -28px;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            box-shadow: 0 4px 20px var(--primary-glow);
+            transition: left 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            z-index: 5;
+            border: 4px solid var(--bg-primary);
+        }
+
+        [data-theme="light"] .nav-indicator {
+            border-color: var(--bg-primary);
+        }
+[dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .exp-header {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .settings-item {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .settings-label {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .settings-value {
+            flex-direction: row-reverse;
+        }
+
+        [dir="rtl"] .lang-bar {
+            flex-direction: row-reverse;
+        }
+@media (min-width: 768px) {
+            .section {
+                padding: 3rem 2rem;
+            }
+
+            .header {
+                padding: 0 2rem;
+            }
+
+            .social-link {
+                width: 48px;
+                height: 48px;
+                font-size: 1.3rem;
+            }
+
+            .nav-icon {
+                font-size: 1.6rem;
+            }
+
+            .nav-indicator {
+                width: 60px;
+                height: 60px;
+                top: -30px;
+            }
+
+            .nav-item.active .nav-icon {
+                transform: translateY(-38px);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .bottom-nav {
+                left: 50%;
+                right: auto;
+                transform: translateX(-50%);
+                width: 400px;
+                border-radius: 20px 20px 0 0;
+                border-left: 1px solid var(--border-color);
+                border-right: 1px solid var(--border-color);
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header-controls {
+                gap: 0.4rem;
+            }
+
+            .theme-toggle {
+                width: 44px;
+                height: 24px;
+            }
+
+            .theme-toggle-slider {
+                width: 18px;
+                height: 18px;
+            }
+
+            .theme-toggle.light .theme-toggle-slider {
+                left: 22px;
+            }
+
+            .lang-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 0.9rem;
+            }
+
+            .nav-icon {
+                font-size: 1.3rem;
+            }
+
+            .nav-item.active .nav-icon {
+                transform: translateY(-32px);
+            }
+
+            .nav-indicator {
+                width: 50px;
+                height: 50px;
+                top: -25px;
+            }
+
+            .lang-bar-item {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.75rem;
+            }
+        }
+
+        .hidden-svg {
+            position: absolute;
+            width: 0;
+            height: 0;
+            overflow: hidden;
+        }
+.fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+</head>
+<body>
+    
+    <div class="aurora-bg">
+        <div class="aurora-layer aurora-layer-1"></div>
+        <div class="aurora-layer aurora-layer-2"></div>
+        <div class="aurora-layer aurora-layer-3"></div>
+        <div class="aurora-blend"></div>
+    </div>
+
+    
+    <svg class="hidden-svg">
+        <defs>
+            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#6366f1" />
+                <stop offset="100%" stop-color="#06b6d4" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    
+    <div class="preloader" id="preloader">
+        <div class="preloader-logo">Hzifa33</div>
+        <div class="preloader-bar"></div>
+    </div>
+
+    
+    <header class="header" id="header">
+        <div class="logo">Hzifa33</div>
+        <div class="header-controls">
+            <div class="lang-switcher" id="langSwitcher">
+                <button class="lang-btn" id="langBtn" aria-label="Change Language">
+                    <ion-icon name="globe-outline"></ion-icon>
+                </button>
+                <div class="lang-dropdown" id="langDropdownHeader">
+                    <a data-lang="en">English</a>
+                    <a data-lang="ar" class="arabic-text">العربية</a>
+                    <a data-lang="es">Español</a>
+                    <a data-lang="arz" class="arabic-text">مصري</a>
+                </div>
+            </div>
+
+            <div class="theme-toggle" id="themeToggle">
+                <div class="theme-toggle-slider">
+                    <ion-icon name="moon" id="themeIcon"></ion-icon>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <div class="app-container">
+        
+        <section id="home" class="section hero">
+            <div class="profile-container fade-up">
+                <div class="profile-ring"></div>
+                <div class="profile-img-wrapper">
+                    <img src="https://i.postimg.cc/NLL6Yx0P/1740266616396.jpg" alt="Hzifa33" class="profile-img">
+                </div>
+            </div>
+            <h1 class="hero-name fade-up">Hzifa33</h1>
+            <p class="hero-title fade-up" data-i18n="heroTitle">Senior Front-End Developer & Reverse Engineer</p>
+            
+            <div class="social-links fade-up">
+                <a href="https://instagram.com/Hzifa33" target="_blank" class="social-link" aria-label="Instagram">
+                    <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+                <a href="https://t.me/Hzifa33" target="_blank" class="social-link" aria-label="Telegram">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.562 8.161c-.18 1.897-.962 6.502-1.359 8.627-.168.9-.5 1.201-.82 1.23-.697.064-1.226-.461-1.901-.903-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.911.177-.184 3.247-2.977 3.307-3.23.007-.032.015-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.479.329-.913.489-1.302.481-.428-.009-1.252-.242-1.865-.442-.751-.244-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.831-2.529 6.998-3.015 3.333-1.386 4.025-1.627 4.477-1.635.099-.002.321.023.465.141.121.1.155.234.17.33.015.097.034.318.019.49z"/></svg>
+                </a>
+                <a href="https://github.com/Hzifa33" target="_blank" class="social-link" aria-label="GitHub">
+                    <ion-icon name="logo-github"></ion-icon>
+                </a>
+                <a href="https://facebook.com/Hzifa33" target="_blank" class="social-link" aria-label="Facebook">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </a>
+                <a href="https://x.com/Hzifa33" target="_blank" class="social-link" aria-label="X">
+                    <svg viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+                </a>
+            </div>
+
+            <div class="scroll-indicator">
+                <span data-i18n="scrollDown">Scroll Down</span>
+                <div class="scroll-mouse">
+                    <div class="scroll-wheel"></div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="experience" class="section">
+            <h2 class="section-title fade-up" data-i18n="expTitle">Professional Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="code-slash-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp1Title">Senior Front-End Developer</h3>
+                            <span class="exp-duration" data-i18n="exp1Duration">5+ Years</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp1Det1">Developed modern, responsive web and mobile user interfaces.</li>
+                        <li data-i18n="exp1Det2">Proficient in HTML5, CSS3, JavaScript, React, Vue.js, and Tailwind CSS.</li>
+                        <li data-i18n="exp1Det3">Strong understanding of UI/UX principles and performance optimization.</li>
+                        <li data-i18n="exp1Det4">Built cross-platform applications with clean, maintainable code.</li>
+                        <li data-i18n="exp1Det5">Skilled in Figma and Adobe XD for interface design.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="construct-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp2Title">Reverse Engineer (Android)</h3>
+                            <span class="exp-duration" data-i18n="exp2Duration">Expert</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp2Det1">Expertise in analyzing, decompiling, and modifying Android APKs.</li>
+                        <li data-i18n="exp2Det2">Skilled in JADX, Ghidra, IDA Pro, and APKTool.</li>
+                        <li data-i18n="exp2Det3">Experienced in bypassing obfuscation and decoding logic.</li>
+                        <li data-i18n="exp2Det4">Solid understanding of smali and Java bytecode.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="color-palette-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp3Title">UI/UX & Video Designer</h3>
+                            <span class="exp-duration" data-i18n="exp3Duration">5+ Years</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp3Det1">Designed visual content, social media posts, and videos.</li>
+                        <li data-i18n="exp3Det2">Proficient in Adobe Premiere, After Effects, Photoshop, Canva.</li>
+                        <li data-i18n="exp3Det3">Created branding and promotional content.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="share-social-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp4Title">Social Media Manager</h3>
+                            <span class="exp-duration" data-i18n="exp4Duration">4+ Years</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp4Det1">Managed celebrity and influencer accounts.</li>
+                        <li data-i18n="exp4Det2">Created content plans and tracked analytics.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="clipboard-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp5Title">Data Entry Specialist</h3>
+                            <span class="exp-duration" data-i18n="exp5Duration">2 Years</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp5Det1">Worked with multinational companies on large data volumes.</li>
+                        <li data-i18n="exp5Det2">Maintained high speed and accuracy in data handling.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="book-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp6Title">Quran & Arabic Instructor</h3>
+                            <span class="exp-duration" data-i18n="exp6Duration">10+ Years</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp6Det1">10+ years teaching Quran memorization.</li>
+                        <li data-i18n="exp6Det2">8 years teaching "Noor Al-Bayan".</li>
+                        <li data-i18n="exp6Det3">Strong background in Arabic grammar and rhetoric.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="school-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp7Title">Islamic Studies Teacher</h3>
+                            <span class="exp-duration" data-i18n="exp7Duration">Extensive</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp7Det1">Taught Fiqh, Aqeedah, Tafsir, Hadith, and Usul.</li>
+                        <li data-i18n="exp7Det2">Designed lesson plans with modern pedagogy.</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="exp-header">
+                        <div class="exp-icon">
+                            <ion-icon name="language-outline"></ion-icon>
+                        </div>
+                        <div class="exp-title-wrapper">
+                            <h3 class="exp-title" data-i18n="exp8Title">Language Tutor</h3>
+                            <span class="exp-duration" data-i18n="exp8Duration">Skilled</span>
+                        </div>
+                    </div>
+                    <ul class="exp-details">
+                        <li data-i18n="exp8Det1">Taught Arabic through Spanish and English.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="skills" class="section">
+            <h2 class="section-title fade-up" data-i18n="skillsTitle">Language Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card fade-up">
+                    <div class="skill-progress" data-progress="100">
+                        <svg class="progress-ring" viewBox="0 0 80 80">
+                            <circle class="progress-ring-bg" cx="40" cy="40" r="32" />
+                            <circle class="progress-ring-fill" cx="40" cy="40" r="32" />
+                        </svg>
+                        <span class="skill-level" data-i18n="skill1Level">Native</span>
+                    </div>
+                    <h3 class="skill-name" data-i18n="skill1Name">Arabic</h3>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-progress" data-progress="85">
+                        <svg class="progress-ring" viewBox="0 0 80 80">
+                            <circle class="progress-ring-bg" cx="40" cy="40" r="32" />
+                            <circle class="progress-ring-fill" cx="40" cy="40" r="32" />
+                        </svg>
+                        <span class="skill-level">B2</span>
+                    </div>
+                    <h3 class="skill-name" data-i18n="skill2Name">Spanish</h3>
+                </div>
+
+                <div class="skill-card fade-up">
+                    <div class="skill-progress" data-progress="70">
+                        <svg class="progress-ring" viewBox="0 0 80 80">
+                            <circle class="progress-ring-bg" cx="40" cy="40" r="32" />
+                            <circle class="progress-ring-fill" cx="40" cy="40" r="32" />
+                        </svg>
+                        <span class="skill-level">B1</span>
+                    </div>
+                    <h3 class="skill-name" data-i18n="skill3Name">English</h3>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="settings" class="section">
+            <h2 class="section-title fade-up" data-i18n="settingsTitle">Settings</h2>
+            <div class="settings-content fade-up">
+                <div class="settings-group">
+                    <div class="settings-item">
+                        <div class="settings-label">
+                            <ion-icon name="moon-outline"></ion-icon>
+                            <span data-i18n="darkMode">Dark Mode</span>
+                        </div>
+                        <div class="theme-toggle-big" id="themeToggleBig">
+                            <div class="theme-slider-big">
+                                <ion-icon name="moon" id="themeIconBig"></ion-icon>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">
+                            <ion-icon name="globe-outline"></ion-icon>
+                            <span data-i18n="language">Language</span>
+                        </div>
+                        <div class="lang-bar" id="langBar">
+                            <span class="lang-bar-item" data-lang="en">EN</span>
+                            <span class="lang-bar-item arabic-text" data-lang="ar">عربي</span>
+                            <span class="lang-bar-item" data-lang="es">ES</span>
+                            <span class="lang-bar-item arabic-text" data-lang="arz">مصري</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <div class="settings-item">
+                        <div class="settings-label">
+                            <ion-icon name="information-circle-outline"></ion-icon>
+                            <span data-i18n="version">Version</span>
+                        </div>
+                        <span class="settings-value">3.0.0</span>
+                    </div>
+                    <div class="settings-item">
+                        <div class="settings-label">
+                            <ion-icon name="heart-outline"></ion-icon>
+                            <span data-i18n="madeWith">Made with</span>
+                        </div>
+                        <span class="settings-value" data-i18n="passion">Passion</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <footer class="footer">
+            <p data-i18n="footerText">&copy; 2025 Hzifa33. All rights reserved.</p>
+        </footer>
+    </div>
+
+    
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <ul class="nav-list" id="navList">
+                <li class="nav-item active" data-section="home">
+                    <a class="nav-link">
+                        <ion-icon name="home-outline" class="nav-icon"></ion-icon>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="experience">
+                    <a class="nav-link">
+                        <ion-icon name="briefcase-outline" class="nav-icon"></ion-icon>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="skills">
+                    <a class="nav-link">
+                        <ion-icon name="trophy-outline" class="nav-icon"></ion-icon>
+                    </a>
+                </li>
+                <li class="nav-item" data-section="settings">
+                    <a class="nav-link">
+                        <ion-icon name="settings-outline" class="nav-icon"></ion-icon>
+                    </a>
+                </li>
+                <div class="nav-indicator" id="navIndicator"></div>
+            </ul>
+        </div>
+    </nav>
+
+    <script>
+        (function() {
+            const translations = {
+                en: {
+                    pageTitle: "Hzifa33 | Digital Portfolio",
+                    heroTitle: "Senior Front-End Developer & Reverse Engineer",
+                    scrollDown: "Scroll Down",
+                    expTitle: "Professional Experience",
+                    exp1Title: "Senior Front-End Developer",
+                    exp1Duration: "5+ Years",
+                    exp1Det1: "Developed modern, responsive web and mobile user interfaces.",
+                    exp1Det2: "Proficient in HTML5, CSS3, JavaScript, React, Vue.js, and Tailwind CSS.",
+                    exp1Det3: "Strong understanding of UI/UX principles and performance optimization.",
+                    exp1Det4: "Built cross-platform applications with clean, maintainable code.",
+                    exp1Det5: "Skilled in Figma and Adobe XD for interface design.",
+                    exp2Title: "Reverse Engineer (Android)",
+                    exp2Duration: "Expert",
+                    exp2Det1: "Expertise in analyzing, decompiling, and modifying Android APKs.",
+                    exp2Det2: "Skilled in JADX, Ghidra, IDA Pro, and APKTool.",
+                    exp2Det3: "Experienced in bypassing obfuscation and decoding logic.",
+                    exp2Det4: "Solid understanding of smali and Java bytecode.",
+                    exp3Title: "UI/UX & Video Designer",
+                    exp3Duration: "5+ Years",
+                    exp3Det1: "Designed visual content, social media posts, and videos.",
+                    exp3Det2: "Proficient in Adobe Premiere, After Effects, Photoshop, Canva.",
+                    exp3Det3: "Created branding and promotional content.",
+                    exp4Title: "Social Media Manager",
+                    exp4Duration: "4+ Years",
+                    exp4Det1: "Managed celebrity and influencer accounts.",
+                    exp4Det2: "Created content plans and tracked analytics.",
+                    exp5Title: "Data Entry Specialist",
+                    exp5Duration: "2 Years",
+                    exp5Det1: "Worked with multinational companies on large data volumes.",
+                    exp5Det2: "Maintained high speed and accuracy in data handling.",
+                    exp6Title: "Quran & Arabic Instructor",
+                    exp6Duration: "10+ Years",
+                    exp6Det1: "10+ years teaching Quran memorization.",
+                    exp6Det2: "8 years teaching \"Noor Al-Bayan\".",
+                    exp6Det3: "Strong background in Arabic grammar and rhetoric.",
+                    exp7Title: "Islamic Studies Teacher",
+                    exp7Duration: "Extensive",
+                    exp7Det1: "Taught Fiqh, Aqeedah, Tafsir, Hadith, and Usul.",
+                    exp7Det2: "Designed lesson plans with modern pedagogy.",
+                    exp8Title: "Language Tutor",
+                    exp8Duration: "Skilled",
+                    exp8Det1: "Taught Arabic through Spanish and English.",
+                    skillsTitle: "Language Skills",
+                    skill1Level: "Native",
+                    skill1Name: "Arabic",
+                    skill2Name: "Spanish",
+                    skill3Name: "English",
+                    settingsTitle: "Settings",
+                    darkMode: "Dark Mode",
+                    language: "Language",
+                    version: "Version",
+                    madeWith: "Made with",
+                    passion: "Passion",
+                    footerText: "© 2025 Hzifa33. All rights reserved.",
+                    langName: "English"
+                },
+                ar: {
+                    pageTitle: "حذيفة | ملف أعمال رقمي",
+                    heroTitle: "مطور واجهات أمامية أول ومهندس عكسي",
+                    scrollDown: "مرر للأسفل",
+                    expTitle: "الخبرة المهنية",
+                    exp1Title: "مطور واجهات أمامية أول",
+                    exp1Duration: "+5 سنوات",
+                    exp1Det1: "تطوير واجهات مستخدم حديثة ومتجاوبة للويب والجوال.",
+                    exp1Det2: "إتقان HTML5, CSS3, JavaScript، و React, Vue.js, Tailwind CSS.",
+                    exp1Det3: "فهم قوي لمبادئ UI/UX وتحسين الأداء.",
+                    exp1Det4: "بناء تطبيقات متعددة المنصات بكود نظيف.",
+                    exp1Det5: "مهارة في Figma و Adobe XD.",
+                    exp2Title: "مهندس عكسي (أندرويد)",
+                    exp2Duration: "خبير",
+                    exp2Det1: "خبرة في تحليل وتفكيك وتعديل تطبيقات أندرويد.",
+                    exp2Det2: "مهارة في JADX, Ghidra, IDA Pro, APKTool.",
+                    exp2Det3: "خبرة في تجاوز التعتيم وفك التشفير.",
+                    exp2Det4: "فهم راسخ لـ Smali و Java bytecode.",
+                    exp3Title: "مصمم واجهات وفيديو",
+                    exp3Duration: "+5 سنوات",
+                    exp3Det1: "تصميم محتوى مرئي وفيديوهات.",
+                    exp3Det2: "إتقان Adobe Premiere, After Effects, Photoshop.",
+                    exp3Det3: "إنشاء محتوى ترويجي وهوية بصرية.",
+                    exp4Title: "مدير وسائل التواصل",
+                    exp4Duration: "+4 سنوات",
+                    exp4Det1: "إدارة حسابات المشاهير والمؤثرين.",
+                    exp4Det2: "إنشاء خطط محتوى وتتبع التحليلات.",
+                    exp5Title: "أخصائي إدخال بيانات",
+                    exp5Duration: "سنتان",
+                    exp5Det1: "العمل مع شركات متعددة الجنسيات.",
+                    exp5Det2: "سرعة ودقة عالية في معالجة البيانات.",
+                    exp6Title: "معلم قرآن ولغة عربية",
+                    exp6Duration: "+10 سنوات",
+                    exp6Det1: "+10 سنوات في تحفيظ القرآن.",
+                    exp6Det2: "8 سنوات في تدريس نور البيان.",
+                    exp6Det3: "خلفية قوية في النحو والبلاغة.",
+                    exp7Title: "مدرس دراسات إسلامية",
+                    exp7Duration: "خبرة واسعة",
+                    exp7Det1: "تدريس الفقه والعقيدة والتفسير والحديث.",
+                    exp7Det2: "تصميم خطط دروس حديثة.",
+                    exp8Title: "مدرس لغات",
+                    exp8Duration: "ماهر",
+                    exp8Det1: "تدريس العربية بالإسبانية والإنجليزية.",
+                    skillsTitle: "المهارات اللغوية",
+                    skill1Level: "لغة أم",
+                    skill1Name: "العربية",
+                    skill2Name: "الإسبانية",
+                    skill3Name: "الإنجليزية",
+                    settingsTitle: "الإعدادات",
+                    darkMode: "الوضع الداكن",
+                    language: "اللغة",
+                    version: "الإصدار",
+                    madeWith: "صُنع بـ",
+                    passion: "شغف",
+                    footerText: "© 2025 حذيفة. جميع الحقوق محفوظة.",
+                    langName: "العربية"
+                },
+                es: {
+                    pageTitle: "Hzifa33 | Portafolio Digital",
+                    heroTitle: "Desarrollador Front-End Senior e Ingeniero Inverso",
+                    scrollDown: "Desplázate",
+                    expTitle: "Experiencia Profesional",
+                    exp1Title: "Desarrollador Front-End Senior",
+                    exp1Duration: "5+ Años",
+                    exp1Det1: "Desarrollé interfaces modernas y responsivas.",
+                    exp1Det2: "Competente en HTML5, CSS3, JavaScript, React, Vue.js.",
+                    exp1Det3: "Sólida comprensión de UI/UX y optimización.",
+                    exp1Det4: "Aplicaciones multiplataforma con código limpio.",
+                    exp1Det5: "Habilidad en Figma y Adobe XD.",
+                    exp2Title: "Ingeniero Inverso (Android)",
+                    exp2Duration: "Experto",
+                    exp2Det1: "Experiencia en análisis y modificación de APKs.",
+                    exp2Det2: "Habilidad en JADX, Ghidra, IDA Pro, APKTool.",
+                    exp2Det3: "Experiencia en bypass de ofuscación.",
+                    exp2Det4: "Comprensión de smali y bytecode.",
+                    exp3Title: "Diseñador UI/UX y Video",
+                    exp3Duration: "5+ Años",
+                    exp3Det1: "Diseñé contenido visual y videos.",
+                    exp3Det2: "Competente en Adobe Suite y Canva.",
+                    exp3Det3: "Creé contenido de marca.",
+                    exp4Title: "Gestor de Redes Sociales",
+                    exp4Duration: "4+ Años",
+                    exp4Det1: "Gestioné cuentas de celebridades.",
+                    exp4Det2: "Planes de contenido y análisis.",
+                    exp5Title: "Especialista en Datos",
+                    exp5Duration: "2 Años",
+                    exp5Det1: "Trabajo con empresas multinacionales.",
+                    exp5Det2: "Alta velocidad y precisión.",
+                    exp6Title: "Instructor de Corán y Árabe",
+                    exp6Duration: "10+ Años",
+                    exp6Det1: "+10 años enseñando memorización del Corán.",
+                    exp6Det2: "8 años enseñando Noor Al-Bayan.",
+                    exp6Det3: "Formación en gramática árabe.",
+                    exp7Title: "Profesor de Estudios Islámicos",
+                    exp7Duration: "Extensa",
+                    exp7Det1: "Enseñé Fiqh, Aqidah, Tafsir, Hadith.",
+                    exp7Det2: "Planes de lecciones modernos.",
+                    exp8Title: "Tutor de Idiomas",
+                    exp8Duration: "Habilidoso",
+                    exp8Det1: "Enseñé árabe a través del español e inglés.",
+                    skillsTitle: "Habilidades Lingüísticas",
+                    skill1Level: "Nativo",
+                    skill1Name: "Árabe",
+                    skill2Name: "Español",
+                    skill3Name: "Inglés",
+                    settingsTitle: "Configuración",
+                    darkMode: "Modo Oscuro",
+                    language: "Idioma",
+                    version: "Versión",
+                    madeWith: "Hecho con",
+                    passion: "Pasión",
+                    footerText: "© 2025 Hzifa33. Todos los derechos reservados.",
+                    langName: "Español"
+                },
+                arz: {
+                    pageTitle: "حذيفة | بورتفوليو ديجيتال",
+                    heroTitle: "مطور فرونت-إند أول ومهندس عكسي",
+                    scrollDown: "نزّل تحت",
+                    expTitle: "الخبرة المهنية",
+                    exp1Title: "مطور فرونت-إند أول",
+                    exp1Duration: "+5 سنين",
+                    exp1Det1: "طورت واجهات مودرن وبتشتغل على أي جهاز.",
+                    exp1Det2: "شاطر في HTML5, CSS3, JavaScript, React, Vue.js.",
+                    exp1Det3: "فاهم مبادئ التصميم وتحسين الأداء.",
+                    exp1Det4: "بنيت تطبيقات بتشتغل على كل المنصات.",
+                    exp1Det5: "عندي مهارة في Figma و Adobe XD.",
+                    exp2Title: "مهندس عكسي (أندرويد)",
+                    exp2Duration: "خبير",
+                    exp2Det1: "خبرة في تحليل وتعديل تطبيقات الأندرويد.",
+                    exp2Det2: "بعرف أستخدم JADX, Ghidra, IDA Pro.",
+                    exp2Det3: "عندي خبرة في فك التشفير.",
+                    exp2Det4: "فاهم Smali والـ Java bytecode.",
+                    exp3Title: "مصمم واجهات وفيديو",
+                    exp3Duration: "+5 سنين",
+                    exp3Det1: "صممت محتوى مرئي وفيديوهات.",
+                    exp3Det2: "شاطر في برامج Adobe و Canva.",
+                    exp3Det3: "عملت براندنج ومحتوى ترويجي.",
+                    exp4Title: "مدير سوشيال ميديا",
+                    exp4Duration: "+4 سنين",
+                    exp4Det1: "أدرت حسابات مشاهير ومؤثرين.",
+                    exp4Det2: "عملت خطط محتوى وتابعت التحليلات.",
+                    exp5Title: "متخصص إدخال بيانات",
+                    exp5Duration: "سنتين",
+                    exp5Det1: "اشتغلت مع شركات كبيرة.",
+                    exp5Det2: "كنت بحافظ على سرعة ودقة عالية.",
+                    exp6Title: "محفظ قرآن ومدرس عربي",
+                    exp6Duration: "+10 سنين",
+                    exp6Det1: "+10 سنين في تحفيظ القرآن.",
+                    exp6Det2: "8 سنين في تدريس نور البيان.",
+                    exp6Det3: "خلفية قوية في النحو والبلاغة.",
+                    exp7Title: "مدرس علوم شرعية",
+                    exp7Duration: "خبرة كبيرة",
+                    exp7Det1: "درّست فقه وعقيدة وتفسير وحديث.",
+                    exp7Det2: "صممت خطط دروس حديثة.",
+                    exp8Title: "مدرس لغات",
+                    exp8Duration: "شاطر",
+                    exp8Det1: "درّست عربي بالإسباني والإنجليزي.",
+                    skillsTitle: "المهارات اللغوية",
+                    skill1Level: "لغة أم",
+                    skill1Name: "عربي",
+                    skill2Name: "إسباني",
+                    skill3Name: "إنجليزي",
+                    settingsTitle: "الإعدادات",
+                    darkMode: "الوضع الليلي",
+                    language: "اللغة",
+                    version: "الإصدار",
+                    madeWith: "اتعمل بـ",
+                    passion: "حب",
+                    footerText: "© 2025 حذيفة. كل الحقوق محفوظة.",
+                    langName: "مصري"
+                }
+            };
+
+            let currentLang = localStorage.getItem('lang') || 'en';
+            let currentTheme = localStorage.getItem('theme') || 'dark';
+            const preloader = document.getElementById('preloader');
+            const header = document.getElementById('header');
+            const themeToggle = document.getElementById('themeToggle');
+            const themeIcon = document.getElementById('themeIcon');
+            const themeToggleBig = document.getElementById('themeToggleBig');
+            const themeIconBig = document.getElementById('themeIconBig');
+            const langSwitcher = document.getElementById('langSwitcher');
+            const langBtn = document.getElementById('langBtn');
+            const langDropdownHeader = document.getElementById('langDropdownHeader');
+            const langBar = document.getElementById('langBar');
+            const navItems = document.querySelectorAll('.nav-item');
+            const navIndicator = document.getElementById('navIndicator');
+            const navList = document.getElementById('navList');
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    preloader.classList.add('hidden');
+                    document.querySelectorAll('.fade-up').forEach((el, i) => {
+                        setTimeout(() => el.classList.add('visible'), i * 100);
+                    });
+                    initSkillAnimations();
+                    updateIndicator();
+                }, 1500);
+            });
+            function setTheme(theme) {
+                currentTheme = theme;
+                document.documentElement.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                
+                const isLight = theme === 'light';
+                themeToggle.classList.toggle('light', isLight);
+                themeToggleBig.classList.toggle('light', isLight);
+                themeIcon.setAttribute('name', isLight ? 'sunny' : 'moon');
+                themeIconBig.setAttribute('name', isLight ? 'sunny' : 'moon');
+            }
+
+            setTheme(currentTheme);
+
+            themeToggle.addEventListener('click', () => {
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+
+            themeToggleBig.addEventListener('click', () => {
+                setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            });
+            function setLanguage(lang) {
+                if (!translations[lang]) return;
+                currentLang = lang;
+                localStorage.setItem('lang', lang);
+                
+                const isRTL = lang === 'ar' || lang === 'arz';
+                document.documentElement.lang = lang;
+                document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
+                
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[lang][key]) {
+                        el.textContent = translations[lang][key];
+                    }
+                });
+                document.querySelectorAll('[data-lang]').forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('data-lang') === lang);
+                });
+
+                langSwitcher.classList.remove('active');
+                
+                setTimeout(updateIndicator, 100);
+            }
+
+            setLanguage(currentLang);
+            langBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                langSwitcher.classList.toggle('active');
+            });
+
+            langDropdownHeader.querySelectorAll('[data-lang]').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(link.getAttribute('data-lang'));
+                });
+            });
+            langBar.querySelectorAll('[data-lang]').forEach(item => {
+                item.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    setLanguage(item.getAttribute('data-lang'));
+                });
+            });
+
+            document.addEventListener('click', () => {
+                langSwitcher.classList.remove('active');
+            });
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 50);
+            });
+            function updateIndicator() {
+                const activeItem = document.querySelector('.nav-item.active');
+                if (activeItem && navIndicator && navList) {
+                    const itemRect = activeItem.getBoundingClientRect();
+                    const listRect = navList.getBoundingClientRect();
+                    const itemCenter = itemRect.left + (itemRect.width / 2) - listRect.left;
+                    const indicatorLeft = itemCenter - (navIndicator.offsetWidth / 2);
+                    navIndicator.style.left = indicatorLeft + 'px';
+                }
+            }
+
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+                    updateIndicator();
+
+                    const sectionId = item.getAttribute('data-section');
+                    const section = document.getElementById(sectionId);
+                    if (section) {
+                        const headerHeight = 60;
+                        const y = section.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                        window.scrollTo({ top: y, behavior: 'smooth' });
+                    }
+                });
+            });
+            const sections = document.querySelectorAll('.section');
+            const observerOptions = {
+                root: null,
+                rootMargin: '-20% 0px -70% 0px',
+                threshold: 0
+            };
+
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navItems.forEach(item => {
+                            const isActive = item.getAttribute('data-section') === id;
+                            item.classList.toggle('active', isActive);
+                        });
+                        updateIndicator();
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => sectionObserver.observe(section));
+            setTimeout(updateIndicator, 500);
+            window.addEventListener('resize', updateIndicator);
+            function initSkillAnimations() {
+                const skillCards = document.querySelectorAll('.skill-card');
+                const circumference = 2 * Math.PI * 32;
+
+                const skillObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const progressEl = entry.target.querySelector('.skill-progress');
+                            const progressCircle = entry.target.querySelector('.progress-ring-fill');
+                            if (progressEl && progressCircle) {
+                                const progress = parseInt(progressEl.dataset.progress) || 0;
+                                const offset = circumference - (progress / 100) * circumference;
+                                progressCircle.style.strokeDasharray = circumference;
+                                progressCircle.style.strokeDashoffset = offset;
+                            }
+                            skillObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+
+                skillCards.forEach(card => skillObserver.observe(card));
+            }
+            const fadeObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+        })();
+    </script>
+</body>
 </html>
