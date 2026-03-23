@@ -21,7 +21,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
         return 'dark';
       }
     }
-    return 'light';
+    return 'dark';
   });
 
   useEffect(() => {
