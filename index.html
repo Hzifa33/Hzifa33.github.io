@@ -212,6 +212,162 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="dns-prefetch" href="https://ui-avatars.com" />
+
+    
+    
+    
+    <style>
+html.dark [style*="data:image/svg+xml"] {
+        opacity: 0 !important;
+        transition: opacity 0.8s ease;
+      }
+      html:not(.dark) [style*="data:image/svg+xml"] {
+        transition: opacity 0.8s ease;
+      }
+.wb-layer {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0;
+        transition: opacity 1s ease;
+      }
+      html.dark .wb-layer {
+        opacity: 1;
+      }
+.wb {
+        position: absolute;
+        will-change: transform, border-radius;
+        pointer-events: none;
+      }
+.wb-1 {
+        width: 70vw;
+        height: 70vw;
+        max-width: 750px;
+        max-height: 750px;
+        top: -25%;
+        left: -18%;
+        background: radial-gradient(
+          ellipse at 45% 45%,
+          rgba(124, 58, 237, 0.32) 0%,
+          rgba(99, 102, 241, 0.22) 35%,
+          rgba(139, 92, 246, 0.10) 60%,
+          transparent 80%
+        );
+        filter: blur(70px);
+        border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%;
+        animation: wb-morph-1 24s ease-in-out infinite,
+                   wb-drift-1  30s ease-in-out infinite;
+      }
+.wb-2 {
+        width: 60vw;
+        height: 60vw;
+        max-width: 660px;
+        max-height: 660px;
+        bottom: -18%;
+        right: -15%;
+        background: radial-gradient(
+          ellipse at 55% 55%,
+          rgba(79, 70, 229, 0.28) 0%,
+          rgba(124, 58, 237, 0.18) 35%,
+          rgba(167, 139, 250, 0.08) 60%,
+          transparent 80%
+        );
+        filter: blur(75px);
+        border-radius: 38% 62% 54% 46% / 44% 60% 40% 56%;
+        animation: wb-morph-2 20s ease-in-out infinite,
+                   wb-drift-2  26s ease-in-out infinite;
+        animation-delay: -8s, -5s;
+      }
+.wb-3 {
+        width: 48vw;
+        height: 48vw;
+        max-width: 520px;
+        max-height: 520px;
+        top: 28%;
+        left: 32%;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(196, 181, 253, 0.16) 0%,
+          rgba(139, 92, 246, 0.10) 40%,
+          rgba(99, 102, 241, 0.05) 65%,
+          transparent 85%
+        );
+        filter: blur(65px);
+        border-radius: 54% 46% 38% 62% / 48% 52% 48% 52%;
+        animation: wb-morph-3 28s ease-in-out infinite,
+                   wb-drift-3  35s ease-in-out infinite;
+        animation-delay: -14s, -20s;
+      }
+.wb-4 {
+        width: 40vw;
+        height: 40vw;
+        max-width: 450px;
+        max-height: 450px;
+        top: -8%;
+        right: 5%;
+        background: radial-gradient(
+          ellipse at 40% 60%,
+          rgba(109, 40, 217, 0.20) 0%,
+          rgba(76, 29, 149, 0.12) 40%,
+          transparent 75%
+        );
+        filter: blur(80px);
+        border-radius: 46% 54% 62% 38% / 52% 48% 52% 48%;
+        animation: wb-morph-4 22s ease-in-out infinite,
+                   wb-drift-4  28s ease-in-out infinite;
+        animation-delay: -5s, -12s;
+      }
+@keyframes wb-morph-1 {
+        0%, 100% { border-radius: 62% 38% 46% 54% / 60% 44% 56% 40%; }
+        20%       { border-radius: 40% 60% 58% 42% / 48% 62% 38% 52%; }
+        40%       { border-radius: 54% 46% 38% 62% / 36% 54% 46% 64%; }
+        60%       { border-radius: 46% 54% 64% 36% / 56% 40% 60% 44%; }
+        80%       { border-radius: 36% 64% 44% 56% / 64% 36% 54% 46%; }
+      }
+      @keyframes wb-morph-2 {
+        0%, 100% { border-radius: 38% 62% 54% 46% / 44% 60% 40% 56%; }
+        25%       { border-radius: 60% 40% 42% 58% / 56% 38% 62% 44%; }
+        50%       { border-radius: 44% 56% 66% 34% / 38% 62% 38% 62%; }
+        75%       { border-radius: 58% 42% 38% 62% / 62% 42% 58% 38%; }
+      }
+      @keyframes wb-morph-3 {
+        0%, 100% { border-radius: 54% 46% 38% 62% / 48% 52% 48% 52%; }
+        33%       { border-radius: 36% 64% 58% 42% / 60% 40% 56% 44%; }
+        66%       { border-radius: 66% 34% 44% 56% / 42% 64% 36% 58%; }
+      }
+      @keyframes wb-morph-4 {
+        0%, 100% { border-radius: 46% 54% 62% 38% / 52% 48% 52% 48%; }
+        30%       { border-radius: 62% 38% 40% 60% / 38% 58% 42% 62%; }
+        60%       { border-radius: 38% 62% 54% 46% / 60% 36% 64% 40%; }
+      }
+@keyframes wb-drift-1 {
+        0%, 100% { transform: translate(0,    0)   scale(1);    }
+        25%       { transform: translate(3%,  5%)  scale(1.04); }
+        50%       { transform: translate(6%,  1%)  scale(0.97); }
+        75%       { transform: translate(2%,  7%)  scale(1.06); }
+      }
+      @keyframes wb-drift-2 {
+        0%, 100% { transform: translate(0,   0)   scale(1);    }
+        25%       { transform: translate(-4%, -6%) scale(1.05); }
+        50%       { transform: translate(-7%, -2%) scale(0.95); }
+        75%       { transform: translate(-2%, -8%) scale(1.03); }
+      }
+      @keyframes wb-drift-3 {
+        0%, 100% { transform: translate(0,   0)   scale(1);    opacity: 0.7; }
+        33%       { transform: translate(-4%, 5%)  scale(1.08); opacity: 1;   }
+        66%       { transform: translate(5%,  9%)  scale(0.93); opacity: 0.8; }
+      }
+      @keyframes wb-drift-4 {
+        0%, 100% { transform: translate(0,   0)   scale(1);    }
+        40%       { transform: translate(-3%, 4%)  scale(1.06); }
+        70%       { transform: translate(4%, -3%)  scale(0.96); }
+      }
+@media (prefers-reduced-motion: reduce) {
+        .wb { animation: none !important; }
+      }
+    </style>
     <style>
       html.dark {
         background-color: #030712;
@@ -243,5 +399,50 @@ Error generating stack: `+i.message+`
   </head>
   <body>
     <div id="root"></div>
+
+    
+    <script>
+      (function () {
+        var injected = false;
+
+        function injectBlobs() {
+          if (injected) return;
+          var home = document.getElementById('home');
+          if (!home) return;
+          var layer = document.createElement('div');
+          layer.className = 'wb-layer';
+          layer.setAttribute('aria-hidden', 'true');
+
+          for (var i = 1; i <= 4; i++) {
+            var blob = document.createElement('div');
+            blob.className = 'wb wb-' + i;
+            layer.appendChild(blob);
+          }
+          home.insertBefore(layer, home.firstChild);
+          injected = true;
+        }
+        function tryInject() {
+          injectBlobs();
+          if (!injected) {
+            var mo = new MutationObserver(function () {
+              injectBlobs();
+              if (injected) mo.disconnect();
+            });
+            mo.observe(document.body, { childList: true, subtree: true });
+          }
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(tryInject, 50);
+          });
+        } else {
+          setTimeout(tryInject, 50);
+        }
+        setTimeout(function () {
+          if (!injected) injectBlobs();
+        }, 2000);
+      })();
+    </script>
   </body>
 </html>
