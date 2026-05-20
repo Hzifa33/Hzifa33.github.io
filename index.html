@@ -1272,9 +1272,11 @@ function removeTyping(){
 function scrollBottom(){
   body.scrollTo({top:body.scrollHeight,behavior:'smooth'});
 }
+const HOZAI_API_ENDPOINT = 'https://hozai-chat.wahdany2003.workers.dev';
+
 async function callAPI(){
   const lang = getLang();
-  const res = await fetch('/.netlify/functions/chat',{
+  const res = await fetch(HOZAI_API_ENDPOINT,{
     method:'POST',
     headers:{'Content-Type':'application/json'},
     body:JSON.stringify({
@@ -1282,7 +1284,7 @@ async function callAPI(){
       language:lang
     })
   });
-  const data = await res.json();
+  const data = await res.json().catch(()=>({error:'Invalid JSON response'}));
   if(!res.ok) throw new Error(data.error || 'API error ' + res.status);
   return data.text;
 }
