@@ -440,5 +440,935 @@ Error generating stack: `+i.message+`
         }, 2000);
       })();
     </script>
-  </body>
+<!-- ═══════════════════════════════════════════════════════
+     HozAI — AI Chat Widget  v2.0
+     Connects to /.netlify/functions/chat  (Gemini API)
+     ═══════════════════════════════════════════════════════ -->
+<style>
+#hozai-root *{box-sizing:border-box;margin:0;padding:0}
+#hozai-root{
+  position:fixed;
+bottom:96px;left:16px;
+  z-index:99999;
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+}
+@media(min-width:768px){
+  #hozai-root{bottom:28px;left:24px}
+}
+#hozai-btn{
+  width:48px;height:48px;border-radius:14px;
+  background:linear-gradient(135deg,#7c3aed 0%,#4f46e5 100%);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 20px rgba(124,58,237,.45),0 2px 6px rgba(0,0,0,.18);
+  position:relative;
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1),
+             box-shadow .25s ease,
+             border-radius .3s ease;
+}
+#hozai-btn:hover{
+  transform:scale(1.08) translateY(-2px);
+  box-shadow:0 12px 30px rgba(124,58,237,.55),0 3px 10px rgba(0,0,0,.18);
+  border-radius:17px;
+}
+#hozai-btn:active{transform:scale(.94)}
+#hozai-btn::before{
+  content:'';position:absolute;inset:-4px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(79,70,229,.15));
+  animation:hozai-glow 2.8s ease-in-out infinite;
+  z-index:-1;
+}
+@keyframes hozai-glow{
+  0%,100%{transform:scale(1);opacity:.6}
+  50%{transform:scale(1.12);opacity:1}
+}
+#hozai-badge{
+  position:absolute;top:-4px;right:-4px;
+  width:18px;height:18px;border-radius:50%;
+  background:#6b7280; /* gray = disconnected */
+  border:2.5px solid #fff;
+  transition:background .6s ease, transform .3s ease;
+  display:flex;align-items:center;justify-content:center;
+}
+#hozai-badge.hzp-connected{
+  background:#10b981;
+  animation:hzp-badge-pulse 2.5s ease-in-out infinite;
+}
+.dark-widget #hozai-badge{border-color:#0d1117}
+@keyframes hzp-badge-pulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+}
+#hozai-tooltip{
+  position:absolute;left:60px;top:50%;transform:translateY(-50%);
+  background:#1e1b4b;color:#c4b5fd;border-radius:10px;
+  padding:6px 12px;font-size:12px;font-weight:500;white-space:nowrap;
+  pointer-events:none;opacity:0;transition:opacity .2s;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+}
+#hozai-tooltip::before{
+  content:'';position:absolute;right:100%;top:50%;transform:translateY(-50%);
+  border:6px solid transparent;border-right-color:#1e1b4b;
+}
+#hozai-btn:hover #hozai-tooltip{opacity:1}
+#hozai-panel{
+  position:absolute;bottom:70px;left:0;
+  width:385px;
+  display:flex;flex-direction:column;
+  border-radius:24px;overflow:hidden;
+  box-shadow:
+    0 32px 80px rgba(0,0,0,.4),
+    0 0 0 1px rgba(124,58,237,.15),
+    0 0 80px rgba(124,58,237,.05);
+transform-origin:bottom left;
+  transition:
+    transform .4s cubic-bezier(.34,1.2,.64,1),
+    opacity .3s cubic-bezier(.22,1,.36,1),
+    filter .35s cubic-bezier(.22,1,.36,1);
+}
+@media(max-width:440px){
+  #hozai-panel{width:calc(100vw - 32px);left:-2px}
+}
+
+#hozai-panel.hzp-hidden{
+  transform:scale(.55) translateY(28px);
+  opacity:0;
+  filter:blur(14px);
+  pointer-events:none;
+}
+#hozai-panel.hzp-visible{
+  transform:scale(1) translateY(0);
+  opacity:1;
+  filter:blur(0px);
+}
+
+.dark-widget #hozai-panel{background:#120f1e}
+.light-widget #hozai-panel{background:#f8f7ff}
+#hozai-hdr{
+  background:linear-gradient(135deg,#5b21b6 0%,#3730a3 100%);
+  padding:14px 16px;
+  display:flex;align-items:center;gap:10px;
+  flex-shrink:0;
+  position:relative;overflow:hidden;
+}
+#hozai-hdr::before{
+  content:'';position:absolute;top:-24px;right:-16px;
+  width:100px;height:100px;border-radius:50%;
+  background:rgba(255,255,255,.07);
+}
+#hozai-hdr::after{
+  content:'';position:absolute;bottom:-36px;left:12px;
+  width:90px;height:90px;border-radius:50%;
+  background:rgba(255,255,255,.04);
+}
+
+.hzp-avatar{
+  width:38px;height:38px;border-radius:12px;
+  background:rgba(255,255,255,.15);
+  border:1.5px solid rgba(255,255,255,.25);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;color:#fff;position:relative;z-index:1;
+}
+
+.hzp-hdr-info{flex:1;min-width:0;z-index:1}
+.hzp-hdr-name{
+  font-size:14px;font-weight:700;color:#fff;
+  letter-spacing:-.2px;line-height:1.2;
+}
+.hzp-hdr-sub{
+  display:flex;align-items:center;gap:5px;
+  font-size:11px;color:rgba(255,255,255,.7);margin-top:2px;
+}
+.hzp-status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#6b7280;
+  transition:background .6s ease;
+}
+.hzp-status-dot.connected{
+  background:#34d399;
+  animation:hzp-dot-pulse 2.2s ease-in-out infinite;
+}
+@keyframes hzp-dot-pulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:.5;transform:scale(1.3)}
+}
+
+.hzp-hdr-acts{display:flex;gap:6px;z-index:1}
+.hzp-hdr-btn{
+  width:30px;height:30px;border-radius:9px;
+  background:rgba(255,255,255,.12);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:#fff;
+  transition:background .2s,transform .15s;
+}
+.hzp-hdr-btn:hover{background:rgba(255,255,255,.26);transform:scale(1.08)}
+#hozai-body{
+  flex:1;overflow-y:auto;padding:16px;min-height:0;
+  max-height:340px;scroll-behavior:smooth;
+}
+#hozai-body::-webkit-scrollbar{width:3px}
+#hozai-body::-webkit-scrollbar-thumb{
+  background:rgba(124,58,237,.3);border-radius:3px
+}
+#hzp-welcome{text-align:center;padding:6px 0 10px}
+
+.hzp-welcome-icon{
+  width:64px;height:64px;border-radius:20px;margin:0 auto 14px;
+  background:linear-gradient(135deg,rgba(124,58,237,.12),rgba(79,70,229,.08));
+  border:1px solid rgba(124,58,237,.18);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(124,58,237,.08);
+}
+.dark-widget .hzp-welcome-icon{color:#a78bfa}
+.light-widget .hzp-welcome-icon{color:#7c3aed}
+
+.hzp-welcome-title{
+  font-size:16px;font-weight:800;letter-spacing:-.4px;margin-bottom:5px;
+}
+.dark-widget .hzp-welcome-title{color:#f0edfb}
+.light-widget .hzp-welcome-title{color:#18103a}
+
+.hzp-welcome-sub{
+  font-size:12px;line-height:1.65;
+  margin-bottom:18px;max-width:290px;margin-left:auto;margin-right:auto;
+}
+.dark-widget .hzp-welcome-sub{color:#8899b0}
+.light-widget .hzp-welcome-sub{color:#64748b}
+.hzp-chips{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.hzp-chip{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 10px;border-radius:13px;border:none;
+  cursor:pointer;font-size:11.5px;font-weight:500;
+  text-align:left;line-height:1.3;
+  transition:all .22s cubic-bezier(.22,1,.36,1);
+}
+.dark-widget .hzp-chip{
+  background:rgba(109,40,217,.1);color:#c4b5fd;
+  border:1px solid rgba(124,58,237,.18);
+}
+.light-widget .hzp-chip{
+  background:rgba(124,58,237,.06);color:#6d28d9;
+  border:1px solid rgba(124,58,237,.13);
+}
+.hzp-chip:hover{
+  transform:translateY(-3px) scale(1.02);
+  background:rgba(124,58,237,.2) !important;
+  box-shadow:0 8px 20px rgba(124,58,237,.18);
+}
+.hzp-chip-ico{
+  width:28px;height:28px;border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,rgba(124,58,237,.22),rgba(79,70,229,.16));
+}
+.dark-widget .hzp-chip-ico{color:#a78bfa}
+.light-widget .hzp-chip-ico{color:#7c3aed}
+#hzp-msgs{display:flex;flex-direction:column;gap:12px;width:100%;min-width:0}
+
+.hzp-msg{display:flex;gap:8px;align-items:flex-end;min-width:0;overflow:hidden}
+.hzp-msg-ai{flex-direction:row}
+.hzp-msg-usr{flex-direction:row-reverse}
+
+.hzp-msg-av{
+  width:28px;height:28px;border-radius:9px;flex-shrink:0;
+  background:linear-gradient(135deg,#7c3aed,#4f46e5);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:800;color:#fff;letter-spacing:-.3px;
+  box-shadow:0 3px 10px rgba(124,58,237,.35);
+}
+.hzp-bubble{
+  max-width:80%;padding:10px 14px;border-radius:18px;
+  font-size:13px;line-height:1.6;
+  word-break:break-word;overflow-wrap:anywhere;
+  overflow:hidden;min-width:0;
+  position:relative;
+}
+.hzp-msg-ai .hzp-bubble{border-bottom-left-radius:5px}
+.hzp-msg-usr .hzp-bubble{
+  border-bottom-right-radius:5px;
+  background:linear-gradient(135deg,#7c3aed,#4338ca);
+  color:#fff;
+  box-shadow:0 4px 16px rgba(124,58,237,.35);
+}
+.dark-widget .hzp-msg-ai .hzp-bubble{
+  background:linear-gradient(135deg,#1e1a32,#1a1628);
+  color:#e2e8f0;
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.light-widget .hzp-msg-ai .hzp-bubble{
+  background:linear-gradient(135deg,#f0edff,#ede9fb);
+  color:#1e1b4b;
+  border:1px solid rgba(124,58,237,.1);
+  box-shadow:0 2px 10px rgba(124,58,237,.06);
+}
+.hzp-ts{
+  font-size:9.5px;opacity:.4;margin-top:3px;
+  display:flex;
+}
+.hzp-msg-ai .hzp-ts{justify-content:flex-start;padding-left:36px}
+.hzp-msg-usr .hzp-ts{justify-content:flex-end}
+.hzp-typing{
+  display:flex;gap:4px;align-items:center;padding:10px 14px;
+}
+.hzp-typing span{
+  width:6px;height:6px;border-radius:50%;background:#7c3aed;
+  animation:hzp-tdot 1.2s ease-in-out infinite;
+}
+.hzp-typing span:nth-child(2){animation-delay:.2s}
+.hzp-typing span:nth-child(3){animation-delay:.4s}
+@keyframes hzp-tdot{
+  0%,60%,100%{transform:translateY(0);opacity:.3}
+  30%{transform:translateY(-7px);opacity:1}
+}
+.hzp-err-card{
+  display:flex;flex-direction:column;align-items:center;
+  gap:8px;padding:16px 14px;text-align:center;
+  border-radius:14px;margin:4px 0;
+  width:100%;box-sizing:border-box;
+  overflow:hidden;
+}
+.dark-widget .hzp-err-card{
+  background:rgba(239,68,68,.06);
+  border:1px solid rgba(239,68,68,.15);
+}
+.light-widget .hzp-err-card{
+  background:rgba(239,68,68,.04);
+  border:1px solid rgba(239,68,68,.12);
+}
+.hzp-err-icon{
+  width:42px;height:42px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  color:#f87171;
+  background:rgba(239,68,68,.1);
+  border:1px solid rgba(239,68,68,.2);
+  flex-shrink:0;
+}
+.hzp-err-title{
+  font-size:13px;font-weight:700;color:#f87171;
+}
+.hzp-err-body{
+  font-size:11.5px;line-height:1.55;
+  color:#94a3b8;max-width:100%;
+  word-break:break-word;overflow-wrap:anywhere;
+}
+.hzp-err-retry{
+  padding:7px 18px;border-radius:9px;
+  background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);
+  color:#f87171;font-size:12px;font-weight:600;
+  cursor:pointer;transition:all .2s;
+  display:inline-flex;align-items:center;gap:5px;
+}
+.hzp-err-retry:hover{background:rgba(239,68,68,.2);transform:scale(1.03)}
+#hzp-job-pane{
+  padding:11px 15px;flex-shrink:0;
+  border-top:1px solid;
+}
+.dark-widget #hzp-job-pane{border-color:rgba(255,255,255,.06)}
+.light-widget #hzp-job-pane{border-color:rgba(0,0,0,.06)}
+
+.hzp-job-label{
+  font-size:10.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  margin-bottom:8px;display:flex;align-items:center;gap:6px;
+}
+.dark-widget .hzp-job-label{color:#a78bfa}
+.light-widget .hzp-job-label{color:#7c3aed}
+
+.hzp-job-row{display:flex;gap:7px;align-items:flex-end}
+
+#hzp-job-input{
+  flex:1;padding:9px 13px;border-radius:12px;
+  border:1px solid rgba(124,58,237,.28);
+  font-size:13px;font-family:inherit;resize:none;
+  outline:none;transition:border-color .2s,box-shadow .2s;
+  line-height:1.4;max-height:72px;
+}
+.dark-widget #hzp-job-input{background:#1a1629;color:#e2e8f0}
+.light-widget #hzp-job-input{background:#f0edff;color:#18103a}
+#hzp-job-input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+#hzp-job-input::placeholder{color:#94a3b8}
+
+#hzp-job-btn{
+  padding:9px 14px;border-radius:12px;
+  background:linear-gradient(135deg,#7c3aed,#4338ca);
+  color:#fff;border:none;cursor:pointer;
+  font-size:12px;font-weight:600;white-space:nowrap;
+  display:flex;align-items:center;gap:5px;
+  transition:opacity .2s,transform .15s,box-shadow .2s;flex-shrink:0;
+  box-shadow:0 4px 14px rgba(124,58,237,.3);
+}
+#hzp-job-btn:hover{opacity:.92;transform:scale(1.04);box-shadow:0 6px 20px rgba(124,58,237,.4)}
+#hzp-job-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+#hzp-input-area{
+  padding:11px 13px;flex-shrink:0;
+  border-top:1px solid;display:flex;gap:8px;align-items:flex-end;
+}
+.dark-widget #hzp-input-area{border-color:rgba(255,255,255,.06)}
+.light-widget #hzp-input-area{border-color:rgba(0,0,0,.06)}
+
+#hzp-msg-input{
+  flex:1;padding:9px 14px;border-radius:14px;
+  border:1px solid rgba(124,58,237,.25);
+  font-size:13px;font-family:inherit;resize:none;
+  outline:none;max-height:88px;overflow-y:auto;
+  line-height:1.5;transition:border-color .2s,box-shadow .2s;
+}
+.dark-widget #hzp-msg-input{background:#1a1629;color:#e2e8f0}
+.light-widget #hzp-msg-input{background:#f0edff;color:#18103a}
+#hzp-msg-input:focus{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.1)}
+#hzp-msg-input::placeholder{color:#94a3b8}
+
+#hzp-send{
+  width:38px;height:38px;border-radius:12px;
+  background:linear-gradient(135deg,#7c3aed,#4338ca);
+  border:none;cursor:pointer;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .2s,transform .15s,box-shadow .2s;flex-shrink:0;
+  box-shadow:0 3px 10px rgba(124,58,237,.3);
+}
+#hzp-send:hover{opacity:.9;transform:scale(1.1);box-shadow:0 6px 18px rgba(124,58,237,.4)}
+#hzp-send:disabled{opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}
+.hzp-divider{
+  text-align:center;font-size:10px;padding:4px 0;letter-spacing:.2px;
+}
+.dark-widget .hzp-divider{color:#3d3560}
+.light-widget .hzp-divider{color:#c4b5fd}
+</style>
+
+<div id="hozai-root">
+
+  
+  <button id="hozai-btn" aria-label="Open HozAI Assistant">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 8V4H8"/>
+      <rect width="16" height="12" x="4" y="8" rx="2"/>
+      <path d="M2 14h2"/>
+      <path d="M20 14h2"/>
+      <path d="M15 13v2"/>
+      <path d="M9 13v2"/>
+    </svg>
+    
+    <div id="hozai-badge" aria-hidden="true"></div>
+    <div id="hozai-tooltip">Ask HozAI</div>
+  </button>
+
+  
+  <div id="hozai-panel" class="hzp-hidden" role="dialog" aria-label="HozAI Chat">
+
+    
+    <div id="hozai-hdr">
+      <div class="hzp-avatar">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 8V4H8"/>
+          <rect width="16" height="12" x="4" y="8" rx="2"/>
+          <path d="M2 14h2"/><path d="M20 14h2"/>
+          <path d="M15 13v2"/><path d="M9 13v2"/>
+        </svg>
+      </div>
+      <div class="hzp-hdr-info">
+        <div class="hzp-hdr-name">HozAI</div>
+        <div class="hzp-hdr-sub">
+          <span class="hzp-status-dot"></span>
+          <span>Hozaifa's AI Assistant</span>
+        </div>
+      </div>
+      <div class="hzp-hdr-acts">
+        <button class="hzp-hdr-btn" id="hzp-new" title="New conversation">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+            <path d="M3 3v5h5"/>
+          </svg>
+        </button>
+        <button class="hzp-hdr-btn" id="hzp-close" title="Close">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    
+    <div id="hozai-body">
+
+      
+      <div id="hzp-welcome">
+        <div class="hzp-welcome-icon">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 8V4H8"/>
+            <rect width="16" height="12" x="4" y="8" rx="2"/>
+            <path d="M2 14h2"/><path d="M20 14h2"/>
+            <path d="M15 13v2"/><path d="M9 13v2"/>
+          </svg>
+        </div>
+        <div class="hzp-welcome-title">Hi there! I'm HozAI 👋</div>
+        <div class="hzp-welcome-sub">
+          Ask me anything about Hozaifa — his skills, experience, projects,
+          or paste a job description to see how well he fits.
+        </div>
+        <div class="hzp-chips">
+          <button class="hzp-chip" data-chip-key="chip0" data-q="Tell me about Hozaifa Abozaid — his background and what makes him unique.">
+            <span class="hzp-chip-ico">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>
+              </svg>
+            </span>
+            About Hozaifa
+          </button>
+          <button class="hzp-chip" data-chip-key="chip1" data-job="true">
+            <span class="hzp-chip-ico">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="3" rx="2"/>
+                <path d="M8 21h8m-4-4v4"/>
+              </svg>
+            </span>
+            Job Fit Analysis
+          </button>
+          <button class="hzp-chip" data-chip-key="chip2" data-q="What are Hozaifa's technical skills and tech stack? Give me a clear breakdown.">
+            <span class="hzp-chip-ico">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/>
+              </svg>
+            </span>
+            Skills &amp; Stack
+          </button>
+          <button class="hzp-chip" data-chip-key="chip3" data-q="Tell me about Hozaifa's work experience and notable projects.">
+            <span class="hzp-chip-ico">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="14" x="2" y="7" rx="2"/>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+              </svg>
+            </span>
+            Experience
+          </button>
+          <button class="hzp-chip" data-chip-key="chip4" data-q="How can I contact or hire Hozaifa? Give me all contact options.">
+            <span class="hzp-chip-ico">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2"/>
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              </svg>
+            </span>
+            Contact &amp; Hire
+          </button>
+          <button class="hzp-chip" data-chip-key="chip5" data-q="What languages does Hozaifa speak? How does that benefit employers?">
+            <span class="hzp-chip-ico">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/>
+                <path d="M2 5h12"/><path d="M7 2h1"/>
+                <path d="m22 22-5-10-5 10"/>
+                <path d="M14 18h6"/>
+              </svg>
+            </span>
+            Languages
+          </button>
+        </div>
+      </div>
+
+      
+      <div id="hzp-msgs" style="display:none"></div>
+
+    </div>
+
+    
+    <div id="hzp-job-pane" style="display:none">
+      <div class="hzp-job-label">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+        Job Fit Analysis
+      </div>
+      <div class="hzp-job-row">
+        <textarea id="hzp-job-input" rows="2"
+          placeholder="Paste job title or full description…"></textarea>
+        <button id="hzp-job-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+          Analyze
+        </button>
+      </div>
+    </div>
+
+    
+    <div id="hzp-input-area">
+      <textarea id="hzp-msg-input" rows="1"
+        placeholder="Ask about Hozaifa…" maxlength="800"></textarea>
+      <button id="hzp-send" disabled title="Send message">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m22 2-7 20-4-9-9-4Z"/>
+          <path d="M22 2 11 13"/>
+        </svg>
+      </button>
+    </div>
+
+
+
+  </div>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+const $ = id => document.getElementById(id);
+const isDark = () => document.documentElement.classList.contains('dark');
+const HZP_STRINGS = {
+  en:{
+    tooltip:'Ask HozAI',
+    hdrSub:"Hozaifa's AI Assistant",
+    welcomeTitle:"Hi there! I'm HozAI 👋",
+    welcomeSub:'Ask me anything about Hozaifa — his skills, experience, projects, or paste a job description to see how well he fits.',
+    chip0:'About Hozaifa',
+    chip1:'Job Fit Analysis',
+    chip2:'Skills & Stack',
+    chip3:'Experience',
+    chip4:'Contact & Hire',
+    chip5:'Languages',
+    jobLabel:'Job Fit Analysis',
+    jobPlaceholder:'Paste job title or full description…',
+    analyzeBtn:'Analyze',
+    msgPlaceholder:'Ask about Hozaifa…',
+    errTitle:'Connection Error',
+    errBody:'Could not reach the AI service. Check your connection and try again.',
+    errRetry:'↺ Retry',
+    newTitle:'New conversation',
+    closeTitle:'Close'
+  },
+  ar:{
+    tooltip:'اسأل HozAI',
+    hdrSub:'مساعد حذيفة الذكي',
+    welcomeTitle:"أهلاً! أنا HozAI 👋",
+    welcomeSub:'اسألني أي شيء عن حذيفة — مهاراته، خبراته، مشاريعه، أو الصق وصف وظيفي لترى مدى ملاءمته.',
+    chip0:'عن حذيفة',
+    chip1:'تحليل ملاءمة الوظيفة',
+    chip2:'المهارات والتقنيات',
+    chip3:'الخبرات',
+    chip4:'التواصل والتوظيف',
+    chip5:'اللغات',
+    jobLabel:'تحليل ملاءمة الوظيفة',
+    jobPlaceholder:'الصق المسمى الوظيفي أو الوصف الكامل…',
+    analyzeBtn:'تحليل',
+    msgPlaceholder:'اسأل عن حذيفة…',
+    errTitle:'خطأ في الاتصال',
+    errBody:'تعذّر الوصول إلى خدمة الذكاء الاصطناعي. تحقق من اتصالك وحاول مجدداً.',
+    errRetry:'↺ إعادة المحاولة',
+    newTitle:'محادثة جديدة',
+    closeTitle:'إغلاق'
+  },
+  es:{
+    tooltip:'Preguntar a HozAI',
+    hdrSub:'Asistente IA de Hozaifa',
+    welcomeTitle:"¡Hola! Soy HozAI 👋",
+    welcomeSub:'Pregúntame cualquier cosa sobre Hozaifa — sus habilidades, experiencia, proyectos, o pega una descripción de trabajo para ver su compatibilidad.',
+    chip0:'Sobre Hozaifa',
+    chip1:'Análisis de puesto',
+    chip2:'Habilidades y Stack',
+    chip3:'Experiencia',
+    chip4:'Contacto y Contratación',
+    chip5:'Idiomas',
+    jobLabel:'Análisis de Puesto',
+    jobPlaceholder:'Pega el título o descripción completa del puesto…',
+    analyzeBtn:'Analizar',
+    msgPlaceholder:'Pregunta sobre Hozaifa…',
+    errTitle:'Error de conexión',
+    errBody:'No se pudo conectar al servicio de IA. Verifica tu conexión e inténtalo de nuevo.',
+    errRetry:'↺ Reintentar',
+    newTitle:'Nueva conversación',
+    closeTitle:'Cerrar'
+  }
+};
+
+function getLang(){
+  const s=localStorage.getItem('language')||'en';
+  return HZP_STRINGS[s]?s:'en';
+}
+function T(k){return HZP_STRINGS[getLang()][k]||k;}
+
+function applyLangToWidget(){
+  const lang=getLang();
+  const s=HZP_STRINGS[lang];
+  const isRTL=lang==='ar';
+const panel=$('hozai-panel');
+  if(panel){panel.setAttribute('dir',isRTL?'rtl':'ltr');}
+const tip=$('hozai-tooltip');
+  if(tip)tip.textContent=s.tooltip;
+const sub=document.querySelector('.hzp-hdr-sub span:last-child');
+  if(sub)sub.textContent=s.hdrSub;
+const wTitle=document.querySelector('.hzp-welcome-title');
+  if(wTitle)wTitle.textContent=s.welcomeTitle;
+  const wSub=document.querySelector('.hzp-welcome-sub');
+  if(wSub)wSub.textContent=s.welcomeSub;
+document.querySelectorAll('.hzp-chip[data-chip-key]').forEach(c=>{
+    const key=c.getAttribute('data-chip-key');
+    const label=s[key];
+    if(!label)return;
+const nodes=[...c.childNodes];
+    const last=nodes.filter(n=>n.nodeType===3).pop();
+    if(last){last.textContent=' '+label+' ';}
+  });
+const jLabel=document.querySelector('.hzp-job-label');
+  if(jLabel){
+    const svg=jLabel.querySelector('svg');
+    jLabel.innerHTML='';
+    if(svg)jLabel.appendChild(svg);
+    jLabel.appendChild(document.createTextNode(' '+s.jobLabel));
+  }
+  const jInput=$('hzp-job-input');
+  if(jInput)jInput.placeholder=s.jobPlaceholder;
+  const jBtn=$('hzp-job-btn');
+  if(jBtn){
+    const svg=jBtn.querySelector('svg');
+    jBtn.innerHTML='';
+    if(svg)jBtn.appendChild(svg);
+    jBtn.appendChild(document.createTextNode(' '+s.analyzeBtn));
+  }
+const mIn=$('hzp-msg-input');
+  if(mIn)mIn.placeholder=s.msgPlaceholder;
+const newBtn=$('hzp-new');
+  if(newBtn)newBtn.title=s.newTitle;
+  const closeBtn=$('hzp-close');
+  if(closeBtn)closeBtn.title=s.closeTitle;
+const hBtn=$('hozai-btn');
+  if(hBtn)hBtn.setAttribute('aria-label',s.tooltip);
+}
+window.addEventListener('storage',function(e){
+  if(e.key==='language')applyLangToWidget();
+});
+
+const root    = $('hozai-root');
+const btn     = $('hozai-btn');
+const panel   = $('hozai-panel');
+const closeB  = $('hzp-close');
+const newB    = $('hzp-new');
+const body    = $('hozai-body');
+const welcome = $('hzp-welcome');
+const msgs    = $('hzp-msgs');
+const jobPane = $('hzp-job-pane');
+const jobInput= $('hzp-job-input');
+const jobBtn  = $('hzp-job-btn');
+const msgIn   = $('hzp-msg-input');
+const sendB   = $('hzp-send');
+
+let isOpen    = false;
+let loading   = false;
+let history   = [];
+let chatActive= false;
+const statusDot  = document.querySelector('.hzp-status-dot');
+const badgeEl    = $('hozai-badge');
+
+function setConnected(yes){
+  if(yes){
+    statusDot.classList.add('connected');
+    badgeEl.classList.add('hzp-connected');
+  } else {
+    statusDot.classList.remove('connected');
+    badgeEl.classList.remove('hzp-connected');
+  }
+}
+function applyTheme(){
+  root.className = isDark() ? 'dark-widget' : 'light-widget';
+}
+applyTheme();
+new MutationObserver(applyTheme).observe(document.documentElement,{
+  attributes:true,attributeFilter:['class']
+});
+applyLangToWidget();
+new MutationObserver(()=>applyLangToWidget()).observe(document.documentElement,{
+  attributes:true,attributeFilter:['lang','dir']
+});
+function openPanel(){
+  isOpen = true;
+  panel.classList.remove('hzp-hidden');
+  panel.classList.add('hzp-visible');
+}
+function closePanel(){
+  isOpen = false;
+  panel.classList.remove('hzp-visible');
+  panel.classList.add('hzp-hidden');
+}
+btn.addEventListener('click', () => isOpen ? closePanel() : openPanel());
+closeB.addEventListener('click', closePanel);
+function resetChat(){
+  history   = [];
+  chatActive= false;
+  msgs.innerHTML = '';
+  msgs.style.display = 'none';
+  welcome.style.display = '';
+  jobPane.style.display = 'none';
+  jobInput.value = '';
+  msgIn.value    = '';
+  updateSendBtn();
+}
+newB.addEventListener('click', resetChat);
+function activateChat(){
+  if(chatActive) return;
+  chatActive = true;
+  welcome.style.display = 'none';
+  msgs.style.display    = 'flex';
+}
+document.querySelectorAll('.hzp-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    if(chip.dataset.job){
+      activateChat();
+      jobPane.style.display = '';
+      jobInput.focus();
+    } else {
+      sendMessage(chip.dataset.q);
+    }
+  });
+});
+function appendBubble(role, text){
+  const wrap = document.createElement('div');
+  wrap.className = 'hzp-msg ' + (role==='user'?'hzp-msg-usr':'hzp-msg-ai');
+
+  if(role==='model'){
+    const av = document.createElement('div');
+    av.className = 'hzp-msg-av';
+    av.textContent = 'HA';
+    wrap.appendChild(av);
+  }
+
+  const bub = document.createElement('div');
+  bub.className = 'hzp-bubble';
+  bub.innerHTML = text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/`(.*?)`/g,'<code style="background:rgba(124,58,237,.18);padding:1px 5px;border-radius:4px;font-size:11.5px">$1</code>')
+    .replace(/\n/g,'<br>');
+  wrap.appendChild(bub);
+  msgs.appendChild(wrap);
+  scrollBottom();
+}
+let typingEl = null;
+function showTyping(){
+  const wrap = document.createElement('div');
+  wrap.className = 'hzp-msg hzp-msg-ai';
+  const av = document.createElement('div');
+  av.className = 'hzp-msg-av';
+  av.textContent = 'HA';
+  const bub = document.createElement('div');
+  bub.className = 'hzp-bubble hzp-typing';
+  bub.innerHTML = '<span></span><span></span><span></span>';
+  wrap.appendChild(av);
+  wrap.appendChild(bub);
+  msgs.appendChild(wrap);
+  typingEl = wrap;
+  scrollBottom();
+}
+function removeTyping(){
+  if(typingEl){ typingEl.remove(); typingEl=null; }
+}
+
+function scrollBottom(){
+  body.scrollTo({top:body.scrollHeight,behavior:'smooth'});
+}
+async function callAPI(){
+  const res = await fetch('/.netlify/functions/chat',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({messages:history})
+  });
+  const data = await res.json();
+  if(!res.ok) throw new Error(data.error || 'API error ' + res.status);
+  return data.text;
+}
+function showErrorCard(errMsg, retryFn){
+  const card = document.createElement('div');
+  card.className = 'hzp-err-card';
+  card.innerHTML = `
+    <div class="hzp-err-icon">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="m15 9-6 6"/><path d="m9 9 6 6"/>
+      </svg>
+    </div>
+    <div class="hzp-err-title">${T('errTitle')}</div>
+    <div class="hzp-err-body">${errMsg}</div>
+    <button class="hzp-err-retry">${T('errRetry')}</button>
+  `;
+  card.querySelector('.hzp-err-retry').addEventListener('click', () => {
+    card.remove();
+    retryFn();
+  });
+  msgs.appendChild(card);
+  scrollBottom();
+}
+async function sendMessage(text){
+  if(loading || !text.trim()) return;
+
+  activateChat();
+  const userText = text.trim();
+  appendBubble('user', userText);
+  history.push({role:'user', parts:[{text:userText}]});
+
+  loading = true;
+  updateSendBtn();
+  showTyping();
+
+  try {
+    const reply = await callAPI();
+    removeTyping();
+    appendBubble('model', reply);
+    history.push({role:'model', parts:[{text:reply}]});
+setConnected(true);
+  } catch(err){
+    removeTyping();
+    setConnected(false);
+history.pop();
+    const lastText = userText;
+    showErrorCard(
+      T('errBody'),
+      () => sendMessage(lastText)
+    );
+  } finally {
+    loading = false;
+    updateSendBtn();
+  }
+}
+jobBtn.addEventListener('click', async () => {
+  const jd = jobInput.value.trim();
+  if(!jd || loading) return;
+  const prompt = `Perform a detailed Job Fit Analysis for Hozaifa Abozaid against this position:\n\n"${jd}"\n\nProvide:\n• Compatibility percentage (headline)\n• Top 3-5 matching strengths\n• Any skill gaps (if applicable)\n• Clear hiring recommendation`;
+  jobInput.value = '';
+  jobPane.style.display = 'none';
+  await sendMessage(prompt);
+});
+
+jobInput.addEventListener('keydown', e => {
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();jobBtn.click();}
+});
+function updateSendBtn(){
+  sendB.disabled = loading || !msgIn.value.trim();
+}
+msgIn.addEventListener('input',()=>{
+  msgIn.style.height='auto';
+  msgIn.style.height=Math.min(msgIn.scrollHeight,88)+'px';
+  updateSendBtn();
+});
+msgIn.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();if(!sendB.disabled)sendB.click();}
+});
+sendB.addEventListener('click',()=>{
+  const text=msgIn.value;
+  msgIn.value='';msgIn.style.height='auto';
+  updateSendBtn();
+  sendMessage(text);
+});
+
+})();
+</script>
+
+</body>
 </html>
