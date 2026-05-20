@@ -440,10 +440,6 @@ Error generating stack: `+i.message+`
         }, 2000);
       })();
     </script>
-<!-- ═══════════════════════════════════════════════════════
-     HozAI — AI Chat Widget  v2.0
-     Connects to /.netlify/functions/chat  (Gemini API)
-     ═══════════════════════════════════════════════════════ -->
 <style>
 #hozai-root *{box-sizing:border-box;margin:0;padding:0}
 #hozai-root{
@@ -1090,8 +1086,11 @@ const HZP_STRINGS = {
 };
 
 function getLang(){
-  const s=localStorage.getItem('language')||'en';
-  return HZP_STRINGS[s]?s:'en';
+  const htmlLang=(document.documentElement.getAttribute('lang')||'').slice(0,2).toLowerCase();
+  const stored=(localStorage.getItem('language')||'').slice(0,2).toLowerCase();
+  if(HZP_STRINGS[htmlLang])return htmlLang;
+  if(HZP_STRINGS[stored])return stored;
+  return 'en';
 }
 function T(k){return HZP_STRINGS[getLang()][k]||k;}
 
@@ -1274,10 +1273,14 @@ function scrollBottom(){
   body.scrollTo({top:body.scrollHeight,behavior:'smooth'});
 }
 async function callAPI(){
+  const lang = getLang();
   const res = await fetch('/.netlify/functions/chat',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({messages:history})
+    body:JSON.stringify({
+      messages:history,
+      language:lang
+    })
   });
   const data = await res.json();
   if(!res.ok) throw new Error(data.error || 'API error ' + res.status);
@@ -1340,7 +1343,12 @@ history.pop();
 jobBtn.addEventListener('click', async () => {
   const jd = jobInput.value.trim();
   if(!jd || loading) return;
-  const prompt = `Perform a detailed Job Fit Analysis for Hozaifa Abozaid against this position:\n\n"${jd}"\n\nProvide:\n• Compatibility percentage (headline)\n• Top 3-5 matching strengths\n• Any skill gaps (if applicable)\n• Clear hiring recommendation`;
+  const jobPrompts = {
+    en:`Perform a detailed Job Fit Analysis for Hozaifa Abozaid against this position:\n\n"${jd}"\n\nProvide:\n• Compatibility percentage (headline)\n• Top 3-5 matching strengths\n• Any skill gaps (if applicable)\n• Clear hiring recommendation`,
+    ar:`حلّل مدى توافق حذيفة أبو زيد مع هذه الوظيفة بالتفصيل:\n\n"${jd}"\n\nقدّم:\n• نسبة التوافق كعنوان واضح\n• أهم 3-5 نقاط قوة مطابقة\n• أي فجوات مهارية إن وجدت\n• توصية توظيف واضحة`,
+    es:`Realiza un análisis detallado de ajuste laboral de Hozaifa Abozaid para este puesto:\n\n"${jd}"\n\nIncluye:\n• Porcentaje de compatibilidad como titular\n• 3-5 fortalezas principales que encajan\n• Brechas de habilidades si existen\n• Recomendación clara de contratación`
+  };
+  const prompt = jobPrompts[getLang()] || jobPrompts.en;
   jobInput.value = '';
   jobPane.style.display = 'none';
   await sendMessage(prompt);
