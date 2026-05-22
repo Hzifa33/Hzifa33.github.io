@@ -510,27 +510,30 @@ Error generating stack: `+i.message+`
 
 #hozai-panel .hzp-typing{
   width:auto !important;
-  max-width:max-content !important;
-  max-inline-size:max-content !important;
-  padding:14px 24px !important;
+  max-width:250px !important;
+  max-inline-size:250px !important;
+  padding:0 !important;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
 }
 
 @media (max-width:480px){
   #hozai-panel .hzp-bubble{
     max-width:min(78%, calc(100% - 52px)) !important;
     max-inline-size:min(78%, calc(100% - 52px)) !important;
-    padding-block:17px !important;
-    padding-inline:30px !important;
+    padding-block:13px !important;
+    padding-inline:23px !important;
   }
   #hozai-panel .hzp-msg-usr .hzp-bubble{
     max-width:min(76%, calc(100% - 58px)) !important;
     max-inline-size:min(76%, calc(100% - 58px)) !important;
-    padding-inline:34px !important;
+    padding-inline:26px !important;
   }
   #hozai-panel .hzp-msg-ai .hzp-bubble{
     max-width:calc(100% - 54px) !important;
     max-inline-size:calc(100% - 54px) !important;
-    padding-inline:30px !important;
+    padding-inline:23px !important;
   }
 }
 </style>
@@ -822,7 +825,7 @@ bottom:96px;left:16px;
 .hzp-bubble{
 max-width:min(80%,calc(100% - 46px));
   min-width:0;
-  padding:13px 18px;
+  padding:10px 14px;
   border-radius:18px;
   font-size:13px;line-height:1.72;
   word-break:break-word;
@@ -843,7 +846,7 @@ max-width:min(80%,calc(100% - 46px));
     0 4px 18px rgba(124,58,237,.38),
     0 1px 5px rgba(0,0,0,.18);
   white-space:pre-wrap;
-  padding:13px 18px;
+  padding:10px 14px;
   margin-inline-start:4px;
   word-break:break-word;
   overflow-wrap:anywhere;
@@ -869,8 +872,8 @@ max-width:min(80%,calc(100% - 46px));
     0 1px 4px rgba(0,0,0,.2),
     inset 0 1px 0 rgba(255,255,255,.04);
   border-inline-start:2px solid rgba(124,58,237,.55);
-  padding:13px 18px;
-  padding-inline-start:16px;
+  padding:10px 14px;
+  padding-inline-start:13px;
 }
 .light-widget .hzp-msg-ai .hzp-bubble{
   background:linear-gradient(145deg,#ffffff 0%,#f6f2ff 100%);
@@ -881,8 +884,8 @@ max-width:min(80%,calc(100% - 46px));
     0 1px 3px rgba(88,64,160,.07),
     inset 0 1px 0 rgba(255,255,255,.95);
   border-inline-start:2px solid rgba(124,58,237,.45);
-  padding:13px 18px;
-  padding-inline-start:16px;
+  padding:10px 14px;
+  padding-inline-start:13px;
 }
 .hzp-rich{
   white-space:normal;
@@ -939,63 +942,268 @@ max-width:min(80%,calc(100% - 46px));
 }
 .hzp-msg-ai .hzp-ts{justify-content:flex-start;padding-left:36px}
 .hzp-msg-usr .hzp-ts{justify-content:flex-end}
+/* ══ LOADING INDICATOR — SIGNAL WAVE ══ */
 .hzp-typing{
-  display:flex;gap:4px;align-items:center;padding:10px 14px;
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  overflow:visible !important;
+  min-width:0 !important;
+  max-width:250px !important;
 }
-.hzp-typing span{
-  width:6px;height:6px;border-radius:50%;background:#7c3aed;
-  animation:hzp-tdot 1.2s ease-in-out infinite;
-}
-.hzp-typing span:nth-child(2){animation-delay:.2s}
-.hzp-typing span:nth-child(3){animation-delay:.4s}
-@keyframes hzp-tdot{
-  0%,60%,100%{transform:translateY(0);opacity:.3}
-  30%{transform:translateY(-7px);opacity:1}
-}
-.hzp-err-card{
-  display:flex;flex-direction:column;align-items:center;
-  gap:8px;padding:16px 16px 14px;text-align:center;
-  border-radius:16px;margin:4px 0;
-  width:100%;box-sizing:border-box;
+/* Card wrapper */
+.hzp-think-card{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 17px 16px 15px;
+  border-radius:17px;
+  position:relative;
   overflow:hidden;
-  font-family:'Cairo','Inter',sans-serif;
+  animation:hzp-think-enter .38s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes hzp-think-enter{
+  from{opacity:0;transform:translateY(10px) scale(.95)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+.dark-widget .hzp-think-card{
+  background:linear-gradient(145deg,#19102e 0%,#130d24 100%);
+  border:1px solid rgba(139,92,246,.28);
+  box-shadow:
+    0 10px 36px rgba(0,0,0,.45),
+    0 0 0 1px rgba(124,58,237,.06),
+    inset 0 1px 0 rgba(255,255,255,.05);
+}
+.light-widget .hzp-think-card{
+  background:linear-gradient(145deg,#fcfaff 0%,#f4efff 100%);
+  border:1px solid rgba(124,58,237,.2);
+  box-shadow:
+    0 8px 30px rgba(109,40,217,.12),
+    inset 0 1px 0 rgba(255,255,255,.95);
+}
+/* Moving light sheen */
+.hzp-think-card::before{
+  content:'';position:absolute;top:0;bottom:0;
+  width:60%;left:-60%;
+  background:linear-gradient(105deg,
+    transparent 0%,
+    rgba(167,139,250,.07) 40%,
+    rgba(196,181,253,.12) 55%,
+    rgba(167,139,250,.07) 70%,
+    transparent 100%);
+  animation:hzp-think-sheen 2.8s ease-in-out infinite;
+  pointer-events:none;border-radius:17px;
+}
+@keyframes hzp-think-sheen{
+  0%{left:-60%}100%{left:160%}
+}
+/* ── Equalizer / wave bars ── */
+.hzp-think-wave{
+  display:flex;align-items:center;gap:3px;
+  height:24px;flex-shrink:0;
+}
+.hzp-think-wave span{
+  display:block;width:3px;border-radius:3px;
+  background:linear-gradient(180deg,#c4b5fd,#7c3aed);
+  animation:hzp-bar-eq 1.05s ease-in-out infinite;
+  transform-origin:bottom center;
+}
+.hzp-think-wave span:nth-child(1){height:7px;animation-delay:0s}
+.hzp-think-wave span:nth-child(2){height:14px;animation-delay:.1s}
+.hzp-think-wave span:nth-child(3){height:22px;animation-delay:.2s}
+.hzp-think-wave span:nth-child(4){height:14px;animation-delay:.3s}
+.hzp-think-wave span:nth-child(5){height:7px;animation-delay:.4s}
+@keyframes hzp-bar-eq{
+  0%,100%{transform:scaleY(.3);opacity:.35}
+  50%{transform:scaleY(1);opacity:1}
+}
+/* ── Text column ── */
+.hzp-think-col{
+  display:flex;flex-direction:column;gap:3px;flex:1;min-width:0;
+}
+.hzp-think-title{
+  font-size:12px;font-weight:800;line-height:1.2;
+  letter-spacing:.05px;
+  animation:hzp-think-txt-in .4s ease both;
+}
+.dark-widget .hzp-think-title{color:#ddd6fe;}
+.light-widget .hzp-think-title{color:#4c1d95;}
+@keyframes hzp-think-txt-in{
+  from{opacity:0;transform:translateX(-6px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.hzp-think-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:9.5px;font-weight:600;letter-spacing:.35px;
+  text-transform:uppercase;
+}
+.dark-widget .hzp-think-badge{color:rgba(167,139,250,.5);}
+.light-widget .hzp-think-badge{color:rgba(109,40,217,.45);}
+.hzp-think-badge::before{
+  content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;
+  animation:hzp-badge-blink 1.4s ease-in-out infinite;
+}
+.dark-widget .hzp-think-badge::before{background:#7c3aed;}
+.light-widget .hzp-think-badge::before{background:#7c3aed;}
+@keyframes hzp-badge-blink{
+  0%,100%{opacity:.3;transform:scale(.8)}
+  50%{opacity:1;transform:scale(1.2)}
+}
+/* ── Bottom runner track ── */
+.hzp-think-track{
+  position:absolute;bottom:0;left:0;right:0;
+  height:2px;overflow:hidden;
+}
+.dark-widget .hzp-think-track{background:rgba(124,58,237,.1);}
+.light-widget .hzp-think-track{background:rgba(109,40,217,.08);}
+.hzp-think-runner{
+  position:absolute;top:0;left:0;
+  height:100%;width:35%;border-radius:0 2px 2px 0;
+  background:linear-gradient(90deg,transparent,#7c3aed,#a78bfa,#c4b5fd,transparent);
+  animation:hzp-runner 1.9s cubic-bezier(.4,0,.2,1) infinite;
+}
+@keyframes hzp-runner{
+  0%{left:-35%;opacity:0}
+  15%{opacity:1}
+  85%{opacity:1}
+  100%{left:120%;opacity:0}
+}
+/* ══ ERROR CARD — SYSTEM ALERT ══ */
+.hzp-err-card{
+  display:flex;flex-direction:column;
+  gap:0;padding:0;
+  border-radius:18px;margin:4px 0;
+  width:100%;box-sizing:border-box;
+  overflow:hidden;font-family:'Cairo','Inter',sans-serif;
+  animation:hzp-err-enter .42s cubic-bezier(.22,1,.36,1) both;
+}
+@keyframes hzp-err-enter{
+  from{opacity:0;transform:translateY(12px) scale(.96)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
 .dark-widget .hzp-err-card{
-  background:rgba(239,68,68,.06);
-  border:1px solid rgba(239,68,68,.15);
+  background:linear-gradient(150deg,#1e0f18 0%,#180d14 100%);
+  border:1px solid rgba(239,68,68,.2);
+  box-shadow:
+    0 14px 48px rgba(0,0,0,.55),
+    0 0 0 1px rgba(239,68,68,.04),
+    inset 0 1px 0 rgba(255,255,255,.03);
 }
 .light-widget .hzp-err-card{
-  background:rgba(239,68,68,.04);
-  border:1px solid rgba(239,68,68,.12);
+  background:linear-gradient(150deg,#fff8f8 0%,#fff 100%);
+  border:1px solid rgba(239,68,68,.16);
+  box-shadow:
+    0 10px 34px rgba(239,68,68,.09),
+    0 2px 8px rgba(0,0,0,.05);
 }
+/* Top accent bar with animated gradient */
+.hzp-err-topbar{
+  width:100%;height:2.5px;flex-shrink:0;
+  background:linear-gradient(90deg,
+    #7f1d1d 0%,
+    #dc2626 25%,
+    #f87171 50%,
+    #fca5a5 65%,
+    #f87171 80%,
+    #dc2626 100%);
+  background-size:200% 100%;
+  animation:hzp-err-bar-move 3s linear infinite;
+}
+@keyframes hzp-err-bar-move{
+  0%{background-position:0% center}
+  100%{background-position:200% center}
+}
+/* Main content row */
+.hzp-err-row{
+  display:flex;gap:11px;align-items:flex-start;
+  padding:18px 18px 13px;
+}
+/* Animated icon */
 .hzp-err-icon{
-  width:42px;height:42px;border-radius:12px;
+  width:44px;height:44px;border-radius:13px;
   display:flex;align-items:center;justify-content:center;
-  color:#f87171;
-  background:rgba(239,68,68,.1);
+  flex-shrink:0;color:#f87171;
+  position:relative;
+}
+.dark-widget .hzp-err-icon{
+  background:linear-gradient(145deg,rgba(239,68,68,.22),rgba(185,28,28,.14));
+  border:1px solid rgba(239,68,68,.28);
+  box-shadow:0 6px 20px rgba(239,68,68,.18),inset 0 1px 0 rgba(255,100,100,.1);
+}
+.light-widget .hzp-err-icon{
+  background:linear-gradient(145deg,rgba(239,68,68,.14),rgba(185,28,28,.08));
   border:1px solid rgba(239,68,68,.2);
-  flex-shrink:0;
+  box-shadow:0 4px 14px rgba(239,68,68,.12);
+}
+/* Outer pulse ring */
+.hzp-err-icon::after{
+  content:'';position:absolute;inset:-5px;border-radius:16px;
+  border:1.5px solid rgba(239,68,68,.3);
+  animation:hzp-err-ring 2.2s ease-out infinite;
+}
+@keyframes hzp-err-ring{
+  0%{opacity:0;transform:scale(.85)}
+  30%{opacity:1}
+  100%{opacity:0;transform:scale(1.22)}
+}
+/* Text content */
+.hzp-err-content{
+  flex:1;min-width:0;
+  display:flex;flex-direction:column;gap:4px;
+  padding-top:1px;
+}
+.hzp-err-label{
+  font-size:9px;font-weight:800;letter-spacing:.7px;
+  text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:4px;
+  padding:2px 8px;border-radius:20px;
+  align-self:flex-start;margin-bottom:1px;
+}
+.dark-widget .hzp-err-label{
+  color:#fca5a5;background:rgba(239,68,68,.14);
+  border:1px solid rgba(239,68,68,.2);
+}
+.light-widget .hzp-err-label{
+  color:#b91c1c;background:rgba(239,68,68,.08);
+  border:1px solid rgba(239,68,68,.15);
 }
 .hzp-err-title{
-  font-size:13px;font-weight:700;color:#f87171;
+  font-size:13px;font-weight:800;
+  color:#f87171;line-height:1.25;letter-spacing:-.15px;
 }
-.hzp-err-body{
+.hzp-err-desc{
   font-size:11.5px;line-height:1.6;
-  color:#94a3b8;
-  width:100%;
-  box-sizing:border-box;
-  word-break:break-word;
-  overflow-wrap:break-word;
-  overflow:hidden;
+  word-break:break-word;overflow-wrap:break-word;
+  margin-top:4px;
+}
+.dark-widget .hzp-err-desc{color:rgba(148,163,184,.72);}
+.light-widget .hzp-err-desc{color:#6b7280;}
+/* Bottom action bar */
+.hzp-err-actions{
+  display:flex;align-items:center;justify-content:flex-end;
+  padding:2px 18px 17px;
 }
 .hzp-err-retry{
-  padding:7px 18px;border-radius:9px;
-  background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.25);
-  color:#f87171;font-size:12px;font-weight:600;
-  cursor:pointer;transition:all .2s;
-  display:inline-flex;align-items:center;gap:5px;
+  display:inline-flex;align-items:center;gap:6px;
+  padding:9px 20px;border-radius:11px;
+  font-size:11.5px;font-weight:700;cursor:pointer;
+  font-family:'Cairo','Inter',sans-serif;
+  letter-spacing:.1px;color:#f87171;
+  transition:all .25s cubic-bezier(.22,1,.36,1);
+  background:linear-gradient(135deg,rgba(239,68,68,.16),rgba(185,28,28,.1));
+  border:1px solid rgba(239,68,68,.28);
 }
-.hzp-err-retry:hover{background:rgba(239,68,68,.2);transform:scale(1.03)}
+.hzp-err-retry svg{
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+.hzp-err-retry:hover{
+  background:linear-gradient(135deg,rgba(239,68,68,.3),rgba(185,28,28,.22));
+  border-color:rgba(239,68,68,.5);
+  color:#fca5a5;
+  transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(239,68,68,.22);
+}
+.hzp-err-retry:hover svg{transform:rotate(-40deg);}
+.hzp-err-retry:active{transform:scale(.97);}
 #hzp-job-pane{
   padding:11px 15px;flex-shrink:0;
   border-top:1px solid;
@@ -1107,6 +1315,28 @@ max-width:min(80%,calc(100% - 46px));
   color:#34d399 !important;
   border-color:rgba(52,211,153,.3) !important;
   background:rgba(52,211,153,.08) !important;
+}
+/* Icon-only action buttons (thumbs) */
+.hzp-act-icon{
+  padding:4px 7px !important;
+}
+.hzp-act-btn.hzp-act-liked{
+  color:#34d399 !important;
+  border-color:rgba(52,211,153,.35) !important;
+  background:rgba(52,211,153,.1) !important;
+}
+.hzp-act-btn.hzp-act-disliked{
+  color:#fb923c !important;
+  border-color:rgba(251,146,60,.35) !important;
+  background:rgba(251,146,60,.08) !important;
+}
+/* Bubble enter animation */
+.hzp-msg-ai .hzp-bubble{
+  animation:hzp-bubble-in .3s cubic-bezier(.22,1,.36,1);
+}
+@keyframes hzp-bubble-in{
+  from{opacity:0;transform:translateY(6px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
 }
 </style>
 
@@ -1682,16 +1912,22 @@ function appendBubble(role, text){
   if(role === 'model'){
     const lang = getLang();
     const labels = {
-      copy:   {en:'Copy', ar:'نسخ', es:'Copiar'},
-      copied: {en:'Copied!', ar:'تم النسخ!', es:'¡Copiado!'},
-      share:  {en:'Share', ar:'مشاركة', es:'Compartir'},
+      copy:     {en:'Copy', ar:'نسخ', es:'Copiar'},
+      copied:   {en:'Copied!', ar:'تم النسخ!', es:'¡Copiado!'},
+      share:    {en:'Share', ar:'مشاركة', es:'Compartir'},
+      download: {en:'Save', ar:'حفظ', es:'Guardar'},
+      thumbUp:  {en:'Helpful', ar:'مفيد', es:'Útil'},
+      thumbDown:{en:'Not helpful', ar:'غير مفيد', es:'No útil'},
     };
     const L = (k) => labels[k][lang] || labels[k].en;
 
     const actBar = document.createElement('div');
     actBar.className = 'hzp-msg-actions';
+
+    // Copy button
     const copyBtn = document.createElement('button');
     copyBtn.className = 'hzp-act-btn';
+    copyBtn.title = L('copy');
     copyBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>${L('copy')}`;
     copyBtn.addEventListener('click', () => {
       const plain = bub.innerText || text;
@@ -1704,8 +1940,11 @@ function appendBubble(role, text){
         }, 2000);
       }).catch(()=>{});
     });
+
+    // Share button
     const shareBtn = document.createElement('button');
     shareBtn.className = 'hzp-act-btn';
+    shareBtn.title = L('share');
     shareBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>${L('share')}`;
     shareBtn.addEventListener('click', ()=>{
       const plain = bub.innerText || text;
@@ -1716,13 +1955,52 @@ function appendBubble(role, text){
       }
     });
 
+    // Download button
+    const dlBtn = document.createElement('button');
+    dlBtn.className = 'hzp-act-btn';
+    dlBtn.title = L('download');
+    dlBtn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>${L('download')}`;
+    dlBtn.addEventListener('click', ()=>{
+      const plain = bub.innerText || text;
+      const blob = new Blob([plain], {type:'text/plain'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'hozai-reply.txt';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    // Thumbs Up button
+    const thumbUpBtn = document.createElement('button');
+    thumbUpBtn.className = 'hzp-act-btn hzp-act-icon';
+    thumbUpBtn.title = L('thumbUp');
+    thumbUpBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>`;
+    thumbUpBtn.addEventListener('click', ()=>{
+      thumbUpBtn.classList.toggle('hzp-act-liked');
+      thumbDownBtn.classList.remove('hzp-act-disliked');
+    });
+
+    // Thumbs Down button
+    const thumbDownBtn = document.createElement('button');
+    thumbDownBtn.className = 'hzp-act-btn hzp-act-icon';
+    thumbDownBtn.title = L('thumbDown');
+    thumbDownBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3z"/><path d="M17 2h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/></svg>`;
+    thumbDownBtn.addEventListener('click', ()=>{
+      thumbDownBtn.classList.toggle('hzp-act-disliked');
+      thumbUpBtn.classList.remove('hzp-act-liked');
+    });
+
     actBar.appendChild(copyBtn);
     actBar.appendChild(shareBtn);
+    actBar.appendChild(dlBtn);
+    actBar.appendChild(thumbUpBtn);
+    actBar.appendChild(thumbDownBtn);
     msgs.appendChild(wrap);
     msgs.appendChild(actBar);
+    // Scroll so the AI message starts visually near the top of the chat area
     requestAnimationFrame(()=>{
-      const wrapTop = wrap.offsetTop;
-      body.scrollTo({top: Math.max(0, wrapTop - 8), behavior:'smooth'});
+      const scrollTarget = wrap.offsetTop - 6;
+      body.scrollTo({top: Math.max(0, scrollTarget), behavior:'smooth'});
     });
   } else {
     msgs.appendChild(wrap);
@@ -1732,6 +2010,11 @@ function appendBubble(role, text){
   }
 }
 let typingEl = null;
+const THINK_LABELS = {
+  en:['Thinking…','Composing reply…','Analyzing…','Working on it…'],
+  ar:['يفكر…','يكتب الرد…','يحلل…','يعمل على ذلك…'],
+  es:['Pensando…','Redactando…','Analizando…','En ello…'],
+};
 function showTyping(){
   const wrap = document.createElement('div');
   wrap.className = 'hzp-msg hzp-msg-ai';
@@ -1740,12 +2023,26 @@ function showTyping(){
   av.textContent = 'HA';
   const bub = document.createElement('div');
   bub.className = 'hzp-bubble hzp-typing';
-  bub.innerHTML = '<span></span><span></span><span></span>';
+  const lang = getLang();
+  const labels = THINK_LABELS[lang] || THINK_LABELS.en;
+  const label = labels[Math.floor(Math.random() * labels.length)];
+  const badge = {en:'HozAI', ar:'HozAI', es:'HozAI'}[lang] || 'HozAI';
+  bub.innerHTML = `
+    <div class="hzp-think-card">
+      <div class="hzp-think-wave">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="hzp-think-col">
+        <div class="hzp-think-title">${label}</div>
+        <div class="hzp-think-badge">${badge}</div>
+      </div>
+      <div class="hzp-think-track"><div class="hzp-think-runner"></div></div>
+    </div>`;
   wrap.appendChild(av);
   wrap.appendChild(bub);
   msgs.appendChild(wrap);
   typingEl = wrap;
-  body.scrollTo({top: body.scrollHeight, behavior:'smooth'});
+  requestAnimationFrame(()=>body.scrollTo({top: body.scrollHeight, behavior:'smooth'}));
 }
 function removeTyping(){
   if(typingEl){ typingEl.remove(); typingEl=null; }
@@ -1771,43 +2068,79 @@ statusDot.style.background = '#fbbf24';
     setConnected(false);
   }
 }
-setTimeout(pingConnection, 800);
+setTimeout(pingConnection, 300);
 
-async function callAPI(){
+async function callAPI(retryCount=0){
   const lang = getLang();
-  const res = await fetch(HOZAI_API_ENDPOINT,{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      messages:history,
-      language:lang
-    })
-  });
+  const ctrl = new AbortController();
+  const timer = setTimeout(()=>ctrl.abort(), 28000);
+  let res;
+  try {
+    res = await fetch(HOZAI_API_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      signal: ctrl.signal,
+      body:JSON.stringify({messages:history, language:lang})
+    });
+  } catch(fetchErr){
+    clearTimeout(timer);
+    // Retry once on network/abort error
+    if(retryCount === 0){
+      await new Promise(r=>setTimeout(r, 900));
+      return callAPI(1);
+    }
+    throw fetchErr;
+  }
+  clearTimeout(timer);
   const data = await res.json().catch(()=>({error:'Invalid JSON response'}));
-  if(!res.ok) throw new Error(data.error || 'API error ' + res.status);
+  if(!res.ok){
+    // Retry once on 5xx
+    if(retryCount === 0 && res.status >= 500){
+      await new Promise(r=>setTimeout(r, 1200));
+      return callAPI(1);
+    }
+    throw new Error(data.error || 'API error ' + res.status);
+  }
   return data.text;
 }
 function showErrorCard(errMsg, retryFn){
+  const lang = getLang();
+  const errLabels = {en:'Connection Failed',ar:'فشل الاتصال',es:'Fallo de conexión'};
+  const errLabel = errLabels[lang] || errLabels.en;
   const card = document.createElement('div');
   card.className = 'hzp-err-card';
   card.innerHTML = `
-    <div class="hzp-err-icon">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <path d="m15 9-6 6"/><path d="m9 9 6 6"/>
-      </svg>
+    <div class="hzp-err-topbar"></div>
+    <div class="hzp-err-row">
+      <div class="hzp-err-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+        </svg>
+      </div>
+      <div class="hzp-err-content">
+        <span class="hzp-err-label">${escapeHtml(errLabel)}</span>
+        <div class="hzp-err-title">${T('errTitle')}</div>
+        <div class="hzp-err-desc">${escapeHtml(errMsg)}</div>
+      </div>
     </div>
-    <div class="hzp-err-title">${T('errTitle')}</div>
-    <div class="hzp-err-body">${escapeHtml(errMsg)}</div>
-    <button class="hzp-err-retry">${T('errRetry')}</button>
+    <div class="hzp-err-actions">
+      <button class="hzp-err-retry">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+          <path d="M3 3v5h5"/>
+        </svg>
+        ${T('errRetry')}
+      </button>
+    </div>
   `;
   card.querySelector('.hzp-err-retry').addEventListener('click', () => {
     card.remove();
     retryFn();
   });
   msgs.appendChild(card);
-  scrollBottom();
+  requestAnimationFrame(()=>body.scrollTo({top: body.scrollHeight, behavior:'smooth'}));
 }
 async function sendMessage(text){
   if(loading || !text.trim()) return;
