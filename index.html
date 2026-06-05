@@ -592,12 +592,25 @@ Error generating stack: `+i.message+`
 bottom:96px;left:16px;
   z-index:99999;
   font-family:'Inter',system-ui,-apple-system,sans-serif;
+  transition:opacity .42s ease, transform .42s cubic-bezier(.22,1,.36,1), visibility .42s ease;
+}
+#hozai-root.hzp-widget-pending{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(14px) scale(.96);
+}
+#hozai-root.hzp-widget-ready{
+  opacity:1;
+  visibility:visible;
+  pointer-events:auto;
+  transform:translateY(0) scale(1);
 }
 @media(min-width:768px){
   #hozai-root{bottom:28px;left:24px}
 }
 #hozai-btn{
-  width:48px;height:48px;border-radius:14px;
+  width:42px;height:42px;border-radius:12px;
   background:linear-gradient(135deg,#7c3aed 0%,#4f46e5 100%);
   border:none;cursor:pointer;
   display:flex;align-items:center;justify-content:center;
@@ -610,11 +623,11 @@ bottom:96px;left:16px;
 #hozai-btn:hover{
   transform:scale(1.08) translateY(-2px);
   box-shadow:0 12px 30px rgba(124,58,237,.55),0 3px 10px rgba(0,0,0,.18);
-  border-radius:17px;
+  border-radius:15px;
 }
 #hozai-btn:active{transform:scale(.94)}
 #hozai-btn::before{
-  content:'';position:absolute;inset:-4px;border-radius:18px;
+  content:'';position:absolute;inset:-4px;border-radius:16px;
   background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(79,70,229,.15));
   animation:hozai-glow 2.8s ease-in-out infinite;
   z-index:-1;
@@ -624,10 +637,10 @@ bottom:96px;left:16px;
   50%{transform:scale(1.12);opacity:1}
 }
 #hozai-badge{
-  position:absolute;top:-4px;right:-4px;
-  width:18px;height:18px;border-radius:50%;
+  position:absolute;top:-3px;right:-3px;
+  width:16px;height:16px;border-radius:50%;
   background:#6b7280; /* gray = disconnected */
-  border:2.5px solid #fff;
+  border:2.2px solid #fff;
   transition:background .6s ease, transform .3s ease;
   display:flex;align-items:center;justify-content:center;
 }
@@ -641,7 +654,7 @@ bottom:96px;left:16px;
   50%{transform:scale(1.15)}
 }
 #hozai-tooltip{
-  position:absolute;left:60px;top:50%;transform:translateY(-50%);
+  position:absolute;left:54px;top:50%;transform:translateY(-50%);
   background:#1e1b4b;color:#c4b5fd;border-radius:10px;
   padding:6px 12px;font-size:12px;font-weight:500;white-space:nowrap;
   pointer-events:none;opacity:0;transition:opacity .2s;
@@ -1324,11 +1337,11 @@ max-width:min(80%,calc(100% - 46px));
 }
 </style>
 
-<div id="hozai-root">
+<div id="hozai-root" class="hzp-widget-pending">
 
   
   <button id="hozai-btn" aria-label="Open HozAI Assistant">
-    <svg width="24" height="24" viewBox="0 0 30 30" fill="white" aria-hidden="true">
+    <svg width="22" height="22" viewBox="0 0 30 30" fill="white" aria-hidden="true">
       <path d="M14.217,19.707l-1.112,2.547c-0.427,0.979-1.782,0.979-2.21,0l-1.112-2.547c-0.99-2.267-2.771-4.071-4.993-5.057L1.73,13.292c-0.973-0.432-0.973-1.848,0-2.28l2.965-1.316C6.974,8.684,8.787,6.813,9.76,4.47l1.126-2.714c0.418-1.007,1.81-1.007,2.228,0L14.24,4.47c0.973,2.344,2.786,4.215,5.065,5.226l2.965,1.316c0.973,0.432,0.973,1.848,0,2.28l-3.061,1.359C16.988,15.637,15.206,17.441,14.217,19.707z"/>
       <path d="M24.481,27.796l-0.339,0.777c-0.248,0.569-1.036,0.569-1.284,0l-0.339-0.777c-0.604-1.385-1.693-2.488-3.051-3.092l-1.044-0.464c-0.565-0.251-0.565-1.072,0-1.323l0.986-0.438c1.393-0.619,2.501-1.763,3.095-3.195l0.348-0.84c0.243-0.585,1.052-0.585,1.294,0l0.348,0.84c0.594,1.432,1.702,2.576,3.095,3.195l0.986,0.438c0.565,0.251,0.565,1.072,0,1.323l-1.044,0.464C26.174,25.308,25.085,26.411,24.481,27.796z"/>
     </svg>
@@ -1679,7 +1692,8 @@ function setConnected(yes){
   }
 }
 function applyTheme(){
-  root.className = isDark() ? 'dark-widget' : 'light-widget';
+  root.classList.toggle('dark-widget', isDark());
+  root.classList.toggle('light-widget', !isDark());
 }
 applyTheme();
 new MutationObserver(applyTheme).observe(document.documentElement,{
@@ -1689,6 +1703,21 @@ applyLangToWidget();
 new MutationObserver(()=>applyLangToWidget()).observe(document.documentElement,{
   attributes:true,attributeFilter:['lang','dir']
 });
+function revealHozAI(){
+  const show=()=>{
+    window.requestAnimationFrame(()=>{
+      root.classList.remove('hzp-widget-pending');
+      root.classList.add('hzp-widget-ready');
+    });
+  };
+  const scheduleShow=()=>window.setTimeout(show,650);
+  if(document.readyState==='complete'){
+    scheduleShow();
+  }else{
+    window.addEventListener('load',scheduleShow,{once:true});
+  }
+}
+revealHozAI();
 function openPanel(){
   isOpen = true;
   panel.classList.remove('hzp-hidden');
