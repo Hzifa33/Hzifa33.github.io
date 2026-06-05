@@ -941,7 +941,6 @@ max-width:min(80%,calc(100% - 46px));
 }
 .hzp-msg-ai .hzp-ts{justify-content:flex-start;padding-left:36px}
 .hzp-msg-usr .hzp-ts{justify-content:flex-end}
-/* ══ LOADING INDICATOR — SIGNAL WAVE ══ */
 .hzp-typing{
   background:transparent !important;
   border:none !important;
@@ -951,7 +950,6 @@ max-width:min(80%,calc(100% - 46px));
   min-width:0 !important;
   max-width:250px !important;
 }
-/* Card wrapper */
 .hzp-think-card{
   display:flex;align-items:center;gap:12px;
   padding:14px 17px 16px 15px;
@@ -979,7 +977,6 @@ max-width:min(80%,calc(100% - 46px));
     0 8px 30px rgba(109,40,217,.12),
     inset 0 1px 0 rgba(255,255,255,.95);
 }
-/* Moving light sheen */
 .hzp-think-card::before{
   content:'';position:absolute;top:0;bottom:0;
   width:60%;left:-60%;
@@ -995,7 +992,6 @@ max-width:min(80%,calc(100% - 46px));
 @keyframes hzp-think-sheen{
   0%{left:-60%}100%{left:160%}
 }
-/* ── Equalizer / wave bars ── */
 .hzp-think-wave{
   display:flex;align-items:center;gap:3px;
   height:24px;flex-shrink:0;
@@ -1015,7 +1011,6 @@ max-width:min(80%,calc(100% - 46px));
   0%,100%{transform:scaleY(.3);opacity:.35}
   50%{transform:scaleY(1);opacity:1}
 }
-/* ── Text column ── */
 .hzp-think-col{
   display:flex;flex-direction:column;gap:3px;flex:1;min-width:0;
 }
@@ -1047,7 +1042,6 @@ max-width:min(80%,calc(100% - 46px));
   0%,100%{opacity:.3;transform:scale(.8)}
   50%{opacity:1;transform:scale(1.2)}
 }
-/* ── Bottom runner track ── */
 .hzp-think-track{
   position:absolute;bottom:0;left:0;right:0;
   height:2px;overflow:hidden;
@@ -1066,7 +1060,6 @@ max-width:min(80%,calc(100% - 46px));
   85%{opacity:1}
   100%{left:120%;opacity:0}
 }
-/* ══ ERROR CARD — SYSTEM ALERT ══ */
 .hzp-err-card{
   display:flex;flex-direction:column;
   gap:0;padding:0;
@@ -1094,7 +1087,6 @@ max-width:min(80%,calc(100% - 46px));
     0 10px 34px rgba(239,68,68,.09),
     0 2px 8px rgba(0,0,0,.05);
 }
-/* Top accent bar with animated gradient */
 .hzp-err-topbar{
   width:100%;height:2.5px;flex-shrink:0;
   background:linear-gradient(90deg,
@@ -1111,12 +1103,10 @@ max-width:min(80%,calc(100% - 46px));
   0%{background-position:0% center}
   100%{background-position:200% center}
 }
-/* Main content row */
 .hzp-err-row{
   display:flex;gap:11px;align-items:flex-start;
   padding:18px 18px 13px;
 }
-/* Animated icon */
 .hzp-err-icon{
   width:44px;height:44px;border-radius:13px;
   display:flex;align-items:center;justify-content:center;
@@ -1133,7 +1123,6 @@ max-width:min(80%,calc(100% - 46px));
   border:1px solid rgba(239,68,68,.2);
   box-shadow:0 4px 14px rgba(239,68,68,.12);
 }
-/* Outer pulse ring */
 .hzp-err-icon::after{
   content:'';position:absolute;inset:-5px;border-radius:16px;
   border:1.5px solid rgba(239,68,68,.3);
@@ -1144,7 +1133,6 @@ max-width:min(80%,calc(100% - 46px));
   30%{opacity:1}
   100%{opacity:0;transform:scale(1.22)}
 }
-/* Text content */
 .hzp-err-content{
   flex:1;min-width:0;
   display:flex;flex-direction:column;gap:4px;
@@ -1176,7 +1164,6 @@ max-width:min(80%,calc(100% - 46px));
 }
 .dark-widget .hzp-err-desc{color:rgba(148,163,184,.72);}
 .light-widget .hzp-err-desc{color:#6b7280;}
-/* Bottom action bar */
 .hzp-err-actions{
   display:flex;align-items:center;justify-content:flex-end;
   padding:2px 18px 17px;
@@ -1315,7 +1302,6 @@ max-width:min(80%,calc(100% - 46px));
   border-color:rgba(52,211,153,.3) !important;
   background:rgba(52,211,153,.08) !important;
 }
-/* Icon-only action buttons (thumbs) */
 .hzp-act-icon{
   padding:4px 7px !important;
 }
@@ -1329,7 +1315,6 @@ max-width:min(80%,calc(100% - 46px));
   border-color:rgba(251,146,60,.35) !important;
   background:rgba(251,146,60,.08) !important;
 }
-/* Bubble enter animation */
 .hzp-msg-ai .hzp-bubble{
   animation:hzp-bubble-in .3s cubic-bezier(.22,1,.36,1);
 }
@@ -1922,8 +1907,6 @@ function appendBubble(role, text){
 
     const actBar = document.createElement('div');
     actBar.className = 'hzp-msg-actions';
-
-    // Copy button
     const copyBtn = document.createElement('button');
     copyBtn.className = 'hzp-act-btn';
     copyBtn.title = L('copy');
@@ -1939,8 +1922,6 @@ function appendBubble(role, text){
         }, 2000);
       }).catch(()=>{});
     });
-
-    // Share button
     const shareBtn = document.createElement('button');
     shareBtn.className = 'hzp-act-btn';
     shareBtn.title = L('share');
@@ -1953,8 +1934,6 @@ function appendBubble(role, text){
         navigator.clipboard.writeText(plain).catch(()=>{});
       }
     });
-
-    // Download button
     const dlBtn = document.createElement('button');
     dlBtn.className = 'hzp-act-btn';
     dlBtn.title = L('download');
@@ -1968,8 +1947,6 @@ function appendBubble(role, text){
       a.click();
       URL.revokeObjectURL(a.href);
     });
-
-    // Thumbs Up button
     const thumbUpBtn = document.createElement('button');
     thumbUpBtn.className = 'hzp-act-btn hzp-act-icon';
     thumbUpBtn.title = L('thumbUp');
@@ -1978,8 +1955,6 @@ function appendBubble(role, text){
       thumbUpBtn.classList.toggle('hzp-act-liked');
       thumbDownBtn.classList.remove('hzp-act-disliked');
     });
-
-    // Thumbs Down button
     const thumbDownBtn = document.createElement('button');
     thumbDownBtn.className = 'hzp-act-btn hzp-act-icon';
     thumbDownBtn.title = L('thumbDown');
@@ -1996,7 +1971,6 @@ function appendBubble(role, text){
     actBar.appendChild(thumbDownBtn);
     msgs.appendChild(wrap);
     msgs.appendChild(actBar);
-    // Scroll so the AI message starts visually near the top of the chat area
     requestAnimationFrame(()=>{
       const scrollTarget = wrap.offsetTop - 6;
       body.scrollTo({top: Math.max(0, scrollTarget), behavior:'smooth'});
@@ -2083,7 +2057,6 @@ async function callAPI(retryCount=0){
     });
   } catch(fetchErr){
     clearTimeout(timer);
-    // Retry once on network/abort error
     if(retryCount === 0){
       await new Promise(r=>setTimeout(r, 900));
       return callAPI(1);
@@ -2093,7 +2066,6 @@ async function callAPI(retryCount=0){
   clearTimeout(timer);
   const data = await res.json().catch(()=>({error:'Invalid JSON response'}));
   if(!res.ok){
-    // Retry once on 5xx
     if(retryCount === 0 && res.status >= 500){
       await new Promise(r=>setTimeout(r, 1200));
       return callAPI(1);
@@ -2212,10 +2184,9 @@ sendB.addEventListener('click',()=>{
 </script>
 
 
-<!-- HZ floating transparent navbar enhancement -->
+
 <style id="hz-floating-navbar-style">
-  /* Keep the sticky top bar itself invisible: only its content appears to float. */
-  nav.fixed.top-0,
+nav.fixed.top-0,
   div.fixed.top-0.md\:hidden,
   .hz-top-floating-nav {
     background: transparent !important;
@@ -2231,9 +2202,7 @@ sendB.addEventListener('click',()=>{
     box-shadow: none !important;
     border-color: transparent !important;
   }
-
-  /* Logo: transparent background, small inner padding, and premium scroll contraction. */
-  .hz-air-logo {
+.hz-air-logo {
     width: 38px !important;
     height: 38px !important;
     min-width: 38px !important;
@@ -2286,9 +2255,7 @@ sendB.addEventListener('click',()=>{
     42%  { transform: scale(.80) translateY(-2px); }
     100% { transform: scale(.86) translateY(-1px); }
   }
-
-  /* Language + light/dark controls: floating frosted glass buttons, not a navbar background. */
-  .hz-floating-glass-btn {
+.hz-floating-glass-btn {
     position: relative !important;
     isolation: isolate !important;
     background: rgba(255, 255, 255, .24) !important;
@@ -2332,9 +2299,7 @@ sendB.addEventListener('click',()=>{
       radial-gradient(circle at 20% 0%, rgba(167,139,250,.30), transparent 40%),
       linear-gradient(135deg, rgba(124,58,237,.20), rgba(17,24,39,.20) 54%, rgba(255,255,255,.04));
   }
-
-  /* Make active nav pills glassy and lightweight so links still feel floating. */
-  .hz-top-floating-nav button .absolute.inset-0.rounded-xl {
+.hz-top-floating-nav button .absolute.inset-0.rounded-xl {
     background: rgba(124, 58, 237, .10) !important;
     border: 1px solid rgba(124, 58, 237, .16) !important;
     -webkit-backdrop-filter: blur(10px) !important;
@@ -2345,9 +2310,7 @@ sendB.addEventListener('click',()=>{
     background: rgba(124, 58, 237, .16) !important;
     border-color: rgba(167, 139, 250, .16) !important;
   }
-
-  /* Language dropdown: matching glass panel when opened. */
-  .hz-top-floating-nav .absolute.top-full,
+.hz-top-floating-nav .absolute.top-full,
   .hz-floating-lang-menu {
     background: rgba(255, 255, 255, .72) !important;
     border-color: rgba(255, 255, 255, .36) !important;
@@ -2477,7 +2440,7 @@ sendB.addEventListener('click',()=>{
 </script>
 
 
-<!-- Mobile layout fixes: horizontal overflow, stable top controls, and safe bottom navigation -->
+
 <style id="hz-mobile-layout-fixes">
   *, *::before, *::after {
     box-sizing: border-box;
@@ -2518,9 +2481,7 @@ sendB.addEventListener('click',()=>{
       overflow-x: hidden !important;
     }
   }
-
-  /* Keep the fixed header visually locked while scrolling on mobile browsers. */
-  nav.fixed.top-0,
+nav.fixed.top-0,
   div.fixed.top-0.md\:hidden,
   .hz-top-floating-nav {
     top: 0 !important;
@@ -2532,9 +2493,7 @@ sendB.addEventListener('click',()=>{
     translate: none !important;
     will-change: auto !important;
   }
-
-  /* Remove the scroll-time logo contraction that made the logo look like it moved upward. */
-  .hz-air-logo,
+.hz-air-logo,
   body.hz-hero-left .hz-air-logo,
   body.hz-logo-contracting .hz-air-logo,
   html.dark body.hz-hero-left .hz-air-logo {
@@ -2552,9 +2511,7 @@ sendB.addEventListener('click',()=>{
       padding-bottom: 96px !important;
       padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
     }
-
-    /* Lift the bottom navigation slightly above the phone edge / gesture area. */
-    nav[class*="fixed bottom-0 left-0 right-0"] {
+nav[class*="fixed bottom-0 left-0 right-0"] {
       left: 10px !important;
       right: 10px !important;
       bottom: 10px !important;
@@ -2587,9 +2544,7 @@ sendB.addEventListener('click',()=>{
       line-height: 1.15 !important;
       white-space: nowrap !important;
     }
-
-    /* Keep floating buttons above the lifted bottom nav. */
-    .fixed.bottom-20 {
+.fixed.bottom-20 {
       bottom: 104px !important;
       bottom: calc(104px + env(safe-area-inset-bottom)) !important;
     }
@@ -2639,121 +2594,130 @@ sendB.addEventListener('click',()=>{
 </script>
 
 
-<!-- HZ rectangular logo container fix -->
-<style id="hz-logo-rectangle-fix">
-  /* Turn the logo holder into a rounded rectangle and stop any circular clipping. */
-  .hz-logo-shell,
+
+<style id="hz-logo-transparent-fix">
+.hz-logo-shell,
   .hz-top-floating-nav .hz-logo-shell,
   nav.fixed.top-0 .hz-logo-shell,
   div.fixed.top-0 .hz-logo-shell,
   .hz-top-floating-nav div:has(> img[alt="Logo"][src*="favicon"]),
   nav.fixed.top-0 div:has(> img[alt="Logo"][src*="favicon"]),
   div.fixed.top-0 div:has(> img[alt="Logo"][src*="favicon"]) {
-    width: 60px !important;
-    height: 42px !important;
-    min-width: 60px !important;
-    min-height: 42px !important;
-    max-width: 60px !important;
-    max-height: 42px !important;
-    padding: 5px 8px !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    max-width: none !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
     box-sizing: border-box !important;
-    border-radius: 14px !important;
-    overflow: visible !important;
-    clip-path: none !important;
-    -webkit-mask-image: none !important;
-    mask-image: none !important;
-    background: rgba(124, 58, 237, .10) !important;
-    border: 1px solid rgba(124, 58, 237, .16) !important;
-  }
-
-  html.dark .hz-logo-shell,
-  html.dark .hz-top-floating-nav div:has(> img[alt="Logo"][src*="favicon"]) {
-    background: rgba(124, 58, 237, .18) !important;
-    border-color: rgba(167, 139, 250, .20) !important;
-  }
-
-  .hz-air-logo,
-  .hz-logo-rect-image,
-  img[alt="Logo"][src*="favicon"] {
-    width: 44px !important;
-    height: 30px !important;
-    min-width: 44px !important;
-    min-height: 30px !important;
-    max-width: 44px !important;
-    max-height: 30px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: block !important;
-    object-fit: contain !important;
-    object-position: center !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
     border-radius: 0 !important;
     overflow: visible !important;
     clip-path: none !important;
     -webkit-mask-image: none !important;
     mask-image: none !important;
+  }
+
+  html.dark .hz-logo-shell,
+  html.dark .hz-top-floating-nav div:has(> img[alt="Logo"][src*="favicon"]),
+  html.dark nav.fixed.top-0 div:has(> img[alt="Logo"][src*="favicon"]),
+  html.dark div.fixed.top-0 div:has(> img[alt="Logo"][src*="favicon"]) {
     background: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .hz-air-logo,
+  .hz-logo-transparent-image,
+  img[alt="Logo"][src*="favicon"] {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    clip-path: none !important;
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
     transform: none !important;
     translate: none !important;
   }
 
   @media (max-width: 767px) {
-    .hz-logo-shell,
-    .hz-top-floating-nav .hz-logo-shell,
-    nav.fixed.top-0 .hz-logo-shell,
-    div.fixed.top-0 .hz-logo-shell,
-    .hz-top-floating-nav div:has(> img[alt="Logo"][src*="favicon"]),
-    nav.fixed.top-0 div:has(> img[alt="Logo"][src*="favicon"]),
-    div.fixed.top-0 div:has(> img[alt="Logo"][src*="favicon"]) {
-      width: 56px !important;
-      height: 40px !important;
-      min-width: 56px !important;
-      min-height: 40px !important;
-      max-width: 56px !important;
-      max-height: 40px !important;
-      padding: 5px 7px !important;
-      border-radius: 13px !important;
-    }
-
     .hz-air-logo,
-    .hz-logo-rect-image,
+    .hz-logo-transparent-image,
     img[alt="Logo"][src*="favicon"] {
-      width: 42px !important;
-      height: 30px !important;
-      min-width: 42px !important;
-      min-height: 30px !important;
-      max-width: 42px !important;
-      max-height: 30px !important;
+      width: 34px !important;
+      height: 34px !important;
+      min-width: 34px !important;
+      min-height: 34px !important;
+      max-width: 34px !important;
+      max-height: 34px !important;
     }
   }
 </style>
-<script id="hz-logo-rectangle-script">
+<script id="hz-logo-transparent-script">
   (() => {
     const LOGO_SELECTOR = 'img[alt="Logo"][src*="favicon"]';
 
-    function applyRectLogoFix() {
+    function applyTransparentLogoFix() {
       document.querySelectorAll(LOGO_SELECTOR).forEach((logo) => {
-        logo.classList.add('hz-air-logo', 'hz-logo-rect-image');
+        logo.classList.remove('hz-logo-rect-image');
+        logo.classList.add('hz-air-logo', 'hz-logo-transparent-image');
+        Object.assign(logo.style, {
+          background: 'transparent',
+          border: '0',
+          boxShadow: 'none',
+          padding: '0',
+          borderRadius: '0',
+          overflow: 'visible'
+        });
+
         const shell = logo.parentElement;
         if (!shell) return;
         shell.classList.add('hz-logo-shell');
-        shell.style.overflow = 'visible';
-        shell.style.borderRadius = '14px';
+        Object.assign(shell.style, {
+          background: 'transparent',
+          border: '0',
+          boxShadow: 'none',
+          padding: '0',
+          borderRadius: '0',
+          overflow: 'visible'
+        });
       });
     }
 
     if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', applyRectLogoFix, { once: true });
+      document.addEventListener('DOMContentLoaded', applyTransparentLogoFix, { once: true });
     } else {
-      applyRectLogoFix();
+      applyTransparentLogoFix();
     }
 
     let raf = 0;
     new MutationObserver(() => {
       cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(applyRectLogoFix);
+      raf = requestAnimationFrame(applyTransparentLogoFix);
     }).observe(document.documentElement, { childList: true, subtree: true });
   })();
 </script>
