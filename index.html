@@ -2328,12 +2328,13 @@ nav.fixed.top-0,
 
   @media (max-width: 767px) {
     .hz-air-logo {
-      width: 34px !important;
-      height: 34px !important;
-      min-width: 34px !important;
-      min-height: 34px !important;
-      max-width: 34px !important;
-      max-height: 34px !important;
+      width: 31px !important;
+      height: 31px !important;
+      min-width: 31px !important;
+      min-height: 31px !important;
+      max-width: 31px !important;
+      max-height: 31px !important;
+      padding: 1.75px !important;
       padding: 3px !important;
       border-radius: 12px !important;
     }
@@ -2489,24 +2490,9 @@ nav.fixed.top-0,
     right: 0 !important;
     width: 100% !important;
     max-width: 100vw !important;
-    transform: none !important;
-    translate: none !important;
     will-change: auto !important;
   }
-.hz-air-logo,
-  body.hz-hero-left .hz-air-logo,
-  body.hz-logo-contracting .hz-air-logo,
-  html.dark body.hz-hero-left .hz-air-logo {
-    transform: none !important;
-    translate: none !important;
-    animation: none !important;
-  }
-
-  body.hz-logo-contracting .hz-air-logo {
-    transition: filter 300ms ease, opacity 300ms ease !important;
-  }
-
-  @media (max-width: 767px) {
+@media (max-width: 767px) {
     body {
       padding-bottom: 96px !important;
       padding-bottom: calc(96px + env(safe-area-inset-bottom)) !important;
@@ -2640,13 +2626,13 @@ nav[class*="fixed bottom-0 left-0 right-0"] {
   .hz-air-logo,
   .hz-logo-transparent-image,
   img[alt="Logo"][src*="favicon"] {
-    width: 38px !important;
-    height: 38px !important;
-    min-width: 38px !important;
-    min-height: 38px !important;
-    max-width: 38px !important;
-    max-height: 38px !important;
-    padding: 0 !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    padding: 2px !important;
     margin: 0 !important;
     display: block !important;
     object-fit: contain !important;
@@ -2660,20 +2646,19 @@ nav[class*="fixed bottom-0 left-0 right-0"] {
     clip-path: none !important;
     -webkit-mask-image: none !important;
     mask-image: none !important;
-    transform: none !important;
-    translate: none !important;
   }
 
   @media (max-width: 767px) {
     .hz-air-logo,
     .hz-logo-transparent-image,
     img[alt="Logo"][src*="favicon"] {
-      width: 34px !important;
-      height: 34px !important;
-      min-width: 34px !important;
-      min-height: 34px !important;
-      max-width: 34px !important;
-      max-height: 34px !important;
+      width: 31px !important;
+      height: 31px !important;
+      min-width: 31px !important;
+      min-height: 31px !important;
+      max-width: 31px !important;
+      max-height: 31px !important;
+      padding: 1.75px !important;
     }
   }
 </style>
@@ -2689,7 +2674,7 @@ nav[class*="fixed bottom-0 left-0 right-0"] {
           background: 'transparent',
           border: '0',
           boxShadow: 'none',
-          padding: '0',
+          padding: '2px',
           borderRadius: '0',
           overflow: 'visible'
         });
@@ -2701,7 +2686,7 @@ nav[class*="fixed bottom-0 left-0 right-0"] {
           background: 'transparent',
           border: '0',
           boxShadow: 'none',
-          padding: '0',
+          padding: '2px',
           borderRadius: '0',
           overflow: 'visible'
         });
@@ -2719,6 +2704,130 @@ nav[class*="fixed bottom-0 left-0 right-0"] {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(applyTransparentLogoFix);
     }).observe(document.documentElement, { childList: true, subtree: true });
+  })();
+</script>
+
+
+
+
+<style id="hz-logo-scroll-shrink-refinement">
+  :root {
+    --hz-logo-size: 34px;
+    --hz-logo-padding: 2px;
+    --hz-logo-scroll-scale: .86;
+  }
+
+  .hz-air-logo,
+  .hz-logo-transparent-image,
+  img[alt="Logo"][src*="favicon"] {
+    width: var(--hz-logo-size) !important;
+    height: var(--hz-logo-size) !important;
+    min-width: var(--hz-logo-size) !important;
+    min-height: var(--hz-logo-size) !important;
+    max-width: var(--hz-logo-size) !important;
+    max-height: var(--hz-logo-size) !important;
+    padding: var(--hz-logo-padding) !important;
+    margin: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    background: transparent !important;
+    border: 0 !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+    transform-origin: center center !important;
+    will-change: transform, opacity, filter !important;
+    transition:
+      transform 560ms cubic-bezier(.16, 1, .3, 1),
+      opacity 360ms ease,
+      filter 560ms cubic-bezier(.16, 1, .3, 1) !important;
+  }
+
+  body.hz-logo-scrolled .hz-air-logo,
+  body.hz-logo-scrolled .hz-logo-transparent-image,
+  body.hz-logo-scrolled img[alt="Logo"][src*="favicon"] {
+    transform: translate3d(0, -1px, 0) scale(var(--hz-logo-scroll-scale)) !important;
+    filter: drop-shadow(0 8px 16px rgba(15, 23, 42, .12)) !important;
+  }
+
+  html.dark body.hz-logo-scrolled .hz-air-logo,
+  html.dark body.hz-logo-scrolled .hz-logo-transparent-image,
+  html.dark body.hz-logo-scrolled img[alt="Logo"][src*="favicon"] {
+    filter: drop-shadow(0 10px 18px rgba(0, 0, 0, .34)) !important;
+  }
+
+  body.hz-logo-scroll-pop .hz-air-logo,
+  body.hz-logo-scroll-pop .hz-logo-transparent-image,
+  body.hz-logo-scroll-pop img[alt="Logo"][src*="favicon"] {
+    animation: hz-logo-scroll-pop 520ms cubic-bezier(.16, 1, .3, 1) both;
+  }
+
+  @keyframes hz-logo-scroll-pop {
+    0%   { transform: translate3d(0, 0, 0) scale(1) !important; }
+    45%  { transform: translate3d(0, -1px, 0) scale(.82) !important; }
+    100% { transform: translate3d(0, -1px, 0) scale(var(--hz-logo-scroll-scale)) !important; }
+  }
+
+  @media (max-width: 767px) {
+    :root {
+      --hz-logo-size: 31px;
+      --hz-logo-padding: 1.75px;
+      --hz-logo-scroll-scale: .87;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hz-air-logo,
+    .hz-logo-transparent-image,
+    img[alt="Logo"][src*="favicon"] {
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+<script id="hz-logo-scroll-shrink-script">
+  (() => {
+    let lastScrolled = false;
+    let popTimer = 0;
+    let ticking = false;
+
+    function setLogoScrollState() {
+      const scrolled = window.scrollY > 18;
+
+      document.body.classList.toggle('hz-logo-scrolled', scrolled);
+
+      if (scrolled && !lastScrolled) {
+        document.body.classList.remove('hz-logo-scroll-pop');
+        void document.body.offsetWidth;
+        document.body.classList.add('hz-logo-scroll-pop');
+        clearTimeout(popTimer);
+        popTimer = window.setTimeout(() => {
+          document.body.classList.remove('hz-logo-scroll-pop');
+        }, 560);
+      }
+
+      lastScrolled = scrolled;
+      ticking = false;
+    }
+
+    function requestLogoScrollState() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(setLogoScrollState);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setLogoScrollState, { once: true });
+    } else {
+      setLogoScrollState();
+    }
+
+    window.addEventListener('scroll', requestLogoScrollState, { passive: true });
+    window.addEventListener('resize', requestLogoScrollState, { passive: true });
   })();
 </script>
 
