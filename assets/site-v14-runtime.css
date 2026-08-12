@@ -1,0 +1,2688 @@
+/* Mobile-first refinement layer. Desktop/tablet >= 768px intentionally untouched. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: clip;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html[lang="ar"] body,
+html[lang="ar"] button,
+html[lang="ar"] input,
+html[lang="ar"] textarea,
+html[lang="ar"] select {
+  font-family: 'Cairo', Tahoma, Arial, sans-serif !important;
+  letter-spacing: normal !important;
+}
+
+html[lang="ar"] body { line-height: 1.65; }
+section[id] { scroll-margin-top: 5rem; }
+button, a, input, textarea { -webkit-tap-highlight-color: transparent; }
+
+@media (max-width: 767px) {
+  /* Header */
+  header { padding-block: .75rem !important; }
+  header > .container { padding-inline: 1rem !important; }
+  header > .container > button > div { width: 2rem !important; height: 2rem !important; }
+  header > .container > div:last-child { gap: .5rem !important; }
+  header > .container > div:last-child > div:first-child > button {
+    padding: .375rem .625rem !important;
+    gap: .25rem !important;
+    font-size: .75rem !important;
+  }
+
+  /* Hero — exactly one visible mobile viewport, reserving fixed UI */
+  #home.mobile-hero-viewport {
+    height: 100svh !important;
+    min-height: 100svh !important;
+    max-height: 100svh !important;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 4.15rem) !important;
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 5.15rem) !important;
+    overflow: hidden !important;
+  }
+  @supports (height: 100dvh) {
+    #home.mobile-hero-viewport {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+    }
+  }
+  #home .hero-inner {
+    height: 100% !important;
+    padding-inline: 1rem !important;
+    gap: clamp(.5rem, 1.5vh, .9rem) !important;
+    align-content: center !important;
+  }
+  #home .hero-copy {
+    align-items: center !important;
+    text-align: center !important;
+    gap: clamp(.65rem, 1.4vh, .9rem) !important;
+  }
+  #home .hero-copy > div:first-child { gap: .25rem !important; }
+  #home .hero-copy > div:first-child > span {
+    font-size: .6875rem !important;
+    line-height: 1.3 !important;
+  }
+  #home .hero-copy h1 {
+    font-size: clamp(1.65rem, 7vw, 2rem) !important;
+    line-height: 1.12 !important;
+  }
+  #home .hero-copy p {
+    font-size: clamp(.78rem, 3.5vw, .92rem) !important;
+    line-height: 1.45 !important;
+    max-width: 29rem;
+  }
+  #home .hero-copy > div:nth-child(2) {
+    justify-content: center !important;
+    gap: .5rem !important;
+    margin-top: 0 !important;
+  }
+  #home .hero-copy > div:nth-child(2) > a {
+    padding: .625rem 1rem !important;
+    border-radius: .8rem !important;
+    gap: .375rem !important;
+    font-size: .75rem !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+  }
+  #home .hero-copy > div:nth-child(2) svg { width: 1rem !important; height: 1rem !important; }
+  #home .hero-copy > div:nth-child(3) {
+    justify-content: center !important;
+    gap: .625rem !important;
+    margin-top: 0 !important;
+  }
+  #home .hero-copy > div:nth-child(3) > a { width: 2.25rem !important; height: 2.25rem !important; }
+  #home .hero-portrait-wrap { margin-top: 0 !important; }
+  #home .hero-portrait-frame {
+    width: clamp(8.5rem, 24svh, 12.5rem) !important;
+    max-width: none !important;
+    border-radius: 1.5rem !important;
+  }
+  @supports (height: 100dvh) {
+    #home .hero-portrait-frame { width: clamp(8.5rem, 24dvh, 12.5rem) !important; }
+  }
+  #home .hero-coffee-decor { display: block !important; }
+
+  /* Shared section rhythm */
+  #about, #experience, #skills { padding-block: 3.5rem !important; }
+  #contact { padding-top: 3.5rem !important; padding-bottom: 7rem !important; }
+  #about > .container,
+  #experience > .container,
+  #skills > .container,
+  #contact > .container { padding-inline: 1rem !important; }
+  #about .lucide-coffee, #experience .lucide-coffee { display: block !important; }
+
+  #about > .container > div:first-child,
+  #skills > .container > div:first-child,
+  #contact > .container > div:first-child {
+    gap: .625rem !important;
+    margin-bottom: 2.25rem !important;
+  }
+  #experience > .container > div:first-child {
+    gap: .625rem !important;
+    margin-bottom: 2.25rem !important;
+  }
+  #about h2, #experience h2, #skills h2, #contact h2 { font-size: 1.5rem !important; line-height: 1.25 !important; }
+  #about h2 + div, #experience h2 + div, #skills h2 + div, #contact h2 + div {
+    width: 4rem !important;
+    height: .25rem !important;
+  }
+
+  /* About */
+  #about > .container > div:nth-child(2) { gap: 2.5rem !important; }
+  #about > .container > div:nth-child(2) > div { gap: 1.25rem !important; }
+  #about > .container > div:nth-child(2) > div:first-child > p {
+    font-size: .875rem !important;
+    line-height: 1.7 !important;
+  }
+  #about > .container > div:nth-child(2) > div:first-child > div:last-child {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: .625rem !important;
+    margin-top: .25rem !important;
+  }
+  #about > .container > div:nth-child(2) > div:first-child > div:last-child > div {
+    padding: .75rem !important;
+    border-radius: 1rem !important;
+    gap: .5rem !important;
+  }
+  #about > .container > div:nth-child(2) > div:first-child > div:last-child > div svg {
+    width: 1.2rem !important;
+    height: 1.2rem !important;
+  }
+  #about > .container > div:nth-child(2) > div:first-child > div:last-child > div > div:last-child > div:first-child {
+    font-size: 1.25rem !important;
+    margin-bottom: .125rem !important;
+  }
+  #about > .container > div:nth-child(2) > div:first-child > div:last-child > div > div:last-child > div:last-child {
+    font-size: .625rem !important;
+    line-height: 1.2 !important;
+  }
+  #about > .container > div:nth-child(2) > div:last-child h3 { font-size: 1.25rem !important; margin-bottom: 0 !important; }
+  #about > .container > div:nth-child(2) > div:last-child > div { gap: 1rem !important; }
+  #about > .container > div:nth-child(2) > div:last-child > div > div { gap: .5rem !important; }
+  #about > .container > div:nth-child(3) { margin-top: 3rem !important; }
+  #about > .container > div:nth-child(3) > div {
+    padding: 1.25rem !important;
+    border-radius: 1.5rem !important;
+  }
+  #about > .container > div:nth-child(3) > div > div { gap: 1.25rem !important; }
+  #about > .container > div:nth-child(3) h3 {
+    font-size: 1.125rem !important;
+    margin-bottom: 1rem !important;
+  }
+  #about > .container > div:nth-child(3) > div > div > div:last-child > div {
+    width: 5rem !important;
+    height: 5rem !important;
+  }
+  #about > .container > div:nth-child(3) > div > div > div:last-child svg {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+
+  /* Experience */
+  #experience > .container > div:first-child > div:first-child {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: .75rem !important;
+  }
+  #experience > .container > div:first-child > div:first-child svg { width: 1.5rem !important; height: 1.5rem !important; }
+  #experience > .container > div:nth-child(2) { gap: 1rem !important; }
+  #experience > .container > div:nth-child(2) > div {
+    padding: 1rem !important;
+    border-radius: 1.375rem !important;
+  }
+  #experience > .container > div:nth-child(2) > div > div:first-child {
+    gap: .625rem !important;
+    margin-bottom: 1rem !important;
+  }
+  #experience > .container > div:nth-child(2) h3 { font-size: 1rem !important; margin-bottom: .25rem !important; }
+  #experience > .container > div:nth-child(2) h3 + div { font-size: .875rem !important; }
+  #experience > .container > div:nth-child(2) > div > div:first-child > div:last-child {
+    padding: .25rem .75rem !important;
+    font-size: .75rem !important;
+  }
+  #experience > .container > div:nth-child(2) ul { gap: .625rem !important; }
+  #experience > .container > div:nth-child(2) li {
+    gap: .625rem !important;
+    font-size: .8125rem !important;
+    line-height: 1.65 !important;
+  }
+  #experience > .container > div:nth-child(2) > div > div:last-child:not(:first-child) {
+    margin-top: 1.25rem !important;
+    padding-top: 1rem !important;
+  }
+
+  /* Skills */
+  #skills > .container > div:nth-child(2) { gap: 1rem !important; }
+  #skills > .container > div:nth-child(2) > div {
+    padding: 1.25rem !important;
+    border-radius: 1.375rem !important;
+  }
+  #skills > .container > div:nth-child(2) > div > div:nth-child(2) {
+    position: absolute !important;
+    top: -.35rem !important;
+    right: -.35rem !important;
+    left: auto !important;
+    z-index: 0 !important;
+    padding: .35rem !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    opacity: .035 !important;
+    pointer-events: none !important;
+  }
+  html[dir="rtl"] #skills > .container > div:nth-child(2) > div > div:nth-child(2) {
+    right: auto !important;
+    left: -.35rem !important;
+  }
+  #skills > .container > div:nth-child(2) > div > div:nth-child(2) svg { width: 5.25rem !important; height: 5.25rem !important; }
+  #skills h3 {
+    font-size: 1.125rem !important;
+    gap: .625rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+  #skills h3 svg { width: 1.25rem !important; height: 1.25rem !important; }
+  #skills ul { gap: 1rem !important; }
+  #skills li { gap: .625rem !important; }
+  #skills li > div:first-child svg { width: 1rem !important; height: 1rem !important; }
+  #skills li > span, #skills li > div:last-child { font-size: .875rem !important; line-height: 1.5 !important; }
+
+  /* Contact */
+  #contact > .container > div:first-child > p { font-size: .875rem !important; }
+  #contact > .container > div:nth-child(2) { gap: 1rem !important; }
+  #contact > .container > div:nth-child(2) > div:first-child { gap: .75rem !important; }
+  #contact > .container > div:nth-child(2) > div:first-child > div {
+    padding: 1rem !important;
+    border-radius: 1.125rem !important;
+    gap: .75rem !important;
+  }
+  #contact > .container > div:nth-child(2) > div:first-child > div > div:first-child { gap: .75rem !important; min-width: 0; }
+  #contact > .container > div:nth-child(2) > div:first-child > div > div:first-child > div:first-child {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    flex: 0 0 auto;
+  }
+  #contact > .container > div:nth-child(2) > div:first-child > div a { font-size: .875rem !important; overflow-wrap: anywhere; }
+  #contact > .container > div:nth-child(2) > div:last-child {
+    padding: 1.25rem !important;
+    border-radius: 1.375rem !important;
+  }
+  #contact > .container > div:nth-child(2) > div:last-child h3 { font-size: 1.125rem !important; margin-bottom: 1rem !important; }
+  #contact > .container > div:nth-child(2) > div:last-child > div:last-child { gap: .5rem !important; }
+  #contact > .container > div:nth-child(2) > div:last-child a {
+    padding: .75rem !important;
+    gap: .5rem !important;
+    font-size: .875rem !important;
+  }
+
+  /* Bottom nav */
+  .mobile-nav-safe { bottom: calc(env(safe-area-inset-bottom, 0px) + .7rem) !important; padding-inline: .75rem !important; }
+  .mobile-nav-shell { padding: .375rem !important; gap: .125rem !important; }
+  .mobile-nav-shell > button { width: 2.75rem !important; height: 2.75rem !important; }
+  .mobile-nav-shell > button span { font-size: .53125rem !important; bottom: .25rem !important; white-space: nowrap; }
+
+  /* HozAI deliberately sits above, not on top of, the bottom navigation. */
+  .hozai-safe {
+    right: 1rem !important;
+    left: auto !important;
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.15rem) !important;
+    z-index: 60 !important;
+  }
+  html[dir="rtl"] .hozai-safe { left: 1rem !important; right: auto !important; }
+  .hozai-launcher { width: 2.75rem !important; height: 2.75rem !important; }
+  .hozai-launcher > svg { width: 1.25rem !important; height: 1.25rem !important; }
+  .hozai-panel {
+    width: calc(100vw - 1.5rem) !important;
+    height: min(68dvh, 540px) !important;
+    max-height: calc(100dvh - 10rem) !important;
+    margin-bottom: .75rem !important;
+    border-radius: 1.375rem !important;
+  }
+  .hozai-panel > div:nth-child(2) { padding: .75rem 1rem !important; }
+  .hozai-panel > div:nth-child(3) { padding: 1rem !important; gap: 1rem !important; }
+  .hozai-panel > div:nth-child(4) { padding: .75rem !important; }
+  .hozai-panel [class*="max-w-[85%]"] { max-width: 88% !important; padding: .875rem !important; font-size: .8125rem !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  #contact > .container > div:nth-child(2) > div:first-child > div > button {
+    padding: .625rem !important;
+    flex: 0 0 auto;
+  }
+  #contact > .container > div:nth-child(2) > div:first-child > div:nth-child(3) > div:first-child {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    flex: 0 0 auto;
+  }
+}
+/* --------------------------------------------------------------------------
+   Premium Interaction Layer
+   Restores and upgrades hover / pointer / active feedback without changing
+   layout dimensions. Hover transforms are restricted to precise pointers;
+   touch devices receive short active/tap feedback instead of sticky hover.
+   -------------------------------------------------------------------------- */
+
+:root {
+  --motion-spring: cubic-bezier(.2,.8,.2,1);
+  --motion-smooth: cubic-bezier(.22,1,.36,1);
+  --interaction-cyan: 120 184 205;
+  --interaction-blue: 37 101 142;
+}
+
+@keyframes interaction-line-pulse {
+  0%, 100% { transform: scaleX(.72); opacity: .62; filter: saturate(.85); }
+  50% { transform: scaleX(1); opacity: 1; filter: saturate(1.2); }
+}
+
+@keyframes interaction-soft-float {
+  0%, 100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(0,-4px,0); }
+}
+
+@keyframes interaction-glow-breathe {
+  0%, 100% { opacity: .18; transform: scale(.96); }
+  50% { opacity: .34; transform: scale(1.04); }
+}
+
+/* Section title accents stay alive even when the pointer is idle. */
+:is(#about, #experience, #skills, #contact) h2 + div {
+  transform-origin: center;
+  animation: interaction-line-pulse 4.8s var(--motion-smooth) infinite;
+  box-shadow: 0 0 18px rgb(var(--interaction-cyan) / .16);
+}
+
+/* Cards: pointer-follow glow, subtle glass depth, no layout-size changes. */
+:is(#about, #experience, #skills, #contact) .glass {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  position: relative;
+  isolation: isolate;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  will-change: transform, box-shadow, border-color;
+  transition:
+    transform .42s var(--motion-smooth),
+    box-shadow .42s var(--motion-smooth),
+    border-color .34s ease,
+    background-color .34s ease;
+}
+
+:is(#about, #experience, #skills, #contact) .glass::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  background:
+    radial-gradient(
+      310px circle at var(--pointer-x) var(--pointer-y),
+      rgb(var(--interaction-cyan) / .15),
+      rgb(var(--interaction-blue) / .06) 34%,
+      transparent 68%
+    );
+  transition: opacity .34s ease;
+}
+
+:is(#about, #experience, #skills, #contact) .glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0;
+  background: linear-gradient(112deg, transparent 28%, rgb(255 255 255 / .11) 46%, transparent 64%);
+  transform: translateX(-72%);
+}
+
+:is(#about, #experience, #skills, #contact) .glass > * {
+  z-index: 1;
+}
+
+.dark :is(#about, #experience, #skills, #contact) .glass::before {
+  background:
+    radial-gradient(
+      330px circle at var(--pointer-x) var(--pointer-y),
+      rgb(var(--interaction-cyan) / .18),
+      rgb(var(--interaction-blue) / .08) 38%,
+      transparent 70%
+    );
+}
+
+/* Experience cards are the main showcase interaction. */
+#experience .glass h3,
+#experience .glass h3 + div,
+#experience .glass > div:first-child > div:last-child,
+#experience .glass li > span:first-child,
+#experience .glass a,
+#experience .glass a svg {
+  transition:
+    transform .32s var(--motion-smooth),
+    color .28s ease,
+    background-color .28s ease,
+    border-color .28s ease,
+    box-shadow .32s ease;
+}
+
+/* Skills / about / contact details react independently inside the parent card. */
+#skills .glass h3 svg,
+#skills .glass li svg,
+#about .glass svg,
+#contact .glass svg,
+#contact .glass a {
+  transition: transform .32s var(--motion-smooth), color .28s ease, background-color .28s ease;
+}
+
+/* Hero controls */
+#home a {
+  position: relative;
+  isolation: isolate;
+  will-change: transform;
+  transition:
+    transform .32s var(--motion-smooth),
+    box-shadow .32s ease,
+    background-color .28s ease,
+    color .28s ease,
+    border-color .28s ease;
+}
+
+#home a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(105deg, transparent 25%, rgb(255 255 255 / .26), transparent 70%);
+  transform: translateX(-85%);
+}
+
+/* Desktop/header controls */
+header button,
+header a,
+.mobile-nav-safe button {
+  will-change: transform;
+  transition:
+    transform .28s var(--motion-smooth),
+    color .25s ease,
+    background-color .25s ease,
+    box-shadow .28s ease;
+}
+
+/* HozAI keeps its own position but receives stronger affordance. */
+.hozai-launcher {
+  will-change: transform, box-shadow;
+  transition: transform .3s var(--motion-smooth), box-shadow .3s ease, filter .3s ease !important;
+}
+
+.hozai-launcher::after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 999px;
+  pointer-events: none;
+  border: 1px solid rgb(var(--interaction-cyan) / .24);
+  animation: interaction-glow-breathe 3.2s ease-in-out infinite;
+}
+
+/* Precise-pointer hover: richer motion only where hover actually exists. */
+@media (hover: hover) and (pointer: fine) {
+  :is(#about, #experience, #skills, #contact) .glass:hover::before {
+    opacity: 1;
+  }
+
+  :is(#about, #experience, #skills, #contact) .glass:hover::after {
+    opacity: .72;
+    animation: interaction-card-sheen .78s var(--motion-smooth) 1;
+  }
+
+  @keyframes interaction-card-sheen {
+    from { transform: translateX(-72%); }
+    to { transform: translateX(72%); }
+  }
+
+  /* Stronger hover is limited to visual cards, not the whole layout. */
+  #experience .glass:hover {
+    transform: translate3d(0,-8px,0) scale(1.006);
+    border-color: rgb(var(--interaction-cyan) / .44) !important;
+    box-shadow:
+      0 24px 55px rgb(7 24 39 / .13),
+      0 0 0 1px rgb(var(--interaction-cyan) / .10),
+      0 0 34px rgb(var(--interaction-cyan) / .10);
+  }
+
+  .dark #experience .glass:hover {
+    box-shadow:
+      0 28px 64px rgb(0 0 0 / .36),
+      0 0 0 1px rgb(var(--interaction-cyan) / .15),
+      0 0 42px rgb(var(--interaction-cyan) / .12);
+  }
+
+  #experience .glass:hover h3 {
+    transform: translateX(5px);
+    color: #2563eb;
+  }
+
+  html[dir="rtl"] #experience .glass:hover h3 {
+    transform: translateX(-5px);
+  }
+
+  .dark #experience .glass:hover h3 {
+    color: #67e8f9;
+  }
+
+  #experience .glass:hover h3 + div {
+    transform: translateY(-1px);
+    filter: saturate(1.12);
+  }
+
+  #experience .glass:hover > div:first-child > div:last-child {
+    transform: translateY(-2px) scale(1.025);
+    border-color: rgb(var(--interaction-cyan) / .32);
+    box-shadow: 0 7px 18px rgb(var(--interaction-blue) / .09);
+  }
+
+  #experience .glass:hover li > span:first-child {
+    transform: translateY(-1px) scale(1.13) rotate(-7deg);
+  }
+
+  html[dir="rtl"] #experience .glass:hover li > span:first-child {
+    transform: translateY(-1px) scale(1.13) rotate(7deg);
+  }
+
+  #experience .glass a:hover {
+    transform: translateY(-3px) scale(1.025);
+    box-shadow: 0 10px 24px rgb(var(--interaction-blue) / .14);
+  }
+
+  #experience .glass a:hover svg {
+    transform: translate(2px,-2px) rotate(5deg);
+    color: rgb(var(--interaction-blue));
+  }
+
+  html[dir="rtl"] #experience .glass a:hover svg {
+    transform: translate(-2px,-2px) rotate(-5deg);
+  }
+
+  /* Other cards retain personality but remain slightly calmer than Experience. */
+  #about .glass:hover,
+  #skills .glass:hover,
+  #contact .glass:hover {
+    transform: translate3d(0,-6px,0) scale(1.004);
+    border-color: rgb(var(--interaction-cyan) / .34) !important;
+    box-shadow:
+      0 20px 48px rgb(7 24 39 / .11),
+      0 0 28px rgb(var(--interaction-cyan) / .075);
+  }
+
+  .dark #about .glass:hover,
+  .dark #skills .glass:hover,
+  .dark #contact .glass:hover {
+    box-shadow:
+      0 24px 54px rgb(0 0 0 / .30),
+      0 0 34px rgb(var(--interaction-cyan) / .09);
+  }
+
+  #skills .glass:hover h3 svg {
+    transform: scale(1.13) rotate(-5deg);
+  }
+
+  #skills .glass:hover li:nth-child(odd) svg { transform: scale(1.16) rotate(-6deg); }
+  #skills .glass:hover li:nth-child(even) svg { transform: scale(1.16) rotate(6deg); }
+
+  #about .glass:hover > div:first-child svg,
+  #about .glass:hover svg {
+    transform: translateY(-2px) scale(1.08);
+  }
+
+  #contact .glass:hover > div:first-child > div:first-child {
+    transform: scale(1.06);
+  }
+
+  /* Hero CTA + socials */
+  #home a:hover {
+    transform: translateY(-3px);
+  }
+
+  #home a:hover::after {
+    opacity: 1;
+    animation: interaction-hero-sheen .7s var(--motion-smooth) 1;
+  }
+
+  @keyframes interaction-hero-sheen {
+    from { transform: translateX(-85%); }
+    to { transform: translateX(85%); }
+  }
+
+  #home a[href="#contact"]:hover {
+    box-shadow:
+      0 16px 34px rgb(var(--interaction-blue) / .24),
+      0 0 26px rgb(var(--interaction-cyan) / .15);
+  }
+
+  #home a[aria-label]:hover {
+    transform: translateY(-4px) scale(1.08) rotate(3deg);
+    box-shadow: 0 12px 24px rgb(var(--interaction-blue) / .18);
+  }
+
+  #home a[aria-label]:nth-child(even):hover {
+    transform: translateY(-4px) scale(1.08) rotate(-3deg);
+  }
+
+  /* Header/Nav */
+  header > div > button:hover {
+    transform: translateY(-1px) scale(1.04);
+  }
+
+  header > div > button:hover img {
+    transform: scale(1.08) rotate(-2deg);
+  }
+
+  header nav button:hover {
+    transform: translateY(-1px);
+  }
+
+  header nav button:not(:has(> div)):hover {
+    background: rgb(var(--interaction-cyan) / .07);
+  }
+
+  header .relative > button:hover,
+  header > div > div:last-child > button:hover {
+    transform: translateY(-1px) scale(1.025);
+    box-shadow: 0 8px 20px rgb(var(--interaction-blue) / .10);
+  }
+
+  /* Contact links/icons */
+  #contact a:hover svg {
+    transform: scale(1.12) rotate(-4deg);
+  }
+
+  .hozai-launcher:hover {
+    transform: translateY(-4px) scale(1.08) rotate(-2deg) !important;
+    filter: saturate(1.12) brightness(1.04);
+    box-shadow:
+      0 18px 40px rgb(var(--interaction-blue) / .34),
+      0 0 34px rgb(var(--interaction-cyan) / .24) !important;
+  }
+}
+
+/* Touch feedback: short and intentional, no sticky hover requirement. */
+@media (hover: none), (pointer: coarse) {
+  :is(#about, #experience, #skills, #contact) .glass:active {
+    transform: scale(.992);
+    border-color: rgb(var(--interaction-cyan) / .34) !important;
+  }
+
+  #experience .glass:active::before,
+  #about .glass:active::before,
+  #skills .glass:active::before,
+  #contact .glass:active::before {
+    opacity: .8;
+  }
+
+  #home a:active,
+  header button:active,
+  .mobile-nav-safe button:active,
+  #experience .glass a:active,
+  #contact a:active,
+  #contact button:active {
+    transform: scale(.96);
+  }
+
+  .hozai-launcher:active {
+    transform: scale(.92) !important;
+  }
+}
+
+/* Keyboard users get equally clear interactive feedback. */
+:is(#about, #experience, #skills, #contact) a:focus-visible,
+#home a:focus-visible,
+header button:focus-visible,
+.mobile-nav-safe button:focus-visible,
+.hozai-launcher:focus-visible {
+  outline: 2px solid rgb(var(--interaction-cyan) / .9);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 5px rgb(var(--interaction-cyan) / .14);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(#about, #experience, #skills, #contact) h2 + div,
+  .hozai-launcher::after {
+    animation: none !important;
+  }
+
+  :is(#about, #experience, #skills, #contact) .glass,
+  #home a,
+  header button,
+  .mobile-nav-safe button,
+  .hozai-launcher {
+    transform: none !important;
+  }
+}
+
+/* ==========================================================================
+   2026 Interaction & Mobile Polish
+   ========================================================================== */
+
+@keyframes metric-glint {
+  0% { transform: translateX(-140%) rotate(18deg); opacity: 0; }
+  18% { opacity: .62; }
+  52%, 100% { transform: translateX(180%) rotate(18deg); opacity: 0; }
+}
+
+@keyframes metric-icon-float {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50% { transform: translate3d(0, -3px, 0) rotate(2deg); }
+}
+
+@keyframes skill-watermark-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+  50% { transform: translate3d(-5px, 5px, 0) rotate(3deg); }
+}
+
+@keyframes section-child-arrive {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); filter: blur(3px); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); filter: blur(0); }
+}
+
+@keyframes education-aurora-shift {
+  0%, 100% { transform: translate3d(-4%, -3%, 0) scale(1); opacity: .58; }
+  50% { transform: translate3d(5%, 4%, 0) scale(1.08); opacity: .86; }
+}
+
+@keyframes education-emblem-sheen {
+  from { transform: translateX(-150%) skewX(-18deg); }
+  to { transform: translateX(180%) skewX(-18deg); }
+}
+
+/* Critical layering fix: do not force decorative absolute children into flow.
+   The previous rule caused the large Skills watermark icon to occupy its own row. */
+:is(#about, #experience, #skills, #contact) .glass > * {
+  z-index: 1;
+}
+
+/* Watermarks remain true background art, including on phones. */
+#skills .skill-watermark,
+#skills .skill-card > div:nth-child(2) {
+  position: absolute !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  transform-origin: center;
+  animation: skill-watermark-drift 8s ease-in-out infinite;
+}
+
+#skills .skill-card > h3,
+#skills .skill-card > ul {
+  position: relative;
+  z-index: 2;
+}
+
+/* Results / metrics: restore the lively original feel and upgrade it. */
+#about .results-grid,
+#about .metric-card {
+  position: relative;
+}
+
+#about .metric-card {
+  isolation: isolate;
+}
+
+#about .metric-card .metric-card-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(160px circle at 20% 15%, rgb(var(--interaction-cyan) / .14), transparent 68%);
+  opacity: .7;
+}
+
+#about .metric-card::marker { display: none; }
+
+#about .metric-card .metric-value,
+#about .metric-card [data-metric-value="true"] {
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+
+#about .metric-card > div:first-of-type svg {
+  animation: metric-icon-float 4.2s ease-in-out infinite;
+}
+
+#about .metric-card:nth-child(2) > div:first-of-type svg { animation-delay: .35s; }
+#about .metric-card:nth-child(3) > div:first-of-type svg { animation-delay: .7s; }
+
+#about .metric-card::after {
+  content: "";
+  position: absolute;
+  top: -35%;
+  bottom: -35%;
+  left: -32%;
+  width: 24%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .24), transparent);
+  opacity: 0;
+}
+
+#about.section-live .metric-card::after {
+  animation: metric-glint 1.15s var(--motion-smooth) both;
+}
+#about.section-live .metric-card:nth-child(2)::after { animation-delay: .13s; }
+#about.section-live .metric-card:nth-child(3)::after { animation-delay: .26s; }
+
+/* Small, staggered micro-animation for content inside sections. */
+#experience.section-live .experience-card li,
+#skills.section-live .skill-card li,
+#contact.section-live .contact-card,
+#about.section-live .language-meter {
+  animation: section-child-arrive .52s var(--motion-smooth) both;
+}
+
+#experience.section-live .experience-card li:nth-child(2),
+#skills.section-live .skill-card li:nth-child(2) { animation-delay: .07s; }
+#experience.section-live .experience-card li:nth-child(3),
+#skills.section-live .skill-card li:nth-child(3) { animation-delay: .14s; }
+#experience.section-live .experience-card li:nth-child(4) { animation-delay: .21s; }
+#about.section-live .language-meter:nth-child(2),
+#contact.section-live .contact-card:nth-child(2) { animation-delay: .08s; }
+#about.section-live .language-meter:nth-child(3),
+#contact.section-live .contact-card:nth-child(3) { animation-delay: .16s; }
+
+/* Education: academic credential card, not a generic large box. */
+#about .education-card {
+  isolation: isolate;
+  background:
+    linear-gradient(135deg, rgb(255 255 255 / .80), rgb(248 250 252 / .70));
+  box-shadow:
+    0 18px 50px rgb(15 23 42 / .07),
+    inset 0 1px 0 rgb(255 255 255 / .72);
+}
+
+.dark #about .education-card {
+  background:
+    linear-gradient(135deg, rgb(11 27 50 / .78), rgb(7 24 39 / .66));
+  box-shadow:
+    0 24px 60px rgb(0 0 0 / .25),
+    inset 0 1px 0 rgb(255 255 255 / .04);
+}
+
+#about .education-card::before {
+  background:
+    radial-gradient(420px circle at var(--pointer-x) var(--pointer-y), rgb(var(--interaction-cyan) / .16), transparent 64%),
+    linear-gradient(120deg, rgb(var(--interaction-blue) / .08), transparent 44%);
+}
+
+#about .education-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .58;
+  background-image:
+    linear-gradient(rgb(var(--interaction-blue) / .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--interaction-blue) / .055) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: linear-gradient(to right, #000, transparent 72%);
+}
+
+.dark #about .education-card::after {
+  opacity: .28;
+}
+
+#about .education-aurora {
+  z-index: 0 !important;
+  background:
+    radial-gradient(circle at 18% 35%, rgb(var(--interaction-blue) / .14), transparent 36%),
+    radial-gradient(circle at 78% 52%, rgb(var(--interaction-cyan) / .11), transparent 34%);
+  animation: education-aurora-shift 10s ease-in-out infinite;
+}
+
+#about .education-emblem {
+  position: relative;
+  isolation: isolate;
+}
+
+#about .education-emblem-shine {
+  position: absolute;
+  inset-block: -30%;
+  left: -35%;
+  width: 34%;
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / .50), transparent);
+  animation: education-emblem-sheen 3.8s ease-in-out infinite;
+}
+
+#about .education-degree {
+  text-wrap: balance;
+}
+
+#about .education-grade,
+#about .education-rank {
+  transition: transform .28s var(--motion-smooth), box-shadow .28s ease, border-color .28s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #about .metric-card:hover .metric-value,
+  #about .metric-card:hover [data-metric-value="true"] {
+    transform: translateY(-1px) scale(1.03);
+    color: rgb(var(--interaction-blue));
+  }
+  .dark #about .metric-card:hover .metric-value,
+  .dark #about .metric-card:hover [data-metric-value="true"] {
+    color: rgb(var(--interaction-cyan));
+  }
+
+  #about .education-card:hover .education-grade,
+  #about .education-card:hover .education-rank {
+    box-shadow: 0 10px 24px rgb(var(--interaction-blue) / .10);
+  }
+}
+
+@media (max-width: 767px) {
+  /* Keep decorative Skills icons behind content instead of creating blank vertical space. */
+  #skills .skill-watermark,
+  #skills .skill-card > div:nth-child(2) {
+    top: -.35rem !important;
+    right: -.35rem !important;
+    left: auto !important;
+    padding: .35rem !important;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
+    opacity: .035 !important;
+  }
+
+  html[dir="rtl"] #skills .skill-watermark,
+  html[dir="rtl"] #skills .skill-card > div:nth-child(2) {
+    right: auto !important;
+    left: -.35rem !important;
+  }
+
+  #skills .skill-watermark svg,
+  #skills .skill-card > div:nth-child(2) svg {
+    width: 5.25rem !important;
+    height: 5.25rem !important;
+  }
+
+  /* Results animation stays present on touch screens and remains compact. */
+  #about .metric-card {
+    min-width: 0;
+    overflow: hidden;
+  }
+  #about .metric-card .metric-value,
+  #about .metric-card [data-metric-value="true"] {
+    font-size: 1.25rem !important;
+    line-height: 1.05 !important;
+  }
+
+  /* Education becomes a concise two-column credential row on phones. */
+  #about .education-layout {
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    align-items: start !important;
+    gap: .9rem !important;
+    padding: 1rem !important;
+  }
+
+  #about .education-emblem {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: .9rem !important;
+  }
+
+  #about .education-emblem svg {
+    width: 1.45rem !important;
+    height: 1.45rem !important;
+  }
+
+  #about .education-degree {
+    font-size: .98rem !important;
+    line-height: 1.38 !important;
+  }
+
+  #about .education-meta {
+    gap: .45rem !important;
+    margin-top: .75rem !important;
+  }
+
+  #about .education-grade,
+  #about .education-rank {
+    padding: .42rem .62rem !important;
+    border-radius: .7rem !important;
+    font-size: .64rem !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Existing pre-rebuild education markup fallback used by the ready dist. */
+  #about .education-card > div:nth-child(2) {
+    display: grid !important;
+    grid-template-columns: auto minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: .9rem !important;
+    padding: 1rem !important;
+  }
+  #about .education-card > div:nth-child(2) > div:first-child {
+    order: 2;
+    min-width: 0;
+    text-align: start !important;
+  }
+  #about .education-card > div:nth-child(2) > div:last-child {
+    order: 1;
+    width: auto !important;
+    justify-content: flex-start !important;
+  }
+  #about .education-card > div:nth-child(2) > div:last-child > div {
+    width: 3rem !important;
+    height: 3rem !important;
+    border-radius: .9rem !important;
+    background: linear-gradient(135deg, #2563eb, #67e8f9) !important;
+    border: 0 !important;
+    box-shadow: 0 10px 24px rgb(var(--interaction-blue) / .18) !important;
+  }
+  #about .education-card > div:nth-child(2) > div:last-child > div > div {
+    display: none !important;
+  }
+  #about .education-card > div:nth-child(2) > div:last-child svg {
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    color: white !important;
+  }
+  #about .education-card > div:nth-child(2) h3 {
+    margin-bottom: .75rem !important;
+    font-size: .98rem !important;
+    line-height: 1.4 !important;
+  }
+  #about .education-card > div:nth-child(2) > div:first-child > div:last-child {
+    justify-content: flex-start !important;
+    gap: .45rem !important;
+  }
+  #about .education-card > div:nth-child(2) > div:first-child > div:last-child > span {
+    padding: .42rem .62rem !important;
+    border-radius: .7rem !important;
+    font-size: .64rem !important;
+    line-height: 1.2 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #skills .skill-watermark,
+  #skills .skill-card > div:nth-child(2),
+  #about .metric-card > div:first-of-type svg,
+  #about .metric-card::after,
+  #about .education-aurora,
+  #about .education-emblem-shine,
+  #experience.section-live .experience-card li,
+  #skills.section-live .skill-card li,
+  #contact.section-live .contact-card,
+  #about.section-live .language-meter {
+    animation: none !important;
+  }
+}
+
+/* Ready-dist fallback: gives the pre-rebuild Education DOM the same premium credential treatment. */
+#about .education-card:not(:has(.education-layout)) > div:nth-child(2) {
+  position: relative;
+  z-index: 2;
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center !important;
+  gap: 2rem !important;
+}
+
+#about .education-card:not(:has(.education-layout)) > div:nth-child(2) > div:first-child {
+  text-align: start !important;
+}
+
+#about .education-card:not(:has(.education-layout)) > div:nth-child(2) > div:first-child > div:first-child {
+  letter-spacing: .13em;
+}
+
+#about .education-card:not(:has(.education-layout)) > div:nth-child(2) > div:last-child > div {
+  border-radius: 1.35rem !important;
+  background: linear-gradient(135deg, #2563eb, #67e8f9) !important;
+  border: 0 !important;
+  box-shadow: 0 16px 34px rgb(var(--interaction-blue) / .18) !important;
+  overflow: hidden;
+}
+
+#about .education-card:not(:has(.education-layout)) > div:nth-child(2) > div:last-child > div > div {
+  border-color: rgb(255 255 255 / .28) !important;
+  animation-duration: 24s !important;
+}
+
+#about .education-card:not(:has(.education-layout)) > div:nth-child(2) > div:last-child svg {
+  color: white !important;
+}
+
+.dark #about .education-card:not(:has(.education-layout)) > div:nth-child(2) > div:last-child svg {
+  color: #071827 !important;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #about .education-card:not(:has(.education-layout)):hover > div:nth-child(2) > div:last-child > div {
+    transform: translateY(-4px) rotate(-2deg) scale(1.045);
+    box-shadow: 0 22px 44px rgb(var(--interaction-blue) / .24) !important;
+  }
+}
+
+
+/* ==========================================================================
+   Original Interaction Parity v4
+   Reinstates the original Antigravity visual language on BOTH coarse/touch
+   and precise-pointer layouts. Decorative coffee marks are intentionally kept.
+   ========================================================================== */
+
+@keyframes original-coffee-drift {
+  0%, 100% { translate: 0 0; opacity: .72; }
+  50% { translate: 0 -6px; opacity: 1; }
+}
+
+@keyframes original-coffee-breathe {
+  0%, 100% { filter: saturate(.82) brightness(.96); }
+  50% { filter: saturate(1.08) brightness(1.04); }
+}
+
+/* The three coffee marks existed in the original About/Experience artwork. */
+#about .coffee-mark,
+#experience .coffee-mark,
+#about .lucide-coffee,
+#experience .lucide-coffee {
+  display: block !important;
+  pointer-events: none;
+  translate: 0 0;
+  animation:
+    original-coffee-drift 7.4s ease-in-out infinite,
+    original-coffee-breathe 9s ease-in-out infinite;
+  will-change: translate, opacity, filter;
+}
+
+#about .coffee-mark-2,
+#experience .coffee-mark-2,
+#about .lucide-coffee:nth-of-type(2),
+#experience .lucide-coffee:nth-of-type(2) { animation-delay: -2.2s, -1.2s; }
+
+#about .coffee-mark-3,
+#experience .coffee-mark-3,
+#about .lucide-coffee:nth-of-type(3),
+#experience .lucide-coffee:nth-of-type(3) { animation-delay: -4.1s, -2.4s; }
+
+/* The animated coffee cup beside the portrait is also part of the original identity. */
+#home .hero-coffee-decor {
+  display: block !important;
+  pointer-events: none;
+}
+
+/* Preserve the original desktop hover vocabulary. */
+@media (hover: hover) and (pointer: fine) {
+  #about .metric-card:hover {
+    box-shadow: 0 20px 46px rgb(15 23 42 / .13), 0 0 30px rgb(var(--interaction-cyan) / .09);
+  }
+
+  #about .metric-card:hover > div:first-of-type,
+  #about .metric-card:hover > div:first-of-type svg {
+    color: rgb(var(--interaction-blue));
+  }
+
+  .dark #about .metric-card:hover > div:first-of-type,
+  .dark #about .metric-card:hover > div:first-of-type svg {
+    color: rgb(var(--interaction-cyan));
+  }
+
+  #skills .skill-card:hover .skill-watermark,
+  #skills .skill-card:hover > div:nth-child(2) {
+    opacity: .10 !important;
+  }
+
+  #contact .contact-card:hover,
+  #contact .contact-social-card:hover {
+    box-shadow: 0 20px 46px rgb(15 23 42 / .12), 0 0 26px rgb(var(--interaction-cyan) / .08);
+  }
+}
+
+/* Touch devices get an equivalent interaction instead of losing hover entirely. */
+@media (hover: none), (pointer: coarse) {
+  .original-interaction-card,
+  #about .metric-card,
+  #experience .experience-card,
+  #skills .skill-card,
+  #contact .contact-card,
+  #contact .contact-social-card,
+  #about .education-card {
+    transition:
+      box-shadow .28s var(--motion-smooth),
+      border-color .28s ease,
+      filter .28s ease,
+      background-color .28s ease !important;
+  }
+
+  .original-interaction-card:active,
+  #about .metric-card:active,
+  #experience .experience-card:active,
+  #skills .skill-card:active,
+  #contact .contact-card:active,
+  #contact .contact-social-card:active,
+  #about .education-card:active,
+  .touch-active {
+    border-color: rgb(var(--interaction-cyan) / .42) !important;
+    box-shadow:
+      0 14px 32px rgb(7 24 39 / .12),
+      0 0 0 1px rgb(var(--interaction-cyan) / .10),
+      0 0 24px rgb(var(--interaction-cyan) / .09) !important;
+    filter: saturate(1.04);
+  }
+
+  .original-interaction-card:active::before,
+  .touch-active::before {
+    opacity: .82 !important;
+  }
+
+  #skills .skill-card:active .skill-watermark,
+  #skills .skill-card.touch-active .skill-watermark,
+  #skills .skill-card:active > div:nth-child(2),
+  #skills .skill-card.touch-active > div:nth-child(2) {
+    opacity: .085 !important;
+  }
+
+  #skills li:active svg,
+  #experience li:active > span:first-child,
+  #contact a:active svg,
+  #about .metric-card:active svg {
+    scale: 1.12;
+  }
+
+  #home .hero-action:active,
+  #home .hero-social:active,
+  .mobile-nav-item:active,
+  header button:active,
+  #experience a:active,
+  #contact a:active,
+  #contact button:active {
+    filter: brightness(.98) saturate(1.08);
+  }
+}
+
+/* Phone placement: retain the marks without letting them consume layout space. */
+@media (max-width: 767px) {
+  #home .hero-coffee-decor {
+    left: calc(50% - 6.7rem) !important;
+    bottom: -.15rem !important;
+    z-index: 22 !important;
+  }
+
+  #home .hero-coffee-decor > div {
+    padding: .52rem !important;
+    border-width: 1px !important;
+    box-shadow: 0 9px 24px rgb(15 23 42 / .18) !important;
+  }
+
+  #home .hero-coffee-decor > div > svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+
+  #home .hero-coffee-decor > div > div:nth-of-type(1) {
+    top: -1.1rem !important;
+    height: .65rem !important;
+  }
+  #home .hero-coffee-decor > div > div:nth-of-type(2),
+  #home .hero-coffee-decor > div > div:nth-of-type(3) {
+    height: .5rem !important;
+  }
+
+  #about .coffee-mark,
+  #experience .coffee-mark,
+  #about .lucide-coffee,
+  #experience .lucide-coffee {
+    display: block !important;
+    width: 1.75rem !important;
+    height: 1.75rem !important;
+    opacity: .7;
+  }
+
+  #about .coffee-mark-2,
+  #about .lucide-coffee:nth-of-type(2) {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    right: .7rem !important;
+    bottom: 22% !important;
+  }
+
+  #about .coffee-mark-1,
+  #about .lucide-coffee:nth-of-type(1) {
+    top: 5.5rem !important;
+    left: .75rem !important;
+  }
+
+  #about .coffee-mark-3,
+  #about .lucide-coffee:nth-of-type(3) {
+    top: 47% !important;
+    left: 72% !important;
+    width: 1.35rem !important;
+    height: 1.35rem !important;
+  }
+
+  #experience .coffee-mark-1,
+  #experience .lucide-coffee:nth-of-type(1) {
+    top: 7.5rem !important;
+    left: .65rem !important;
+  }
+
+  #experience .coffee-mark-2,
+  #experience .lucide-coffee:nth-of-type(2) {
+    right: .7rem !important;
+    bottom: 31% !important;
+    width: 1.55rem !important;
+    height: 1.55rem !important;
+  }
+
+  #experience .coffee-mark-3,
+  #experience .lucide-coffee:nth-of-type(3) {
+    left: 78% !important;
+    top: 67% !important;
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #about .coffee-mark,
+  #experience .coffee-mark,
+  #about .lucide-coffee,
+  #experience .lucide-coffee {
+    animation: none !important;
+    translate: 0 0 !important;
+  }
+}
+
+
+@media (hover: none), (pointer: coarse) {
+  .control-touch-active {
+    filter: brightness(.97) saturate(1.12) !important;
+  }
+
+  #home .hero-social.control-touch-active,
+  .mobile-nav-item.control-touch-active,
+  header button.control-touch-active,
+  .hozai-launcher.control-touch-active {
+    box-shadow: 0 10px 26px rgb(var(--interaction-cyan) / .16) !important;
+  }
+}
+/* v10 runtime UX layer: HozAI compact actions + academic signature */
+
+/* ---------- HozAI ---------- */
+.hozai-safe .hozai-v10-quick-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: .5rem !important;
+}
+
+.hozai-safe .hozai-v10-quick-card {
+  min-width: 0 !important;
+  padding: .52rem .56rem !important;
+  border-radius: .8rem !important;
+  gap: .4rem !important;
+  font-size: .68rem !important;
+  line-height: 1 !important;
+  font-weight: 750 !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  letter-spacing: -.012em !important;
+}
+
+.hozai-safe .hozai-v10-quick-card > span:first-child {
+  flex: 0 0 auto !important;
+  padding: .4rem !important;
+  border-radius: .58rem !important;
+}
+
+.hozai-safe .hozai-v10-quick-card svg {
+  width: .92rem !important;
+  height: .92rem !important;
+}
+
+.hozai-safe .hozai-v10-job-card {
+  padding: .58rem .72rem !important;
+  border-radius: .85rem !important;
+  font-size: .7rem !important;
+  line-height: 1 !important;
+}
+
+.hozai-safe .hozai-v10-job-card svg {
+  width: .9rem !important;
+  height: .9rem !important;
+}
+
+/* Tighten the empty state just enough that all options fit without scrolling. */
+.hozai-safe .hozai-v10-empty-state {
+  justify-content: flex-start !important;
+  gap: .68rem !important;
+}
+
+.hozai-safe .hozai-v10-empty-state > div:first-child {
+  margin-top: 0 !important;
+  margin-bottom: .15rem !important;
+}
+
+.hozai-safe .hozai-v10-empty-state > div:first-child > div:first-child {
+  width: 2.65rem !important;
+  height: 2.65rem !important;
+  margin-bottom: .55rem !important;
+  border-radius: .85rem !important;
+}
+
+.hozai-safe .hozai-v10-empty-state > div:first-child > div:first-child svg {
+  width: 1.3rem !important;
+  height: 1.3rem !important;
+}
+
+.hozai-safe .hozai-v10-empty-state h4 {
+  font-size: .98rem !important;
+  margin-bottom: .28rem !important;
+}
+
+.hozai-safe .hozai-v10-empty-state p {
+  font-size: .7rem !important;
+  line-height: 1.52 !important;
+  max-width: 96% !important;
+}
+
+.hozai-safe .hozai-v10-actions-deck {
+  margin-top: auto !important;
+  gap: .5rem !important;
+}
+
+/* ---------- Academic signature in About ---------- */
+#about .education-v10-wrap {
+  width: 100% !important;
+  margin: 0 0 .25rem 0 !important;
+}
+
+#about .education-v10-card {
+  position: relative !important;
+  isolation: isolate !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 1.35rem !important;
+  overflow: hidden !important;
+  background:
+    linear-gradient(145deg, rgb(255 255 255 / .86), rgb(246 250 255 / .73)) !important;
+  box-shadow:
+    0 18px 46px rgb(37 99 235 / .07),
+    inset 0 1px 0 rgb(255 255 255 / .84) !important;
+  transform: translateZ(0);
+}
+
+.dark #about .education-v10-card {
+  background:
+    linear-gradient(145deg, rgb(11 27 50 / .90), rgb(7 24 39 / .80)) !important;
+  box-shadow:
+    0 20px 52px rgb(0 0 0 / .25),
+    inset 0 1px 0 rgb(255 255 255 / .045) !important;
+}
+
+#about .education-v10-overlay {
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: .9 !important;
+  pointer-events: none !important;
+  background:
+    radial-gradient(320px circle at 82% 15%, rgb(34 211 238 / .12), transparent 64%),
+    radial-gradient(250px circle at 4% 105%, rgb(37 99 235 / .12), transparent 68%) !important;
+}
+
+#about .education-v10-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: .29;
+  background-image:
+    linear-gradient(rgb(37 99 235 / .055) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(37 99 235 / .055) 1px, transparent 1px);
+  background-size: 20px 20px;
+  -webkit-mask-image: linear-gradient(125deg, #000 0%, rgb(0 0 0 / .28) 48%, transparent 80%);
+  mask-image: linear-gradient(125deg, #000 0%, rgb(0 0 0 / .28) 48%, transparent 80%);
+}
+
+.dark #about .education-v10-grid { opacity: .18; }
+
+#about .education-v10-beam {
+  position: absolute;
+  z-index: 0;
+  top: -30%;
+  bottom: -30%;
+  left: -24%;
+  width: 5.25rem;
+  pointer-events: none;
+  opacity: .42;
+  transform: rotate(12deg);
+  filter: blur(4px);
+  background: linear-gradient(90deg, transparent, rgb(103 232 249 / .16), transparent);
+  animation: education-v10-beam 8.2s ease-in-out infinite;
+}
+
+@keyframes education-v10-beam {
+  0%, 18% { transform: translateX(-30%) rotate(12deg); opacity: 0; }
+  32% { opacity: .42; }
+  62% { opacity: .42; }
+  78%, 100% { transform: translateX(760%) rotate(12deg); opacity: 0; }
+}
+
+html[dir="rtl"] #about .education-v10-beam {
+  left: auto;
+  right: -24%;
+  animation-name: education-v10-beam-rtl;
+}
+
+@keyframes education-v10-beam-rtl {
+  0%, 18% { transform: translateX(30%) rotate(-12deg); opacity: 0; }
+  32% { opacity: .42; }
+  62% { opacity: .42; }
+  78%, 100% { transform: translateX(-760%) rotate(-12deg); opacity: 0; }
+}
+
+#about .education-v10-layout {
+  position: relative !important;
+  z-index: 2 !important;
+  display: grid !important;
+  grid-template-columns: auto minmax(0, 1fr) !important;
+  align-items: center !important;
+  justify-content: initial !important;
+  gap: .9rem !important;
+  padding: 1rem 1rem 1rem 1.05rem !important;
+}
+
+html[dir="rtl"] #about .education-v10-layout {
+  padding: 1rem 1.05rem 1rem 1rem !important;
+}
+
+#about .education-v10-copy {
+  order: 2 !important;
+  min-width: 0 !important;
+  text-align: start !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+#about .education-v10-copy > div:first-child {
+  justify-content: flex-start !important;
+  gap: .38rem !important;
+  margin-bottom: .4rem !important;
+  font-size: .62rem !important;
+  line-height: 1 !important;
+  letter-spacing: .11em !important;
+  color: rgb(37 99 235) !important;
+}
+
+.dark #about .education-v10-copy > div:first-child {
+  color: rgb(103 232 249) !important;
+}
+
+#about .education-v10-copy > div:first-child svg {
+  width: .82rem !important;
+  height: .82rem !important;
+}
+
+#about .education-v10-copy h3 {
+  margin: 0 !important;
+  padding-right: 2.65rem;
+  font-size: .95rem !important;
+  line-height: 1.33 !important;
+  font-weight: 800 !important;
+  text-align: start !important;
+  text-wrap: balance;
+}
+
+html[dir="rtl"] #about .education-v10-copy h3 {
+  padding-right: 0;
+  padding-left: 2.65rem;
+}
+
+#about .education-v10-meta {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  align-items: center !important;
+  justify-content: initial !important;
+  gap: .45rem !important;
+  margin-top: .72rem !important;
+}
+
+#about .education-v10-meta > span {
+  min-width: 0 !important;
+  padding: .45rem .6rem !important;
+  border-radius: .68rem !important;
+  font-size: .62rem !important;
+  line-height: 1.18 !important;
+  font-weight: 760 !important;
+}
+
+#about .education-v10-meta > span:first-child {
+  background: rgb(37 99 235 / .96) !important;
+  color: white !important;
+  box-shadow: 0 8px 22px rgb(37 99 235 / .12) !important;
+}
+
+.dark #about .education-v10-meta > span:first-child {
+  background: rgb(103 232 249) !important;
+  color: rgb(7 24 39) !important;
+}
+
+#about .education-v10-icon-wrap {
+  order: 1 !important;
+  width: auto !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+}
+
+#about .education-v10-icon-wrap > div {
+  width: 3.15rem !important;
+  height: 3.15rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 1rem !important;
+  background: linear-gradient(135deg, #2563eb, #22d3ee) !important;
+  box-shadow: 0 12px 26px rgb(37 99 235 / .20) !important;
+}
+
+.dark #about .education-v10-icon-wrap > div {
+  background: linear-gradient(135deg, #67e8f9, #3b82f6) !important;
+}
+
+#about .education-v10-icon-wrap > div > div {
+  inset: 5px !important;
+  border-width: 1px !important;
+  border-color: rgb(255 255 255 / .34) !important;
+  border-style: solid !important;
+  animation-duration: 18s !important;
+}
+
+#about .education-v10-icon-wrap svg {
+  width: 1.6rem !important;
+  height: 1.6rem !important;
+  color: white !important;
+}
+
+.dark #about .education-v10-icon-wrap svg {
+  color: rgb(7 24 39) !important;
+}
+
+#about .education-v10-seal {
+  position: absolute;
+  z-index: 4;
+  top: .72rem;
+  right: .72rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  color: rgb(37 99 235);
+  font: 900 .58rem/1 Inter, sans-serif;
+  letter-spacing: -.02em;
+  background: rgb(255 255 255 / .68);
+  border: 1px solid rgb(147 197 253 / .62);
+  box-shadow: inset 0 0 0 3px rgb(219 234 254 / .42);
+  backdrop-filter: blur(8px);
+  animation: education-v10-seal-float 5.5s ease-in-out infinite;
+}
+
+html[dir="rtl"] #about .education-v10-seal {
+  right: auto;
+  left: .72rem;
+}
+
+.dark #about .education-v10-seal {
+  color: rgb(103 232 249);
+  background: rgb(15 23 42 / .66);
+  border-color: rgb(14 116 144 / .62);
+  box-shadow: inset 0 0 0 3px rgb(8 47 73 / .38);
+}
+
+@keyframes education-v10-seal-float {
+  0%,100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-2px) rotate(5deg); }
+}
+
+#about .education-v10-card::after {
+  content: "" !important;
+  position: absolute !important;
+  inset-inline-start: 0 !important;
+  top: 18% !important;
+  bottom: 18% !important;
+  width: 3px !important;
+  border-radius: 999px !important;
+  opacity: 1 !important;
+  z-index: 3 !important;
+  pointer-events: none !important;
+  background: linear-gradient(to bottom, transparent, #2563eb, #67e8f9, transparent) !important;
+  box-shadow: 0 0 16px rgb(103 232 249 / .28) !important;
+}
+
+@media (min-width: 768px) {
+  .hozai-safe .hozai-v10-quick-card {
+    padding: .68rem .74rem !important;
+    font-size: .76rem !important;
+    gap: .55rem !important;
+  }
+  .hozai-safe .hozai-v10-job-card {
+    padding: .72rem .88rem !important;
+    font-size: .78rem !important;
+  }
+
+  #about .education-v10-layout {
+    padding: 1.15rem 1.2rem !important;
+    gap: 1rem !important;
+  }
+  #about .education-v10-copy h3 {
+    font-size: 1.05rem !important;
+  }
+  #about .education-v10-copy > div:first-child {
+    font-size: .68rem !important;
+  }
+  #about .education-v10-meta > span {
+    font-size: .68rem !important;
+    padding: .5rem .7rem !important;
+  }
+  #about .education-v10-icon-wrap > div {
+    width: 3.6rem !important;
+    height: 3.6rem !important;
+  }
+  #about .education-v10-icon-wrap svg {
+    width: 1.85rem !important;
+    height: 1.85rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .hozai-safe .hozai-v10-quick-card {
+    font-size: .60rem !important;
+    padding-inline: .4rem !important;
+    gap: .3rem !important;
+  }
+  .hozai-safe .hozai-v10-quick-card > span:first-child {
+    padding: .32rem !important;
+  }
+
+  #about .education-v10-layout {
+    grid-template-columns: 2.85rem minmax(0, 1fr) !important;
+    gap: .72rem !important;
+    padding: .88rem !important;
+  }
+  #about .education-v10-icon-wrap > div {
+    width: 2.85rem !important;
+    height: 2.85rem !important;
+  }
+  #about .education-v10-copy h3 {
+    font-size: .88rem !important;
+  }
+  #about .education-v10-meta {
+    grid-template-columns: 1fr !important;
+  }
+  #about .education-v10-meta > span {
+    width: fit-content !important;
+    max-width: 100% !important;
+  }
+  #about .education-v10-seal { display: none; }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #about .education-v10-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgb(37 99 235 / .24) !important;
+    box-shadow:
+      0 24px 60px rgb(37 99 235 / .11),
+      inset 0 1px 0 rgb(255 255 255 / .84) !important;
+  }
+  .dark #about .education-v10-card:hover {
+    border-color: rgb(103 232 249 / .22) !important;
+    box-shadow:
+      0 28px 64px rgb(0 0 0 / .31),
+      0 0 28px rgb(103 232 249 / .05),
+      inset 0 1px 0 rgb(255 255 255 / .05) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #about .education-v10-beam,
+  #about .education-v10-seal {
+    animation: none !important;
+  }
+}
+
+#about .education-v10-column {
+  gap: 1.05rem !important;
+}
+
+#about .education-v10-wrap + h3 {
+  display: flex !important;
+  align-items: center !important;
+  gap: .7rem !important;
+  margin-top: .15rem !important;
+  margin-bottom: .15rem !important;
+  font-size: 1.1rem !important;
+}
+
+#about .education-v10-wrap + h3::after {
+  content: "";
+  height: 1px;
+  flex: 1 1 auto;
+  background: linear-gradient(90deg, rgb(147 197 253 / .65), transparent);
+}
+
+html[dir="rtl"] #about .education-v10-wrap + h3::after {
+  background: linear-gradient(270deg, rgb(147 197 253 / .65), transparent);
+}
+
+.dark #about .education-v10-wrap + h3::after {
+  background: linear-gradient(90deg, rgb(14 116 144 / .50), transparent);
+}
+
+html[dir="rtl"].dark #about .education-v10-wrap + h3::after {
+  background: linear-gradient(270deg, rgb(14 116 144 / .50), transparent);
+}
+
+@media (min-width: 768px) {
+  #about .education-v10-column { gap: 1.4rem !important; }
+  #about .education-v10-wrap + h3 { font-size: 1.3rem !important; }
+}
+
+/* ================================================================
+   v11 — HozAI brand, physical RTL anchoring, answer readability & UX
+   ================================================================ */
+
+.hozai-safe {
+  align-items: flex-end !important;
+}
+
+/* Pin the launcher to the physical edge even while the open panel makes the
+   flex container hundreds of pixels wide. Logical flex alignment alone can
+   flip in RTL, so physical auto-margins are used as a second guarantee. */
+html[dir="rtl"] .hozai-safe .hozai-v11-launcher {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+html:not([dir="rtl"]) .hozai-safe .hozai-v11-launcher {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+
+.hozai-v11-panel {
+  overscroll-behavior: contain !important;
+  scrollbar-gutter: stable;
+}
+
+.hozai-safe [aria-live="polite"] {
+  overscroll-behavior-y: contain !important;
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+}
+
+/* Preserve Gemini's intentional single-line breaks. ReactMarkdown otherwise
+   follows HTML whitespace collapsing and visually turns multi-line replies
+   into a continuous paragraph. */
+.hozai-safe .hozai-v11-answer,
+.hozai-safe .hozai-v11-answer p,
+.hozai-safe .hozai-v11-answer li,
+.hozai-safe .hozai-v11-answer blockquote {
+  white-space: pre-wrap !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+.hozai-safe .hozai-v11-answer p { margin-block: .42rem !important; }
+.hozai-safe .hozai-v11-answer p:first-child { margin-top: 0 !important; }
+.hozai-safe .hozai-v11-answer p:last-child { margin-bottom: 0 !important; }
+.hozai-safe .hozai-v11-answer ul,
+.hozai-safe .hozai-v11-answer ol {
+  margin-block: .58rem !important;
+  padding-inline-start: 1.25rem !important;
+}
+.hozai-safe .hozai-v11-answer li + li { margin-top: .3rem !important; }
+.hozai-safe .hozai-v11-answer h1,
+.hozai-safe .hozai-v11-answer h2,
+.hozai-safe .hozai-v11-answer h3 {
+  margin-block: .75rem .34rem !important;
+  line-height: 1.32 !important;
+  text-wrap: balance;
+}
+
+.hozai-safe svg[data-hozai-brand-icon] {
+  color: inherit;
+  fill: currentColor;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / .11));
+}
+
+/* Make the brand mark feel intentional instead of looking like a generic bot. */
+.hozai-safe .hozai-v11-launcher svg[data-hozai-brand-icon] {
+  width: 1.28rem !important;
+  height: 1.28rem !important;
+  position: relative;
+  z-index: 2;
+}
+
+.hozai-safe .hozai-v11-panel textarea {
+  caret-color: #25658e;
+}
+.dark .hozai-safe .hozai-v11-panel textarea {
+  caret-color: #78b8cd;
+}
+
+.hozai-v11-whatsapp-card {
+  cursor: pointer !important;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.hozai-v11-whatsapp-card:focus-visible {
+  outline: 2px solid rgb(34 197 94 / .86) !important;
+  outline-offset: 3px !important;
+}
+
+/* Cross-site micro UX polish: make interactive intent immediate and keyboard
+   navigation visible without changing the established desktop composition. */
+:where(a, button, [role="button"], [role="link"]) {
+  touch-action: manipulation;
+}
+:where(a, button, input, textarea, select):focus-visible {
+  outline-offset: 3px;
+}
+:is(#home, #about, #experience, #skills, #contact) h1,
+:is(#home, #about, #experience, #skills, #contact) h2,
+:is(#home, #about, #experience, #skills, #contact) h3 {
+  text-wrap: balance;
+}
+:is(#home, #about, #experience, #skills, #contact) p {
+  text-wrap: pretty;
+}
+
+@media (max-width: 767px) {
+  html[dir="rtl"] .hozai-safe {
+    left: 1rem !important;
+    right: auto !important;
+  }
+  html:not([dir="rtl"]) .hozai-safe {
+    right: 1rem !important;
+    left: auto !important;
+  }
+
+  html[dir="rtl"] .hozai-safe .hozai-v11-launcher {
+    margin-right: auto !important;
+    margin-left: 0 !important;
+  }
+
+  .hozai-safe .hozai-v11-panel {
+    max-width: calc(100vw - 1.5rem) !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hozai-safe [aria-live="polite"] { scroll-behavior: auto !important; }
+}
+/* Physical fallback independent of runtime-added classes. */
+html[dir="rtl"] .hozai-safe > button:last-of-type {
+  margin-right: auto !important;
+  margin-left: 0 !important;
+}
+html:not([dir="rtl"]) .hozai-safe > button:last-of-type {
+  margin-left: auto !important;
+  margin-right: 0 !important;
+}
+/* ========================================================================== 
+   v13 — Bidirectional Layout & UX Hardening
+   Audited for Arabic RTL, English/Spanish LTR, mixed-script content, HozAI,
+   contact cards, desktop/mobile navigation, and responsive decorative layers.
+   ========================================================================== */
+
+/* Mixed-script text must remain readable without leaking direction into its parent. */
+[dir="ltr"],
+.contact-ltr-value,
+.unicode-bidi-isolate {
+  unicode-bidi: isolate;
+}
+
+html[dir="rtl"] body {
+  text-rendering: optimizeLegibility;
+}
+
+
+/* --------------------------------------------------------------------------
+   Global shell, anchor navigation, and mixed-direction control stability.
+   -------------------------------------------------------------------------- */
+.site-shell-v13,
+#root > .min-h-screen {
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+/* Language code, theme icons, handles, and other brand-like controls should
+   not visually swap internals simply because the page language is Arabic. */
+header .navbar-control[aria-label*="language" i],
+header .theme-control {
+  direction: ltr !important;
+}
+header .theme-control > div.absolute {
+  left: .25rem !important;
+  right: auto !important;
+}
+html:not(.dark) header .theme-control > div.absolute {
+  transform: translateX(0) !important;
+}
+html.dark header .theme-control > div.absolute {
+  transform: translateX(28px) !important;
+}
+
+/* Keep the mobile navigation order logical: Home starts at the inline start,
+   which is the right side in Arabic and the left side in LTR languages. */
+.mobile-nav-safe nav {
+  direction: inherit;
+}
+
+@media (max-width: 767px) {
+  html.hozai-open-v13 body {
+    overflow: hidden !important;
+    overscroll-behavior: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   HozAI: physical shell placement is independent of document direction.
+   The panel itself keeps its own dir="rtl"/"ltr" for text and controls.
+   -------------------------------------------------------------------------- */
+.hozai-safe {
+  direction: ltr !important;
+  max-width: calc(100vw - 1rem);
+}
+
+html[dir="rtl"] .hozai-safe {
+  left: 1rem !important;
+  right: auto !important;
+  align-items: flex-start !important;
+}
+
+html:not([dir="rtl"]) .hozai-safe {
+  right: 1rem !important;
+  left: auto !important;
+  align-items: flex-end !important;
+}
+
+@media (min-width: 768px) {
+  html[dir="rtl"] .hozai-safe {
+    left: 2.5rem !important;
+    right: auto !important;
+  }
+  html:not([dir="rtl"]) .hozai-safe {
+    right: 2.5rem !important;
+    left: auto !important;
+  }
+}
+
+.hozai-panel {
+  width: min(450px, calc(100vw - 1.5rem)) !important;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+}
+
+/* The launcher stays on the same physical edge while the panel opens/closes. */
+html[dir="rtl"] .hozai-safe > .hozai-launcher,
+html[dir="rtl"] .hozai-safe > button:last-of-type {
+  align-self: flex-start !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+html:not([dir="rtl"]) .hozai-safe > .hozai-launcher,
+html:not([dir="rtl"]) .hozai-safe > button:last-of-type {
+  align-self: flex-end !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Logical text alignment for all empty-state actions. */
+.hozai-panel .hozai-job-card,
+.hozai-panel .hozai-quick-card,
+.hozai-panel .hozai-v10-job-card,
+.hozai-panel .hozai-v10-quick-card {
+  text-align: start !important;
+}
+
+html[dir="rtl"] .hozai-panel .hozai-job-card,
+html[dir="rtl"] .hozai-panel .hozai-quick-card,
+html[dir="rtl"] .hozai-panel .hozai-v10-job-card,
+html[dir="rtl"] .hozai-panel .hozai-v10-quick-card {
+  direction: rtl;
+}
+
+/* Job-fit arrow points toward the logical continuation edge. */
+html[dir="rtl"] .hozai-panel .hozai-job-card > svg:last-child,
+html[dir="rtl"] .hozai-panel .hozai-v10-job-card > svg:last-child {
+  transform: rotate(180deg) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  html[dir="rtl"] .hozai-panel .hozai-job-card:hover > svg:last-child,
+  html[dir="rtl"] .hozai-panel .hozai-v10-job-card:hover > svg:last-child {
+    transform: translateX(-4px) rotate(180deg) !important;
+  }
+  html:not([dir="rtl"]) .hozai-panel .hozai-job-card:hover > svg:last-child,
+  html:not([dir="rtl"]) .hozai-panel .hozai-v10-job-card:hover > svg:last-child {
+    transform: translateX(4px) !important;
+  }
+}
+
+/* Conversation semantics are physical, like modern messaging apps:
+   visitor = right, assistant = left, regardless of the language of the text. */
+.hozai-chat-area [data-hozai-message] {
+  direction: ltr !important;
+  width: 100%;
+}
+.hozai-chat-area [data-hozai-message].items-end,
+.hozai-chat-area .hozai-message-user {
+  align-items: flex-end !important;
+}
+.hozai-chat-area [data-hozai-message].items-start,
+.hozai-chat-area .hozai-message-assistant {
+  align-items: flex-start !important;
+}
+.hozai-chat-area [data-hozai-message] > div:first-child,
+.hozai-message-bubble {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.hozai-chat-area [data-hozai-message] [dir="auto"] {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+/* Assistant action strip always belongs under the assistant bubble on the left. */
+.hozai-chat-area [data-hozai-message].items-start > div + div,
+.hozai-message-actions {
+  direction: ltr !important;
+  align-self: flex-start !important;
+  padding-left: .5rem !important;
+  padding-right: 0 !important;
+}
+
+/* Thinking row follows the assistant side even when the UI is Arabic. */
+.hozai-chat-area > .flex.items-start.gap-3.opacity-80,
+.hozai-thinking-row {
+  direction: ltr !important;
+  align-self: flex-start;
+}
+html[dir="rtl"] .hozai-chat-area > .flex.items-start.gap-3.opacity-80 > div:last-child,
+html[dir="rtl"] .hozai-thinking-bubble {
+  direction: rtl !important;
+  text-align: right !important;
+}
+
+/* Connection indicator mirrors inside the brand badge in Arabic. */
+html[dir="rtl"] .hozai-panel [role="status"] {
+  right: auto !important;
+  left: 0 !important;
+}
+
+/* Input is bidi-safe; only the text decides its writing direction. */
+.hozai-panel textarea[dir="auto"] {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+.hozai-panel button[aria-label="Send message"] {
+  flex: 0 0 auto;
+  margin: .125rem !important;
+}
+
+/* Footer: utility text stays left, New Conversation stays right in Arabic. */
+.hozai-footer-meta,
+.hozai-panel > div:last-child > div:last-child {
+  direction: ltr !important;
+}
+html[dir="rtl"] .hozai-footer-meta button,
+html[dir="rtl"] .hozai-panel > div:last-child > div:last-child button {
+  direction: rtl !important;
+}
+
+/* Rich Gemini answers: preserve intended line breaks and fully style Markdown.
+   This does not depend on Tailwind Typography being installed. */
+.hozai-answer-markdown,
+.hozai-v11-answer {
+  line-height: 1.72;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+.hozai-answer-markdown p,
+.hozai-answer-markdown li,
+.hozai-answer-markdown blockquote,
+.hozai-v11-answer p,
+.hozai-v11-answer li,
+.hozai-v11-answer blockquote {
+  white-space: pre-wrap;
+}
+.hozai-answer-markdown p,
+.hozai-v11-answer p {
+  margin: .42rem 0;
+}
+.hozai-answer-markdown p:first-child,
+.hozai-v11-answer p:first-child { margin-top: 0; }
+.hozai-answer-markdown p:last-child,
+.hozai-v11-answer p:last-child { margin-bottom: 0; }
+.hozai-answer-markdown h1,
+.hozai-answer-markdown h2,
+.hozai-answer-markdown h3,
+.hozai-v11-answer h1,
+.hozai-v11-answer h2,
+.hozai-v11-answer h3 {
+  margin: .8rem 0 .32rem;
+  font-weight: 800;
+  line-height: 1.35;
+  color: inherit;
+  text-wrap: balance;
+}
+.hozai-answer-markdown h1,
+.hozai-v11-answer h1 { font-size: 1.12em; }
+.hozai-answer-markdown h2,
+.hozai-v11-answer h2 { font-size: 1.07em; }
+.hozai-answer-markdown h3,
+.hozai-v11-answer h3 { font-size: 1.03em; }
+.hozai-answer-markdown ul,
+.hozai-answer-markdown ol,
+.hozai-v11-answer ul,
+.hozai-v11-answer ol {
+  margin: .55rem 0;
+  padding-inline-start: 1.35rem;
+}
+.hozai-answer-markdown li,
+.hozai-v11-answer li {
+  display: list-item;
+  margin: .22rem 0;
+  padding-inline-start: .08rem;
+}
+.hozai-answer-markdown strong,
+.hozai-v11-answer strong { font-weight: 800; }
+.hozai-answer-markdown blockquote,
+.hozai-v11-answer blockquote {
+  margin: .65rem 0;
+  padding: .15rem .85rem;
+  border-inline-start: 3px solid rgb(var(--interaction-cyan) / .65);
+  opacity: .92;
+}
+.hozai-answer-markdown code,
+.hozai-v11-answer code {
+  direction: ltr;
+  unicode-bidi: isolate;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: .88em;
+  padding: .08rem .3rem;
+  border-radius: .35rem;
+  background: rgb(15 23 42 / .08);
+}
+.dark .hozai-answer-markdown code,
+.dark .hozai-v11-answer code { background: rgb(255 255 255 / .08); }
+.hozai-answer-markdown pre,
+.hozai-v11-answer pre {
+  direction: ltr;
+  text-align: left;
+  white-space: pre-wrap;
+  overflow-x: auto;
+  margin: .6rem 0;
+  padding: .75rem;
+  border-radius: .8rem;
+  background: #0f172a;
+  color: #e2e8f0;
+}
+.hozai-answer-markdown pre code,
+.hozai-v11-answer pre code { background: transparent; padding: 0; }
+.hozai-answer-markdown a,
+.hozai-v11-answer a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dark .hozai-answer-markdown a,
+.dark .hozai-v11-answer a { color: #67e8f9; }
+.hozai-answer-markdown hr,
+.hozai-v11-answer hr {
+  margin: .75rem 0;
+  border: 0;
+  border-top: 1px solid rgb(148 163 184 / .25);
+}
+
+/* --------------------------------------------------------------------------
+   Contact: use logical alignment and isolate Latin contact values.
+   -------------------------------------------------------------------------- */
+#contact .contact-grid,
+#contact > .container > .grid {
+  text-align: start !important;
+}
+#contact .contact-card,
+#contact .contact-social-card {
+  min-width: 0;
+}
+#contact .contact-card > div:first-child,
+#contact .contact-card-main {
+  min-width: 0;
+}
+#contact a[href^="mailto:"],
+#contact .contact-ltr-value,
+#contact .whatsapp-contact-card div.font-bold {
+  direction: ltr !important;
+  unicode-bidi: isolate;
+}
+html[dir="rtl"] #contact a[href^="mailto:"],
+html[dir="rtl"] #contact .contact-ltr-value,
+html[dir="rtl"] #contact .whatsapp-contact-card div.font-bold {
+  text-align: right;
+}
+#contact .whatsapp-contact-card {
+  width: 100%;
+  text-align: start !important;
+  text-decoration: none;
+}
+#contact .whatsapp-contact-arrow {
+  flex: 0 0 auto;
+  transform-origin: center;
+}
+html[dir="rtl"] #contact .whatsapp-contact-arrow {
+  transform: scaleX(-1) !important;
+}
+@media (hover: hover) and (pointer: fine) {
+  html:not([dir="rtl"]) #contact .whatsapp-contact-card:hover .whatsapp-contact-arrow {
+    transform: translateX(4px) !important;
+  }
+  html[dir="rtl"] #contact .whatsapp-contact-card:hover .whatsapp-contact-arrow {
+    transform: translateX(-4px) scaleX(-1) !important;
+  }
+}
+#contact .contact-social-card a span {
+  unicode-bidi: isolate;
+}
+
+/* --------------------------------------------------------------------------
+   Navbar / navigation.
+   -------------------------------------------------------------------------- */
+header [role="menu"],
+header .text-left {
+  text-align: start;
+}
+html[dir="rtl"] header .text-left { text-align: right !important; }
+
+/* --------------------------------------------------------------------------
+   Hero: mirror composition details without disturbing centered phone layout.
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  html[dir="rtl"] #home .hero-portrait-backdrop,
+  html[dir="rtl"] #home .hero-portrait-frame.absolute {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+  }
+  html[dir="rtl"] #home .hero-coffee-decor {
+    left: auto !important;
+    right: -3rem !important;
+  }
+}
+@media (max-width: 767px) {
+  html[dir="rtl"] #home .hero-coffee-decor {
+    left: auto !important;
+    right: calc(50% - 6.7rem) !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   About / Education / Languages.
+   -------------------------------------------------------------------------- */
+html[dir="rtl"] #about .metric-card > div:first-of-type {
+  transform-origin: right center;
+}
+html:not([dir="rtl"]) #about .metric-card > div:first-of-type {
+  transform-origin: left center;
+}
+html[dir="rtl"] #about .language-heading-rule,
+html[dir="rtl"] #about .education-signature + .flex > div:last-child {
+  background-image: linear-gradient(to left, rgb(191 219 254 / .8), transparent) !important;
+}
+html[dir="rtl"].dark #about .language-heading-rule,
+html[dir="rtl"].dark #about .education-signature + .flex > div:last-child {
+  background-image: linear-gradient(to left, rgb(21 94 117 / .5), transparent) !important;
+}
+#about .language-progress {
+  margin-left: 0;
+  margin-right: auto;
+}
+html[dir="rtl"] #about .language-progress {
+  margin-left: auto;
+  margin-right: 0;
+}
+#about .language-meter span[dir="ltr"] {
+  unicode-bidi: isolate;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   Skills: decorative watermarks move to the logical end on every breakpoint.
+   -------------------------------------------------------------------------- */
+html[dir="rtl"] #skills .skill-watermark,
+html[dir="rtl"] #skills .skill-card > div:nth-child(2) {
+  right: auto !important;
+  left: 0 !important;
+}
+@media (max-width: 767px) {
+  html[dir="rtl"] #skills .skill-watermark,
+  html[dir="rtl"] #skills .skill-card > div:nth-child(2) {
+    right: auto !important;
+    left: -.35rem !important;
+  }
+}
+
+/* English project names keep their native order inside Arabic cards. */
+#experience .experience-project-link,
+#experience a[target="_blank"] {
+  unicode-bidi: isolate;
+}
+html[dir="rtl"] #experience a[target="_blank"] {
+  direction: ltr;
+}
+
+/* --------------------------------------------------------------------------
+   Small-screen resilience: class-based selectors replace brittle nth-child
+   patches from the earlier migration layers.
+   -------------------------------------------------------------------------- */
+@media (max-width: 767px) {
+  header { padding-block: .75rem !important; }
+  header > .container { padding-inline: 1rem !important; }
+
+  #home .hero-inner,
+  #about > .container,
+  #experience > .container,
+  #skills > .container,
+  #contact > .container {
+    padding-inline: 1rem !important;
+  }
+
+  #about,
+  #experience,
+  #skills { padding-block: 3.5rem !important; }
+  #contact { padding-top: 3.5rem !important; padding-bottom: 7rem !important; }
+
+  #experience .experience-card { padding: 1rem !important; border-radius: 1.375rem !important; }
+  #skills .skill-card { padding: 1.25rem !important; border-radius: 1.375rem !important; }
+  #contact .contact-card { padding: 1rem !important; border-radius: 1.125rem !important; }
+  #contact .contact-social-card { padding: 1.25rem !important; border-radius: 1.375rem !important; }
+
+  #contact .contact-card > div:first-child > div:first-child,
+  #contact .contact-card-main > div:first-child {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    flex: 0 0 auto;
+  }
+  #contact .contact-card a,
+  #contact .contact-ltr-value { overflow-wrap: anywhere; }
+
+  .hozai-safe {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.15rem) !important;
+  }
+  .hozai-launcher {
+    width: 2.75rem !important;
+    height: 2.75rem !important;
+  }
+  .hozai-panel {
+    height: min(68dvh, 540px) !important;
+    max-height: calc(100dvh - 10rem) !important;
+    border-radius: 1.375rem !important;
+  }
+  .hozai-chat-area {
+    padding: .875rem !important;
+    gap: .875rem !important;
+  }
+  .hozai-chat-area [data-hozai-message] > div:first-child {
+    max-width: 88% !important;
+    padding: .875rem !important;
+    font-size: .8125rem !important;
+  }
+  .hozai-quick-card {
+    min-height: 2.55rem;
+  }
+}
+
+
+
+/* Runtime hooks used by the deploy build (the compiled bundle predates the
+   source-level class names). These make the same RTL rules deterministic. */
+.hozai-chat-area .hozai-message-row,
+.hozai-v13-message-row {
+  direction: ltr !important;
+  width: 100%;
+}
+.hozai-v13-message-user { align-items: flex-end !important; }
+.hozai-v13-message-assistant { align-items: flex-start !important; }
+.hozai-v13-message-bubble { min-width: 0; overflow-wrap: anywhere; }
+.hozai-v13-message-bubble [dir="auto"] {
+  unicode-bidi: plaintext;
+  text-align: start !important;
+}
+.hozai-v13-message-actions {
+  direction: ltr !important;
+  align-self: flex-start !important;
+  padding-left: .5rem !important;
+  padding-right: 0 !important;
+}
+.hozai-v13-thinking-row {
+  direction: ltr !important;
+  align-self: flex-start !important;
+}
+html[dir="rtl"] .hozai-v13-thinking-bubble {
+  direction: rtl !important;
+  text-align: right !important;
+}
+html:not([dir="rtl"]) .hozai-v13-thinking-bubble {
+  direction: ltr !important;
+  text-align: left !important;
+}
+.hozai-v13-status-dot {
+  right: 0 !important;
+  left: auto !important;
+}
+html[dir="rtl"] .hozai-v13-status-dot {
+  left: 0 !important;
+  right: auto !important;
+}
+.hozai-v13-footer {
+  direction: ltr !important;
+}
+html[dir="rtl"] .hozai-v13-footer button {
+  direction: rtl !important;
+}
+
+/* Contact fallbacks for the current production bundle. */
+#contact a[href*="wa.me/"] {
+  direction: ltr !important;
+  unicode-bidi: isolate;
+}
+#contact .contact-social-card a,
+#contact .contact-social-card a > span,
+#contact .contact-social-card .font-semibold {
+  unicode-bidi: isolate;
+}
+
+/* Mixed Arabic + Latin experience content stays in the correct local order
+   without changing the card's Arabic flex layout. */
+#experience .experience-card h3,
+#experience .experience-card li,
+#experience .experience-card [data-bidi="auto"] {
+  unicode-bidi: plaintext;
+}
+
+/* Full-card click affordance for WhatsApp, including keyboard users. */
+#contact .whatsapp-contact-card {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+#contact .whatsapp-contact-card:focus-visible {
+  outline: 2px solid rgb(34 197 94 / .86) !important;
+  outline-offset: 3px !important;
+}
+
+/* Stable focus rings in both layout directions. */
+:where(a, button, input, textarea, select):focus-visible {
+  outline: 2px solid rgb(var(--interaction-cyan) / .9);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hozai-chat-area,
+  .hozai-panel { scroll-behavior: auto !important; }
+  .whatsapp-contact-arrow { transform: none !important; }
+  html[dir="rtl"] .whatsapp-contact-arrow { transform: scaleX(-1) !important; }
+}
+
+/* ==========================================================================\n   Floating transparent header · deploy patch v14\n   ========================================================================== */
+header.navbar-floating-v14,
+header.navbar-floating-v14.glass,
+header.navbar-floating-v14.navbar-scrolled-v14 {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+header.navbar-floating-v14::before,
+header.navbar-floating-v14::after {
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  pointer-events: none;
+}
+
+header.navbar-floating-v14 .brand-logo-shell-v14 {
+  width: 2rem !important;
+  height: 2rem !important;
+  transform: translateZ(0) scale(1);
+  transform-origin: center;
+  transition:
+    width .48s cubic-bezier(.22,1,.36,1),
+    height .48s cubic-bezier(.22,1,.36,1),
+    transform .48s cubic-bezier(.22,1,.36,1),
+    filter .35s ease !important;
+  will-change: width, height, transform, filter;
+  filter: drop-shadow(0 7px 16px rgb(15 23 42 / .10));
+}
+
+html.dark header.navbar-floating-v14 .brand-logo-shell-v14 {
+  filter: drop-shadow(0 8px 18px rgb(0 0 0 / .24));
+}
+
+header.navbar-floating-v14.navbar-scrolled-v14 .brand-logo-shell-v14 {
+  width: 1.7rem !important;
+  height: 1.7rem !important;
+  transform: translateZ(0) scale(.98);
+  filter: drop-shadow(0 6px 13px rgb(15 23 42 / .12));
+}
+
+html.dark header.navbar-floating-v14.navbar-scrolled-v14 .brand-logo-shell-v14 {
+  filter: drop-shadow(0 7px 15px rgb(0 0 0 / .28));
+}
+
+@media (min-width: 768px) {
+  header.navbar-floating-v14 .brand-logo-shell-v14 {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+  header.navbar-floating-v14.navbar-scrolled-v14 .brand-logo-shell-v14 {
+    width: 2rem !important;
+    height: 2rem !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header.navbar-floating-v14 .brand-logo-shell-v14 {
+    transition-duration: .01ms !important;
+  }
+}
