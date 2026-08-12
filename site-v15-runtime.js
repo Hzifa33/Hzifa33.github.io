@@ -686,18 +686,25 @@
     const next = document.querySelector('header');
     if (!(next instanceof HTMLElement)) return false;
     header = next;
-    header.classList.add('navbar-floating-v14');
+    header.classList.add('navbar-floating-v15');
+    header.classList.remove('glass', 'shadow-sm');
+    header.style.background = 'transparent';
+    header.style.boxShadow = 'none';
+    header.style.border = '0';
+    header.style.backdropFilter = 'none';
+    header.style.webkitBackdropFilter = 'none';
 
     const brandButton = header.querySelector('.brand-button') || header.querySelector('button');
     const logoShell = brandButton?.querySelector(':scope > div');
-    if (logoShell instanceof HTMLElement) logoShell.classList.add('brand-logo-shell-v14');
+    if (logoShell instanceof HTMLElement) logoShell.classList.add('brand-logo-shell-v15');
     return true;
   };
 
   const sync = () => {
     raf = 0;
     if (!header?.isConnected && !bindHeader()) return;
-    header.classList.toggle('navbar-scrolled-v14', window.scrollY > 20);
+    header.classList.remove('glass', 'shadow-sm');
+    header.classList.toggle('navbar-scrolled-v15', window.scrollY > 20);
   };
 
   const requestSync = () => {

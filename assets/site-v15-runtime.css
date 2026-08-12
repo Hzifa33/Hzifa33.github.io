@@ -2686,3 +2686,35 @@ html.dark header.navbar-floating-v14.navbar-scrolled-v14 .brand-logo-shell-v14 {
     transition-duration: .01ms !important;
   }
 }
+
+
+/* FINAL HEADER OVERRIDE v15 — loaded last on GitHub Pages */
+header.navbar-floating-v15,
+header.navbar-floating-v15.glass,
+header.navbar-floating-v15[class*="glass"],
+header.navbar-floating-v15[class*="shadow"] {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  border: 0 !important;
+  border-bottom: 0 !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+header.navbar-floating-v15::before, header.navbar-floating-v15::after { display:none !important; content:none !important; }
+header.navbar-floating-v15 > .navbar-floating-inner,
+header.navbar-floating-v15 > .container {
+  background: transparent !important; background-image:none !important; border:0 !important; box-shadow:none !important; backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
+}
+header.navbar-floating-v15 .brand-logo-shell-v15 {
+  width: 2.25rem !important; height: 2.25rem !important;
+  transform: translateZ(0) scale(1); transform-origin:center;
+  transition: width .48s cubic-bezier(.22,1,.36,1), height .48s cubic-bezier(.22,1,.36,1), transform .48s cubic-bezier(.22,1,.36,1), filter .32s ease !important;
+}
+header.navbar-floating-v15.navbar-scrolled-v15 .brand-logo-shell-v15 { width:1.75rem !important; height:1.75rem !important; transform:translateZ(0) scale(.98); }
+@media (min-width:768px){
+ header.navbar-floating-v15 .brand-logo-shell-v15 { width:2.5rem !important; height:2.5rem !important; }
+ header.navbar-floating-v15.navbar-scrolled-v15 .brand-logo-shell-v15 { width:2rem !important; height:2rem !important; }
+}
