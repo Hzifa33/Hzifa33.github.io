@@ -1855,6 +1855,21 @@ html[dir="rtl"] .neo-hozai-modal {
     padding: 8px 10px;
     border-radius: 10px;
     line-height: 1.45;
+    max-width: 95%;
+  }
+  .neo-msg-content {
+    font-size: 0.82rem;
+    line-height: 1.48;
+  }
+  .neo-ai-h3-badge {
+    font-size: 0.82rem;
+    padding: 3px 10px;
+  }
+  .neo-ai-h2 {
+    font-size: 0.92rem;
+  }
+  .neo-ai-h1 {
+    font-size: 0.98rem;
   }
   .neo-hozai-footer {
     padding: 7px 10px;
@@ -1968,9 +1983,7 @@ html[dir="rtl"] .neo-hozai-modal {
   border-radius: 14px 14px 2px 14px;
   padding: 10px 14px;
   max-width: 85%;
-  font-weight: 600;
-  font-size: 0.92rem;
-  box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
+  box-shadow: calc(3px * var(--shadow-dir)) 3px 0px var(--shadow-color);
   word-break: break-word;
 }
 
@@ -1985,9 +1998,8 @@ html[dir="rtl"] .neo-msg-user {
   border: 2px solid var(--border-main);
   border-radius: 14px 14px 14px 2px;
   padding: 12px 14px;
-  max-width: 90%;
-  font-size: 0.92rem;
-  box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
+  max-width: 92%;
+  box-shadow: calc(3px * var(--shadow-dir)) 3px 0px var(--shadow-color);
   word-break: break-word;
 }
 
@@ -1995,31 +2007,202 @@ html[dir="rtl"] .neo-msg-bot {
   border-radius: 14px 14px 2px 14px;
 }
 
+.neo-msg-hdr {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed var(--border-subtle);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
+.neo-msg-user .neo-msg-hdr {
+  border-bottom-color: rgba(17, 24, 39, 0.2);
+}
+
+.neo-bot-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--neo-yellow);
+  color: #111827;
+  border: 1.5px solid var(--border-main);
+  padding: 1px 7px;
+  border-radius: 6px;
+}
+
+.neo-bot-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #10B981;
+  border: 1px solid #111827;
+  flex-shrink: 0;
+}
+
+.neo-msg-author {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+}
+
+.neo-msg-time {
+  font-size: 0.68rem;
+  opacity: 0.7;
+  font-weight: 700;
+}
+
+.neo-msg-content {
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: inherit;
+}
+
+/* AI Markdown Formatting Styles */
+.neo-ai-h3 {
+  text-align: center;
+  margin: 12px 0 8px 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.neo-ai-h3-badge {
+  display: inline-block;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 0.92rem;
+  padding: 4px 12px;
+  background-color: var(--bg-card-alt);
+  color: var(--text-main);
+  border: 2px solid var(--border-main);
+  border-radius: 8px;
+  box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
+  text-align: center;
+}
+
+.neo-ai-h2 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.02rem;
+  margin: 12px 0 6px 0;
+  color: var(--text-main);
+  border-bottom: 2px dashed var(--border-subtle);
+  padding-bottom: 3px;
+}
+
+.neo-ai-h1 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.12rem;
+  margin: 14px 0 6px 0;
+  color: var(--text-main);
+}
+
+.neo-ai-p {
+  margin: 0 0 7px 0;
+  line-height: 1.55;
+}
+
+.neo-ai-p:last-child {
+  margin-bottom: 0;
+}
+
+.neo-ai-ul, .neo-ai-ol {
+  margin: 6px 0 10px 0;
+  padding-inline-start: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.neo-ai-li {
+  line-height: 1.5;
+}
+
+.neo-ai-code {
+  background-color: var(--bg-card-alt);
+  border: 1.5px solid var(--border-main);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.84em;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.neo-ai-pre {
+  background-color: #111827;
+  color: #F3F4F6;
+  border: 2px solid var(--border-main);
+  border-radius: 8px;
+  padding: 8px 12px;
+  overflow-x: auto;
+  margin: 8px 0;
+  font-family: monospace;
+  font-size: 0.8rem;
+  box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
+  direction: ltr !important;
+  text-align: left !important;
+}
+
+.neo-ai-pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+
+.neo-ai-quote {
+  margin: 8px 0;
+  padding: 6px 12px;
+  border-inline-start: 4px solid var(--neo-yellow);
+  background-color: var(--bg-card-alt);
+  border-radius: 0 6px 6px 0;
+  font-style: italic;
+}
+
+html[dir="rtl"] .neo-ai-quote {
+  border-radius: 6px 0 0 6px;
+}
+
+.neo-ai-link {
+  color: var(--neo-iris);
+  text-decoration: underline;
+  font-weight: 700;
+}
+
 .neo-bot-actions {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
-  padding-top: 6px;
+  margin-top: 10px;
+  padding-top: 8px;
   border-top: 1px solid var(--border-subtle);
 }
 
 .neo-action-btn {
   font-size: 0.72rem;
   font-weight: 800;
-  padding: 3px 8px;
-  border: 1px solid var(--border-main);
+  padding: 4px 10px;
+  border: 1.5px solid var(--border-main);
   border-radius: 6px;
   background-color: var(--bg-card-alt);
   color: var(--text-main);
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  box-shadow: calc(1.5px * var(--shadow-dir)) 1.5px 0px var(--shadow-color);
+  transition: all 0.12s ease;
 }
 
 .neo-action-btn:hover {
   background-color: var(--neo-mint);
   color: #111827;
+  transform: translate(calc(-1px * var(--shadow-dir)), -1px);
 }
 
 /* HozAI Footer & Input */

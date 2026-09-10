@@ -849,6 +849,123 @@
     });
   }
 
+  function formatHozaiMarkdown(rawText) {
+    if (!rawText) return '';
+
+    // 1. Escape HTML
+    let safe = rawText
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // 2. Extract code blocks with tokens
+    const codeBlocks = [];
+    safe = safe.replace(/```([a-zA-Z0-9_-]*)\n?([\s\S]*?)```/g, (match, lang, code) => {
+      const idx = codeBlocks.length;
+      codeBlocks.push(`<pre class="neo-ai-pre"><code>${code.trim()}</code></pre>`);
+      return `\n__CODE_BLOCK_${idx}__\n`;
+    });
+
+    // 3. Process line by line for block elements
+    const lines = safe.split('\n');
+    const out = [];
+    let inUl = false;
+    let inOl = false;
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i].trim();
+
+      if (!line) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        continue;
+      }
+
+      // Check code block placeholder
+      const cbMatch = line.match(/^__CODE_BLOCK_(\d+)__$/);
+      if (cbMatch) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        out.push(codeBlocks[parseInt(cbMatch[1], 10)]);
+        continue;
+      }
+
+      // ### Centered Heading (Neobrutalism Badge Title)
+      if (line.startsWith('### ')) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        const title = line.substring(4).trim();
+        out.push(`<div class="neo-ai-h3"><span class="neo-ai-h3-badge">${title}</span></div>`);
+        continue;
+      }
+
+      // ## Section Heading
+      if (line.startsWith('## ')) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        const title = line.substring(3).trim();
+        out.push(`<h3 class="neo-ai-h2">${title}</h3>`);
+        continue;
+      }
+
+      // # Main Heading
+      if (line.startsWith('# ')) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        const title = line.substring(2).trim();
+        out.push(`<h2 class="neo-ai-h1">${title}</h2>`);
+        continue;
+      }
+
+      // Blockquote
+      if (line.startsWith('&gt; ') || line.startsWith('> ')) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        const quote = line.replace(/^(&gt;|>)\s*/, '').trim();
+        out.push(`<blockquote class="neo-ai-quote">${quote}</blockquote>`);
+        continue;
+      }
+
+      // Bullet lists (- or * or •)
+      const ulMatch = line.match(/^[*\-•]\s+(.*)/);
+      if (ulMatch) {
+        if (inOl) { out.push('</ol>'); inOl = false; }
+        if (!inUl) { out.push('<ul class="neo-ai-ul">'); inUl = true; }
+        out.push(`<li class="neo-ai-li">${ulMatch[1]}</li>`);
+        continue;
+      }
+
+      // Numbered lists (1. 2. etc)
+      const olMatch = line.match(/^(\d+)\.\s+(.*)/);
+      if (olMatch) {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (!inOl) { out.push('<ol class="neo-ai-ol">'); inOl = true; }
+        out.push(`<li class="neo-ai-li">${olMatch[2]}</li>`);
+        continue;
+      }
+
+      // Regular line: close any active lists
+      if (inUl) { out.push('</ul>'); inUl = false; }
+      if (inOl) { out.push('</ol>'); inOl = false; }
+
+      out.push(`<p class="neo-ai-p">${line}</p>`);
+    }
+
+    if (inUl) out.push('</ul>');
+    if (inOl) out.push('</ol>');
+
+    let htmlOutput = out.join('');
+
+    // 4. Inline parsing: bold, italic, inline code, links
+    htmlOutput = htmlOutput
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/(\*|_)(.+?)\1/g, '<em>$2</em>')
+      .replace(/`([^`]+)`/g, '<code class="neo-ai-code">$1</code>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="neo-ai-link">$1</a>');
+
+    return htmlOutput;
+  }
+
   function appendHozaiMessage(role, text) {
     const msgContainer = document.getElementById('hozai-messages');
     if (!msgContainer) return;
@@ -857,26 +974,39 @@
     const welcome = document.getElementById('hozai-welcome-box');
     if (welcome) welcome.style.display = 'none';
 
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
     const msgDiv = document.createElement('div');
     msgDiv.className = role === 'user' ? 'neo-msg-user' : 'neo-msg-bot';
 
     if (role === 'user') {
-      msgDiv.textContent = text;
-    } else {
-      // Basic safe markdown parser (bold, bullet lists, code)
-      let formatted = text
+      const escapedText = text
         .replace(/&/g, '&amp;')
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;')
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/`([^`]+)`/g, '<code style="background:var(--bg-card-alt); border:1px solid var(--border-main); padding:2px 6px; border-radius:4px; font-size:0.85em; font-family:monospace;">$1</code>')
-        .replace(/\n\n/g, '<br><br>')
         .replace(/\n/g, '<br>');
 
-      msgDiv.innerHTML = `<div>${formatted}</div>`;
+      msgDiv.innerHTML = `
+        <div class="neo-msg-hdr">
+          <span class="neo-msg-author">${currentLang === 'ar' ? 'أنت' : 'You'}</span>
+          <span class="neo-msg-time">${timeStr}</span>
+        </div>
+        <div class="neo-msg-content">${escapedText}</div>
+      `;
+    } else {
+      msgDiv.innerHTML = `
+        <div class="neo-msg-hdr">
+          <div class="neo-bot-badge">
+            <span class="neo-bot-dot"></span>
+            <span class="neo-msg-author">HozAI</span>
+          </div>
+          <span class="neo-msg-time">${timeStr}</span>
+        </div>
+        <div class="neo-msg-content">${formatHozaiMarkdown(text)}</div>
+      `;
 
-      // Action buttons: Copy, Share, Download
+      // Action buttons: Copy & Share ONLY (Download as TXT removed)
       const actionsDiv = document.createElement('div');
       actionsDiv.className = 'neo-bot-actions';
 
@@ -912,29 +1042,23 @@
       });
       actionsDiv.appendChild(shareBtn);
 
-      // Download
-      const dlBtn = document.createElement('button');
-      dlBtn.className = 'neo-action-btn';
-      dlBtn.type = 'button';
-      dlBtn.innerHTML = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> ${i18nData[currentLang]['hozai.download']}`;
-      dlBtn.addEventListener('click', () => {
-        const blob = new Blob([text], { type: 'text/plain' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'hozai-reply.txt';
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        URL.revokeObjectURL(url);
-      });
-      actionsDiv.appendChild(dlBtn);
-
       msgDiv.appendChild(actionsDiv);
     }
 
     msgContainer.appendChild(msgDiv);
-    msgContainer.scrollTop = msgContainer.scrollHeight;
+
+    if (role === 'assistant') {
+      // Anchor view smoothly at the top of the assistant's reply so the user doesn't have to scroll up
+      setTimeout(() => {
+        const targetTop = msgDiv.offsetTop - 12;
+        msgContainer.scrollTo({
+          top: Math.max(0, targetTop),
+          behavior: 'smooth'
+        });
+      }, 50);
+    } else {
+      msgContainer.scrollTop = msgContainer.scrollHeight;
+    }
   }
 
   // =========================================================================
@@ -994,7 +1118,7 @@
             if (welcome) welcome.style.display = 'flex';
           }
           renderHozaiChips();
-          hozaiTextarea?.focus();
+          // Do not auto-focus on modal open so mobile virtual keyboard does not trigger automatically
         }
       });
     }
