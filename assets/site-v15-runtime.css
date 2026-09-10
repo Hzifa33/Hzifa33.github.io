@@ -745,7 +745,7 @@ html[dir="rtl"] .neo-lang-option {
   /* Hero Container - Clean Centered Layout */
   .neo-hero {
     min-height: calc(100svh - 60px);
-    padding: 16px 0 20px 0;
+    padding: 20px 0 28px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -761,7 +761,7 @@ html[dir="rtl"] .neo-lang-option {
   }
   .neo-hero-grid {
     grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 0;
     text-align: center;
     width: 100%;
     display: flex;
@@ -771,19 +771,19 @@ html[dir="rtl"] .neo-lang-option {
     margin: 0 auto;
   }
 
-  /* 1. Large Commanding Portrait */
+  /* 1. Large Commanding Portrait (Slightly larger as requested) */
   .neo-hero-visual {
     order: -1;
-    margin: 0 auto 2px auto;
+    margin: 0 auto 14px auto;
     display: flex;
     justify-content: center;
     flex-shrink: 0;
   }
   .neo-portrait-card {
-    width: clamp(140px, 40vw, 175px);
-    height: clamp(140px, 40vw, 175px);
+    width: clamp(165px, 48vw, 205px);
+    height: clamp(165px, 48vw, 205px);
     aspect-ratio: 1 / 1;
-    border-radius: 24px;
+    border-radius: 26px;
     border: 3.5px solid var(--border-main);
     box-shadow: calc(4px * var(--shadow-dir)) 4px 0px var(--shadow-color);
     margin: 0 auto;
@@ -800,25 +800,25 @@ html[dir="rtl"] .neo-lang-option {
     display: none;
   }
 
-  /* 2. Compact Surrounding Elements */
+  /* 2. Compact Surrounding Elements with Distinct Spacing */
   .neo-hero-content {
     align-items: center;
-    gap: 6px;
+    gap: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
   }
 
-  /* Badges Row */
+  /* Group 2: Badges Row (الموقع ومتاح الآن) */
   .neo-hero-badges {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    margin: 0;
+    gap: 8px;
+    margin: 0 auto 12px auto;
   }
   .neo-hero-badges .neo-badge {
-    padding: 2px 8px;
+    padding: 3px 9px;
     font-size: 0.68rem;
     font-weight: 800;
     border-radius: 9999px;
@@ -830,34 +830,37 @@ html[dir="rtl"] .neo-lang-option {
     height: 6px;
   }
 
-  /* Headline & Highlight */
+  /* Group 3: Headline & Highlight (مرحباً أنا في سطر والاسم في سطر منفصل) */
   .neo-hero-title {
     font-family: var(--font-heading);
-    font-size: clamp(1.22rem, 4.4vw, 1.55rem);
+    font-size: clamp(1.25rem, 4.5vw, 1.6rem);
     font-weight: 900;
-    line-height: 1.15;
-    margin: 0;
+    line-height: 1.3;
+    margin: 0 auto 14px auto;
     letter-spacing: -0.5px;
+    text-align: center;
   }
   .neo-hero-title br {
-    display: none;
+    display: block !important;
   }
   .neo-hero-highlight {
-    padding: 1px 7px;
-    font-size: 1em;
-    border-radius: 6px;
+    display: inline-block;
+    padding: 2px 10px;
+    font-size: 1.05em;
+    border-radius: 7px;
     border: 2px solid var(--border-main);
     box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
-    margin-inline-start: 4px;
+    margin-top: 5px;
+    margin-inline-start: 0;
   }
 
-  /* Role Chips */
+  /* Group 4: Role Chips (المسميات الوظيفية الثلاثة تحت قليلاً مع مسافة) */
   .neo-hero-roles {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 5px;
-    margin: 0;
+    gap: 6px;
+    margin: 0 auto 16px auto;
   }
   .neo-role-tag {
     display: inline-flex;
@@ -865,7 +868,7 @@ html[dir="rtl"] .neo-lang-option {
     gap: 4px;
     font-size: 0.68rem;
     font-weight: 800;
-    padding: 2px 7px;
+    padding: 3px 8px;
     border: 1.5px solid var(--border-main);
     border-radius: 6px;
     background-color: var(--bg-card);
@@ -883,18 +886,18 @@ html[dir="rtl"] .neo-lang-option {
     display: none !important;
   }
 
-  /* Action Buttons */
+  /* Group 5: Action Buttons (تواصل معي والسيرة الذاتية) */
   .neo-hero-actions {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    margin-top: 2px;
+    gap: 10px;
+    margin: 0 auto 14px auto;
     width: 100%;
   }
   .neo-hero-actions .neo-btn {
-    padding: 5px 12px;
-    font-size: 0.76rem;
+    padding: 6px 14px;
+    font-size: 0.78rem;
     font-weight: 800;
     border-radius: 8px;
     border: 2px solid var(--border-main);
@@ -905,17 +908,17 @@ html[dir="rtl"] .neo-lang-option {
     height: 13px;
   }
 
-  /* Social Icons */
+  /* Group 6: Social Icons (أيقونات التواصل) */
   .neo-hero-socials {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    margin: 0;
+    gap: 8px;
+    margin: 0 auto;
   }
   .neo-hero-socials .neo-btn-icon {
-    width: 29px;
-    height: 29px;
+    width: 30px;
+    height: 30px;
     border-radius: 7px;
     border: 1.5px solid var(--border-main);
     box-shadow: calc(1.5px * var(--shadow-dir)) 1.5px 0px var(--shadow-color);
@@ -1467,38 +1470,72 @@ html[dir="rtl"] .neo-lang-option {
 }
 
 /* --------------------------------------------------------------------------
-   Contact Section (Responsive, Zero Overflow)
+   Contact Section (Responsive, Zero Overflow, Balanced Margins)
    -------------------------------------------------------------------------- */
 .neo-contact-wrap {
   width: 100%;
-  max-width: 100%;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
   box-sizing: border-box;
 }
 
 .neo-contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 32px;
   width: 100%;
+  align-items: stretch;
   box-sizing: border-box;
 }
 
+.neo-contact-card {
+  padding: 34px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--bg-card);
+  border: var(--border-width) solid var(--border-main);
+  border-radius: var(--border-radius);
+  box-shadow: calc(var(--shadow-offset) * var(--shadow-dir)) var(--shadow-offset) 0px var(--shadow-color);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.neo-contact-card:hover {
+  transform: translate(calc(-2px * var(--shadow-dir)), -2px);
+  box-shadow: calc(var(--shadow-offset-lg) * var(--shadow-dir)) var(--shadow-offset-lg) 0px var(--shadow-color);
+}
+
+.neo-contact-card .neo-card-title {
+  margin-bottom: 4px;
+  font-size: 1.35rem;
+}
+
 @media (max-width: 860px) {
+  .neo-contact-wrap {
+    max-width: 100%;
+  }
   .neo-contact-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 14px;
   }
   .neo-contact-card {
-    padding: 14px 12px;
-    gap: 12px;
+    padding: 16px 14px;
+    gap: 14px;
     border-radius: 12px;
     box-shadow: calc(2.5px * var(--shadow-dir)) 2.5px 0px var(--shadow-color);
+  }
+  .neo-contact-card .neo-card-title {
+    font-size: 1.05rem;
+    margin-bottom: 2px;
   }
   .neo-contact-action-list {
     gap: 8px;
   }
   .neo-contact-item {
-    padding: 9px 10px;
+    padding: 10px 12px;
     border-radius: 8px;
   }
   .neo-contact-item-left {
@@ -1515,7 +1552,7 @@ html[dir="rtl"] .neo-lang-option {
   }
   .neo-social-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 7px;
+    gap: 8px;
   }
   .neo-social-tile {
     padding: 8px 10px;
