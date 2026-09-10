@@ -1,37 +1,17 @@
-/**
- * NEOBRUTALISM RUNTIME JAVASCRIPT — HOZAIFA ABOZAID PORTFOLIO (2026)
- * Handles:
- * 1. Comprehensive Multilingual Engine (EN, AR, ES) with RTL flipping
- * 2. High-contrast Dark/Light Theme Switcher (System-aware + LocalStorage)
- * 3. Mobile Dock Navigation & Desktop ScrollSpy
- * 4. Animated Metric Number Counters
- * 5. Full HozAI Assistant Integration (Cloudflare Worker endpoint)
- * 6. Interactive Contact Copy Shortcuts
- */
-
 (function() {
   'use strict';
-
-  // =========================================================================
-  // 1. TRANSLATION DATA STORE (EN, AR, ES) — ZERO EMOJIS
-  // =========================================================================
   const i18nData = {
     en: {
-      // Navigation
       "nav.home": "Home",
       "nav.about": "About",
       "nav.experience": "Experience",
       "nav.skills": "Skills",
       "nav.contact": "Contact",
-
-      // Mobile Dock
       "dock.home": "Home",
       "dock.about": "About",
       "dock.experience": "Experience",
       "dock.skills": "Skills",
       "dock.contact": "Contact",
-
-      // Hero
       "hero.greeting": "Hello, I'm",
       "hero.name": "Hozaifa Abozaid",
       "hero.location": "Cairo, Egypt",
@@ -42,16 +22,12 @@
       "hero.cta": "Get in Touch",
       "hero.download": "Download CV",
       "hero.experience_badge": "5+ Years Experience",
-
-      // Ticker
       "ticker.t1": "Full Stack Web Developer",
       "ticker.t2": "Customer Service & Client Retention",
       "ticker.t3": "React, Node.js & REST APIs",
       "ticker.t4": "IT & Automation Systems",
       "ticker.t5": "Multilingual: Arabic, Spanish, English",
       "ticker.t6": "Open to Worldwide Opportunities",
-
-      // About
       "about.tag": "Who Am I?",
       "about.title": "About Me",
       "about.subtitle": "A blend of customer loyalty engineering, full-stack development, and multilingual communication.",
@@ -60,15 +36,11 @@
       "about.yearsExp": "Years of Experience",
       "about.projectsDone": "Projects Completed",
       "about.happyClients": "Happy Clients",
-
-      // Education
       "edu.title": "Academic Formation",
       "edu.rank": "Second in Class",
       "edu.degree": "BA in Languages and Translation – Spanish Language and Literature",
       "edu.grade": "Upper Second Class Honours (2:1)",
       "edu.faculty": "Faculty of Languages & Translation",
-
-      // Languages
       "lang.title": "Language Mastery",
       "lang.polyglot": "Polyglot",
       "lang.arabic": "Arabic",
@@ -77,61 +49,43 @@
       "lang.spanish.level": "(Upper Intermediate B2)",
       "lang.english": "English",
       "lang.english.level": "(Intermediate B1)",
-
-      // Experience
       "exp.tag": "Career Path",
       "exp.title": "Professional Experience",
       "exp.subtitle": "Proven track record across software engineering, customer loyalty, and digital management.",
       "exp.current": "Current",
       "exp.view_project": "Visit Live Project",
-
-      // 1. eDreams
       "exp.edreams.title": "Customer Service Representative - Client Retention",
       "exp.edreams.company": "eDreams - Prime Subscription",
       "exp.edreams.date": "November 2025 – July 2026",
       "exp.edreams.desc1": "Managing customer accounts and Prime Subscriptions.",
       "exp.edreams.desc2": "Direct customer interaction to resolve issues, strengthen relationships, and boost company loyalty rates.",
       "exp.edreams.desc3": "Leveraging negotiation and persuasion skills to reduce subscription cancellation rates.",
-
-      // 2. Front-End Web Developer
       "exp.frontend.title": "Front-End Web Developer",
       "exp.frontend.company": "Web Development",
       "exp.frontend.date": "2021 – 2025",
       "exp.frontend.desc1": "Designing and developing interactive, visually appealing user interfaces for websites.",
       "exp.frontend.desc2": "Writing clean, maintainable code to ensure smooth user experience and responsive design.",
-
-      // 3. Back-End Developer
       "exp.backend.title": "Back-End Web Developer",
       "exp.backend.company": "Web Development",
       "exp.backend.date": "2024 – 2026",
       "exp.backend.desc1": "Building robust and scalable server-side architectures using Node.js and Express.",
       "exp.backend.desc2": "Designing and implementing RESTful APIs, database schemas, and secure authentication flows.",
-
-      // 4. Video Editor & Graphic Designer
       "exp.video.title": "Video Editor & Graphic Designer",
       "exp.video.company": "Freelance",
       "exp.video.date": "4 Years (Freelance)",
       "exp.video.desc1": "Producing and editing professional video content and digital marketing creatives.",
-
-      // 5. Social Media Manager
       "exp.social.title": "Social Media Manager",
       "exp.social.company": "Freelance",
       "exp.social.date": "3 Years (Freelance)",
       "exp.social.desc1": "Managing accounts, scheduling content, engaging audiences, and executing growth campaigns.",
-
-      // 6. Data Entry Specialist
       "exp.data.title": "Data Entry Specialist",
       "exp.data.company": "Freelance",
       "exp.data.date": "2 Years (Freelance)",
       "exp.data.desc1": "Processing and entering data with high accuracy, speed, and strict quality verification.",
-
-      // 7. Arabic Teacher
       "exp.arabic.title": "Arabic & Quran Teacher for Non-Native Speakers",
       "exp.arabic.company": "Education",
       "exp.arabic.date": "2 Years",
       "exp.arabic.desc1": "Teaching Arabic language fundamentals and Quran recitation to international students.",
-
-      // Skills
       "skills.tag": "Core Competencies",
       "skills.title": "Skills & Expertise",
       "skills.subtitle": "A balanced synergy between technical mastery and interpersonal business skills.",
@@ -143,8 +97,6 @@
       "skills.soft1": "Negotiation & Sales: Strong persuasion skills and churn reduction expertise.",
       "skills.soft2": "Client Management: Exceptional relationship building and conflict resolution.",
       "skills.soft3": "Multitasking & Resilience: Proven ability to excel in fast-paced, high-pressure environments.",
-
-      // Contact
       "contact.tag": "Connect",
       "contact.title": "Get In Touch",
       "contact.subtitle": "Feel free to reach out for freelance projects, full-time opportunities, or collaborations.",
@@ -153,11 +105,7 @@
       "contact.social": "Social Media",
       "contact.copy": "Copy",
       "contact.copied": "Copied!",
-
-      // Footer
       "footer.rights": "Hozaifa Abozaid. All rights reserved.",
-
-      // HozAI Assistant
       "hozai.tooltip": "Ask HozAI",
       "hozai.hdrSub": "Hozaifa's AI Assistant",
       "hozai.welcomeTitle": "Hi there! I'm HozAI",
@@ -188,21 +136,16 @@
     },
 
     ar: {
-      // Navigation
       "nav.home": "الرئيسية",
       "nav.about": "عني",
       "nav.experience": "الخبرات",
       "nav.skills": "المهارات",
       "nav.contact": "تواصل",
-
-      // Mobile Dock
       "dock.home": "الرئيسية",
       "dock.about": "عني",
       "dock.experience": "الخبرات",
       "dock.skills": "المهارات",
       "dock.contact": "تواصل",
-
-      // Hero
       "hero.greeting": "مرحباً، أنا",
       "hero.name": "حذيفة أبو زيد",
       "hero.location": "القاهرة، مصر",
@@ -213,16 +156,12 @@
       "hero.cta": "تواصل معي",
       "hero.download": "تحميل السيرة الذاتية",
       "hero.experience_badge": "خبرة 5+ سنوات",
-
-      // Ticker
       "ticker.t1": "مطور ويب متكامل Full Stack",
       "ticker.t2": "خدمة العملاء والاحتفاظ بهم Client Retention",
       "ticker.t3": "تطوير React و Node.js و REST APIs",
       "ticker.t4": "أنظمة تقنية المعلومات والأتمتة",
       "ticker.t5": "متعدد اللغات: العربية، الإسبانية، الإنجليزية",
       "ticker.t6": "متاح للعمل على مستوى العالم",
-
-      // About
       "about.tag": "من أنا؟",
       "about.title": "نبذة عني",
       "about.subtitle": "مزيج متكامل بين هندسة ولاء العملاء، وتطوير الويب الحديث، والتواصل متعدد اللغات.",
@@ -231,15 +170,11 @@
       "about.yearsExp": "سنوات الخبرة",
       "about.projectsDone": "مشروع منجز",
       "about.happyClients": "عميل سعيد",
-
-      // Education
       "edu.title": "المؤهل الأكاديمي",
       "edu.rank": "الثاني على الدفعة",
       "edu.degree": "ليسانس الألسن في اللغات والترجمة – قسم اللغة الإسبانية وآدابها",
       "edu.grade": "جيد جداً مع مرتبة الشرف",
       "edu.faculty": "كلية اللغات والترجمة",
-
-      // Languages
       "lang.title": "اللغات وإتقانها",
       "lang.polyglot": "متعدد اللغات",
       "lang.arabic": "العربية",
@@ -248,61 +183,43 @@
       "lang.spanish.level": "(متقدم B2)",
       "lang.english": "الإنجليزية",
       "lang.english.level": "(متوسط B1)",
-
-      // Experience
       "exp.tag": "المسار الوظيفي",
       "exp.title": "الخبرات المهنية",
       "exp.subtitle": "سجل مهني حافل في هندسة البرمجيات، ولاء العملاء، والإدارة الرقمية.",
       "exp.current": "حالياً",
       "exp.view_project": "زيارة المشروع",
-
-      // 1. eDreams
       "exp.edreams.title": "ممثل خدمة عملاء - قسم الاحتفاظ بالعملاء",
       "exp.edreams.company": "eDreams - اشتراكات Prime",
       "exp.edreams.date": "نوفمبر 2025 – يوليو 2026",
       "exp.edreams.desc1": "إدارة حسابات العملاء واشتراكات برايم.",
       "exp.edreams.desc2": "التعامل المباشر مع العملاء لحل المشكلات، تحسين العلاقات، وزيادة معدلات الولاء للشركة.",
       "exp.edreams.desc3": "استخدام مهارات التفاوض والإقناع لتقليل معدلات إلغاء الاشتراكات.",
-
-      // 2. Front-End Web Developer
       "exp.frontend.title": "مطور واجهات مواقع (Front-End)",
       "exp.frontend.company": "تطوير الويب",
       "exp.frontend.date": "2021 – 2025",
       "exp.frontend.desc1": "تصميم وتطوير واجهات مستخدم تفاعلية وجذابة للمواقع الإلكترونية.",
       "exp.frontend.desc2": "كتابة كود نظيف وقابل للتطوير لضمان سلاسة تجربة المستخدم وتوافق الموقع مع مختلف الأجهزة.",
-
-      // 3. Back-End Developer
       "exp.backend.title": "مطور باك إند (Back-End)",
       "exp.backend.company": "تطوير الويب",
       "exp.backend.date": "2024 – 2026",
       "exp.backend.desc1": "بناء بنية برمجية قوية وقابلة للتوسع من جانب الخادم باستخدام Node.js و Express.",
       "exp.backend.desc2": "تصميم وتطوير واجهات برمجة التطبيقات (REST APIs)، وهياكل قواعد البيانات، وأنظمة المصادقة الآمنة.",
-
-      // 4. Video Editor
       "exp.video.title": "مونتير ومصمم جرافيك",
       "exp.video.company": "عمل حر",
       "exp.video.date": "4 سنوات (عمل حر)",
       "exp.video.desc1": "إنتاج ومونتاج مقاطع فيديو احترافية وتصميم مواد بصرية للتسويق الرقمي.",
-
-      // 5. Social Media Manager
       "exp.social.title": "مدير وسائل التواصل الاجتماعي",
       "exp.social.company": "عمل حر",
       "exp.social.date": "3 سنوات (عمل حر)",
       "exp.social.desc1": "إدارة الحسابات، جدولة المحتوى، التفاعل مع المتابعين، وتنفيذ حملات لزيادة التفاعل والوصول.",
-
-      // 6. Data Entry
       "exp.data.title": "أخصائي إدخال بيانات",
       "exp.data.company": "عمل حر",
       "exp.data.date": "سنتان (عمل حر)",
       "exp.data.desc1": "معالجة وإدخال البيانات بدقة وسرعة عالية، مع مراجعة وتدقيق المعلومات لضمان جودتها.",
-
-      // 7. Arabic Teacher
       "exp.arabic.title": "معلم لغة عربية وقرآن لغير الناطقين بها",
       "exp.arabic.company": "تعليم",
       "exp.arabic.date": "سنتان",
       "exp.arabic.desc1": "تدريس أساسيات وقواعد اللغة العربية وتلاوة القرآن للطلاب من مختلف الجنسيات.",
-
-      // Skills
       "skills.tag": "الكفاءات الأساسية",
       "skills.title": "المهارات والخبرات",
       "skills.subtitle": "تكامل احترافي بين المهارات التقنية البرمجية والقدرات التواصلية في إدارة العملاء.",
@@ -314,8 +231,6 @@
       "skills.soft1": "التفاوض والمبيعات: مهارات إقناع عالية وقدرة مثبتة على الحد من إلغاء الاشتراكات.",
       "skills.soft2": "إدارة علاقات العملاء: بناء علاقات قوية وحل النزاعات باحترافية وسرعة.",
       "skills.soft3": "تعدد المهام والمرونة: القدرة على العمل بكفاءة عالية تحت الضغط وإدارة الأولويات.",
-
-      // Contact
       "contact.tag": "تواصل",
       "contact.title": "تواصل معي",
       "contact.subtitle": "يسعدني دائماً التواصل لبدء مشاريع عمل حر، فرص وظيفية، أو تعاون مهني.",
@@ -324,11 +239,7 @@
       "contact.social": "وسائل التواصل الاجتماعي",
       "contact.copy": "نسخ",
       "contact.copied": "تم النسخ!",
-
-      // Footer
       "footer.rights": "حذيفة أبو زيد. جميع الحقوق محفوظة.",
-
-      // HozAI Assistant
       "hozai.tooltip": "اسأل HozAI",
       "hozai.hdrSub": "مساعد حذيفة الذكي",
       "hozai.welcomeTitle": "أهلاً بك! أنا HozAI",
@@ -359,21 +270,16 @@
     },
 
     es: {
-      // Navigation
       "nav.home": "Inicio",
       "nav.about": "Perfil",
       "nav.experience": "Experiencia",
       "nav.skills": "Competencias",
       "nav.contact": "Contacto",
-
-      // Mobile Dock
       "dock.home": "Inicio",
       "dock.about": "Perfil",
       "dock.experience": "Experiencia",
       "dock.skills": "Competencias",
       "dock.contact": "Contacto",
-
-      // Hero
       "hero.greeting": "Hola, soy",
       "hero.name": "Hozaifa Abozaid",
       "hero.location": "El Cairo, Egipto",
@@ -384,16 +290,12 @@
       "hero.cta": "Contactar",
       "hero.download": "Descargar CV",
       "hero.experience_badge": "5+ Años de Experiencia",
-
-      // Ticker
       "ticker.t1": "Desarrollador Web Full Stack",
       "ticker.t2": "Atención al Cliente y Fidelización",
       "ticker.t3": "React, Node.js y REST APIs",
       "ticker.t4": "Automatización y Sistemas TI",
       "ticker.t5": "Multilingüe: Árabe, Español, Inglés",
       "ticker.t6": "Disponible para proyectos internacionales",
-
-      // About
       "about.tag": "¿Quién Soy?",
       "about.title": "Sobre Mí",
       "about.subtitle": "Combinación estratégica de fidelización de clientes, desarrollo full stack y comunicación multilingüe.",
@@ -402,15 +304,11 @@
       "about.yearsExp": "Años de experiencia",
       "about.projectsDone": "Proyectos realizados",
       "about.happyClients": "Clientes satisfechos",
-
-      // Education
       "edu.title": "Formación Académica",
       "edu.rank": "Segundo de promoción",
       "edu.degree": "Licenciatura en Lenguas y Traducción – Lengua y Literatura Españolas",
       "edu.grade": "Notable Alto con Matrícula de Honor",
       "edu.faculty": "Facultad de Lenguas y Traducción",
-
-      // Languages
       "lang.title": "Idiomas",
       "lang.polyglot": "Políglota",
       "lang.arabic": "Árabe",
@@ -419,61 +317,43 @@
       "lang.spanish.level": "(Avanzado B2)",
       "lang.english": "Inglés",
       "lang.english.level": "(Intermedio B1)",
-
-      // Experience
       "exp.tag": "Trayectoria",
       "exp.title": "Experiencia Profesional",
       "exp.subtitle": "Sólida trayectoria en ingeniería de software, retención de clientes y gestión digital.",
       "exp.current": "Actual",
       "exp.view_project": "Ver Proyecto Online",
-
-      // 1. eDreams
       "exp.edreams.title": "Agente de Atención al Cliente - Fidelización",
       "exp.edreams.company": "eDreams - Suscripción Prime",
       "exp.edreams.date": "Noviembre 2025 – Julio 2026",
       "exp.edreams.desc1": "Gestión de cuentas de clientes y suscripciones Prime.",
       "exp.edreams.desc2": "Atención directa al cliente para resolver incidencias, fortalecer relaciones y aumentar la fidelización.",
       "exp.edreams.desc3": "Aplicación de técnicas de negociación y persuasión para reducir la tasa de cancelaciones.",
-
-      // 2. Front-End Web Developer
       "exp.frontend.title": "Desarrollador Web Front-End",
       "exp.frontend.company": "Desarrollo Web",
       "exp.frontend.date": "2021 – 2025",
       "exp.frontend.desc1": "Diseño y desarrollo de interfaces de usuario interactivas y atractivas para sitios web.",
       "exp.frontend.desc2": "Código limpio y mantenible garantizando óptima experiencia de usuario y diseño adaptativo.",
-
-      // 3. Back-End Developer
       "exp.backend.title": "Desarrollador Web Back-End",
       "exp.backend.company": "Desarrollo Web",
       "exp.backend.date": "2024 – 2026",
       "exp.backend.desc1": "Construcción de arquitecturas de servidor robustas y escalables con Node.js y Express.",
       "exp.backend.desc2": "Diseño e implementación de APIs RESTful, bases de datos (SQL, MongoDB) y autenticación segura.",
-
-      // 4. Video Editor
       "exp.video.title": "Editor de Vídeo y Diseñador Gráfico",
       "exp.video.company": "Freelance",
       "exp.video.date": "4 Años (Freelance)",
       "exp.video.desc1": "Producción y edición de contenido audiovisual profesional y piezas de marketing digital.",
-
-      // 5. Social Media Manager
       "exp.social.title": "Gestor de Redes Sociales",
       "exp.social.company": "Freelance",
       "exp.social.date": "3 Años (Freelance)",
       "exp.social.desc1": "Gestión de cuentas, programación de contenidos, engagement y campañas de crecimiento.",
-
-      // 6. Data Entry
       "exp.data.title": "Especialista en Entrada de Datos",
       "exp.data.company": "Freelance",
       "exp.data.date": "2 Años (Freelance)",
       "exp.data.desc1": "Procesamiento y registro de datos con alta precisión, rapidez y verificación rigurosa.",
-
-      // 7. Arabic Teacher
       "exp.arabic.title": "Profesor de Árabe y Corán para No Nativos",
       "exp.arabic.company": "Educación",
       "exp.arabic.date": "2 Años",
       "exp.arabic.desc1": "Enseñanza de gramática, conversación árabe y lectura del Corán a estudiantes internacionales.",
-
-      // Skills
       "skills.tag": "Competencias Clave",
       "skills.title": "Habilidades y Experiencia",
       "skills.subtitle": "Sinergia probada entre desarrollo tecnológico y gestión estratégica de clientes.",
@@ -485,8 +365,6 @@
       "skills.soft1": "Negociación y Ventas: Gran capacidad de persuasión y reducción efectiva de cancelaciones.",
       "skills.soft2": "Gestión de Clientes: Resolución empática de incidencias y fidelización duradera.",
       "skills.soft3": "Adaptabilidad y Trabajo Bajo Presión: Eficacia demostrada en entornos dinámicos y exigentes.",
-
-      // Contact
       "contact.tag": "Conectar",
       "contact.title": "Contactar",
       "contact.subtitle": "Disponible para proyectos freelance, puestos a tiempo completo o colaboraciones estratégicas.",
@@ -495,11 +373,7 @@
       "contact.social": "Redes Sociales",
       "contact.copy": "Copiar",
       "contact.copied": "¡Copiado!",
-
-      // Footer
       "footer.rights": "Hozaifa Abozaid. Todos los derechos reservados.",
-
-      // HozAI Assistant
       "hozai.tooltip": "Preguntar a HozAI",
       "hozai.hdrSub": "Asistente IA de Hozaifa",
       "hozai.welcomeTitle": "¡Hola! Soy HozAI",
@@ -529,30 +403,18 @@
       "hozai.chipQ5": "¿Qué idiomas habla Hozaifa? ¿Cómo beneficia esto a los empleadores?"
     }
   };
-
-  // Thinking state strings per language
   const thinkingStates = {
     en: ["Thinking...", "Analyzing skills & profile...", "Synthesizing answer...", "Formatting response..."],
     ar: ["جاري التفكير...", "جاري تحليل المهارات والملف...", "جاري إعداد الإجابة...", "جاري تنسيق الرد..."],
     es: ["Pensando...", "Analizando competencias...", "Preparando respuesta...", "Formateando resultado..."]
   };
-
-  // =========================================================================
-  // 2. STATE MANAGEMENT (Language & Theme)
-  // =========================================================================
   let currentLang = localStorage.getItem('site_lang') || 'en';
   if (!['en', 'ar', 'es'].includes(currentLang)) currentLang = 'en';
-
-  // Light mode is the default base theme!
   let isDark = false;
   const storedTheme = localStorage.getItem('site_theme');
   if (storedTheme === 'dark') {
     isDark = true;
   }
-
-  // =========================================================================
-  // 3. THEME LOGIC
-  // =========================================================================
   function applyTheme(save = false) {
     const root = document.documentElement;
     if (isDark) {
@@ -564,8 +426,6 @@
     if (save) {
       localStorage.setItem('site_theme', isDark ? 'dark' : 'light');
     }
-
-    // Update Theme Toggle Button Icon (explicit SVG colors to fix light-mode bug!)
     const themeBtn = document.getElementById('neo-theme-btn');
     if (themeBtn) {
       themeBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
@@ -575,10 +435,6 @@
         : `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`;
     }
   }
-
-  // =========================================================================
-  // 4. LANGUAGE LOGIC
-  // =========================================================================
   function setLanguage(lang) {
     if (!i18nData[lang]) return;
     currentLang = lang;
@@ -587,8 +443,6 @@
     const root = document.documentElement;
     root.lang = lang;
     root.dir = lang === 'ar' ? 'rtl' : 'ltr';
-
-    // Update all text nodes marked with data-i18n
     const translatable = document.querySelectorAll('[data-i18n]');
     translatable.forEach(el => {
       const key = el.getAttribute('data-i18n');
@@ -596,8 +450,6 @@
         el.textContent = i18nData[lang][key];
       }
     });
-
-    // Update placeholders
     const translatablePlaceholders = document.querySelectorAll('[data-i18n-placeholder]');
     translatablePlaceholders.forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
@@ -605,25 +457,15 @@
         el.placeholder = i18nData[lang][key];
       }
     });
-
-    // Update Language Dropdown Button Text
     const langCodeEl = document.getElementById('neo-lang-code');
     if (langCodeEl) {
       langCodeEl.textContent = lang === 'ar' ? 'عربي' : lang.toUpperCase();
     }
-
-    // Update Active Option in Dropdown
     document.querySelectorAll('.neo-lang-option').forEach(opt => {
       opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
     });
-
-    // Refresh HozAI Quick Chips text
     renderHozaiChips();
   }
-
-  // =========================================================================
-  // 5. ANIMATED STAT COUNTERS
-  // =========================================================================
   function initCounters() {
     const counterElements = document.querySelectorAll('.neo-metric-number[data-target]');
     if (!counterElements.length) return;
@@ -654,10 +496,6 @@
     const aboutSection = document.getElementById('about');
     if (aboutSection) observer.observe(aboutSection);
   }
-
-  // =========================================================================
-  // 6. SCROLLSPY & NAVIGATION HIGHLIGHTING
-  // =========================================================================
   function initScrollSpy() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.neo-nav-link');
@@ -683,10 +521,6 @@
     window.addEventListener('scroll', highlightNav, { passive: true });
     highlightNav();
   }
-
-  // =========================================================================
-  // 7. HOZAI ASSISTANT ENGINE (CLOUDFLARE WORKER)
-  // =========================================================================
   const HOZAI_ENDPOINT = 'https://hozai-chat.wahdany2003.workers.dev';
   let hozaiMessages = [];
   let isSending = false;
@@ -749,18 +583,13 @@
       isJobFitMode = false;
       if (textarea) textarea.placeholder = i18nData[currentLang]['hozai.msgPlaceholder'];
     }
-
-    // Add user message to UI
     appendHozaiMessage('user', text);
     hozaiMessages.push({ role: 'user', content: payloadText });
-
-    // Show thinking indicator
     showThinkingIndicator();
     isSending = true;
     updateSendButtonState();
 
     try {
-      // Map messages to API format: [{ role: 'user'|'model', parts: [{ text }] }]
       const apiMessages = hozaiMessages.map(m => ({
         role: m.role === 'assistant' ? 'model' : 'user',
         parts: [{ text: m.content }]
@@ -851,22 +680,16 @@
 
   function formatHozaiMarkdown(rawText) {
     if (!rawText) return '';
-
-    // 1. Escape HTML
     let safe = rawText
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;');
-
-    // 2. Extract code blocks with tokens
     const codeBlocks = [];
     safe = safe.replace(/```([a-zA-Z0-9_-]*)\n?([\s\S]*?)```/g, (match, lang, code) => {
       const idx = codeBlocks.length;
       codeBlocks.push(`<pre class="neo-ai-pre"><code>${code.trim()}</code></pre>`);
       return `\n__CODE_BLOCK_${idx}__\n`;
     });
-
-    // 3. Process line by line for block elements
     const lines = safe.split('\n');
     const out = [];
     let inUl = false;
@@ -880,8 +703,6 @@
         if (inOl) { out.push('</ol>'); inOl = false; }
         continue;
       }
-
-      // Check code block placeholder
       const cbMatch = line.match(/^__CODE_BLOCK_(\d+)__$/);
       if (cbMatch) {
         if (inUl) { out.push('</ul>'); inUl = false; }
@@ -889,8 +710,6 @@
         out.push(codeBlocks[parseInt(cbMatch[1], 10)]);
         continue;
       }
-
-      // ### Centered Heading (Neobrutalism Badge Title)
       if (line.startsWith('### ')) {
         if (inUl) { out.push('</ul>'); inUl = false; }
         if (inOl) { out.push('</ol>'); inOl = false; }
@@ -898,8 +717,6 @@
         out.push(`<div class="neo-ai-h3"><span class="neo-ai-h3-badge">${title}</span></div>`);
         continue;
       }
-
-      // ## Section Heading
       if (line.startsWith('## ')) {
         if (inUl) { out.push('</ul>'); inUl = false; }
         if (inOl) { out.push('</ol>'); inOl = false; }
@@ -907,8 +724,6 @@
         out.push(`<h3 class="neo-ai-h2">${title}</h3>`);
         continue;
       }
-
-      // # Main Heading
       if (line.startsWith('# ')) {
         if (inUl) { out.push('</ul>'); inUl = false; }
         if (inOl) { out.push('</ol>'); inOl = false; }
@@ -916,8 +731,6 @@
         out.push(`<h2 class="neo-ai-h1">${title}</h2>`);
         continue;
       }
-
-      // Blockquote
       if (line.startsWith('&gt; ') || line.startsWith('> ')) {
         if (inUl) { out.push('</ul>'); inUl = false; }
         if (inOl) { out.push('</ol>'); inOl = false; }
@@ -925,8 +738,6 @@
         out.push(`<blockquote class="neo-ai-quote">${quote}</blockquote>`);
         continue;
       }
-
-      // Bullet lists (- or * or •)
       const ulMatch = line.match(/^[*\-•]\s+(.*)/);
       if (ulMatch) {
         if (inOl) { out.push('</ol>'); inOl = false; }
@@ -934,8 +745,6 @@
         out.push(`<li class="neo-ai-li">${ulMatch[1]}</li>`);
         continue;
       }
-
-      // Numbered lists (1. 2. etc)
       const olMatch = line.match(/^(\d+)\.\s+(.*)/);
       if (olMatch) {
         if (inUl) { out.push('</ul>'); inUl = false; }
@@ -943,8 +752,6 @@
         out.push(`<li class="neo-ai-li">${olMatch[2]}</li>`);
         continue;
       }
-
-      // Regular line: close any active lists
       if (inUl) { out.push('</ul>'); inUl = false; }
       if (inOl) { out.push('</ol>'); inOl = false; }
 
@@ -955,8 +762,6 @@
     if (inOl) out.push('</ol>');
 
     let htmlOutput = out.join('');
-
-    // 4. Inline parsing: bold, italic, inline code, links
     htmlOutput = htmlOutput
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/(\*|_)(.+?)\1/g, '<em>$2</em>')
@@ -969,8 +774,6 @@
   function appendHozaiMessage(role, text) {
     const msgContainer = document.getElementById('hozai-messages');
     if (!msgContainer) return;
-
-    // Remove welcome view once conversation starts
     const welcome = document.getElementById('hozai-welcome-box');
     if (welcome) welcome.style.display = 'none';
 
@@ -1005,12 +808,8 @@
         </div>
         <div class="neo-msg-content">${formatHozaiMarkdown(text)}</div>
       `;
-
-      // Action buttons: Copy & Share ONLY (Download as TXT removed)
       const actionsDiv = document.createElement('div');
       actionsDiv.className = 'neo-bot-actions';
-
-      // Copy
       const copyBtn = document.createElement('button');
       copyBtn.className = 'neo-action-btn';
       copyBtn.type = 'button';
@@ -1023,8 +822,6 @@
         }, 2000);
       });
       actionsDiv.appendChild(copyBtn);
-
-      // Share
       const shareBtn = document.createElement('button');
       shareBtn.className = 'neo-action-btn';
       shareBtn.type = 'button';
@@ -1048,7 +845,6 @@
     msgContainer.appendChild(msgDiv);
 
     if (role === 'assistant') {
-      // Anchor view smoothly at the top of the assistant's reply so the user doesn't have to scroll up
       setTimeout(() => {
         const targetTop = msgDiv.offsetTop - 12;
         msgContainer.scrollTo({
@@ -1060,12 +856,7 @@
       msgContainer.scrollTop = msgContainer.scrollHeight;
     }
   }
-
-  // =========================================================================
-  // 8. INITIALIZATION & EVENT LISTENERS
-  // =========================================================================
   document.addEventListener('DOMContentLoaded', () => {
-    // 1. Setup Theme
     applyTheme(false);
     const themeBtn = document.getElementById('neo-theme-btn');
     if (themeBtn) {
@@ -1074,8 +865,6 @@
         applyTheme(true);
       });
     }
-
-    // 2. Setup Language
     setLanguage(currentLang);
     const langBtn = document.getElementById('neo-lang-btn');
     const langMenu = document.getElementById('neo-lang-menu');
@@ -1100,8 +889,6 @@
         }
       });
     }
-
-    // 3. Setup HozAI Assistant Controls
     const hozaiLauncher = document.getElementById('neo-hozai-launcher');
     const hozaiModal = document.getElementById('neo-hozai-modal');
     const hozaiClose = document.getElementById('hozai-close-btn');
@@ -1118,7 +905,6 @@
             if (welcome) welcome.style.display = 'flex';
           }
           renderHozaiChips();
-          // Do not auto-focus on modal open so mobile virtual keyboard does not trigger automatically
         }
       });
     }
@@ -1134,13 +920,10 @@
     }
 
     if (hozaiTextarea) {
-      // Auto expand height
       hozaiTextarea.addEventListener('input', () => {
         hozaiTextarea.style.height = 'auto';
         hozaiTextarea.style.height = Math.min(100, hozaiTextarea.scrollHeight) + 'px';
       });
-
-      // Enter to send, Shift+Enter for newline
       hozaiTextarea.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
           e.preventDefault();
@@ -1163,15 +946,11 @@
         renderHozaiChips();
       });
     }
-
-    // Close HozAI on Escape key
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && hozaiModal?.classList.contains('show')) {
         hozaiModal.classList.remove('show');
       }
     });
-
-    // 4. Contact Copy Shortcuts
     document.querySelectorAll('[data-copy-text]').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1184,8 +963,6 @@
         }, 2000);
       });
     });
-
-    // 5. ScrollSpy & Counters & HozAI Chips
     initScrollSpy();
     initCounters();
     renderHozaiChips();
