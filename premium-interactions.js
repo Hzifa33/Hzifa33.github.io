@@ -140,7 +140,6 @@
       const card = event.target instanceof Element ? event.target.closest(CARD_SELECTOR) : null;
       if (!(card instanceof HTMLElement)) return;
       card.classList.remove('touch-active');
-      // Force a frame boundary so repeated taps retrigger the feedback.
       requestAnimationFrame(() => {
         card.classList.add('touch-active');
         window.setTimeout(() => card.classList.remove('touch-active'), 420);
@@ -177,10 +176,6 @@
   } else {
     init();
   }
-
-  // React may mount a fraction later than the deferred enhancement script on a
-  // cold load. A cheap second pass makes the enhancement resilient without
-  // keeping a long-lived MutationObserver.
   window.setTimeout(() => {
     setupSectionLifecycle();
     setupMetricCounters();
