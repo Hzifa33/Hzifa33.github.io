@@ -1,5 +1,16 @@
+/* ==========================================================================
+   NEOBRUTALISM DESIGN SYSTEM — HOZAIFA ABOZAID PORTFOLIO (2026 EDITION)
+   High-contrast, bold borders, tactile hard shadows, vibrant neo-accents.
+   Responsive (320px to 4K), Light & Dark mode, LTR & RTL support.
+   Zero emojis, Zero dead space, Fluid viewport fold.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CSS Custom Properties & Color Palette
+   -------------------------------------------------------------------------- */
 :root {
---neo-yellow: #FFE600;
+  /* Vibrant Neo Accents */
+  --neo-yellow: #FFE600;
   --neo-yellow-hover: #F0D800;
   --neo-mint: #00F0A8;
   --neo-mint-hover: #00D998;
@@ -10,7 +21,9 @@
   --neo-coral: #FF6347;
   --neo-coral-hover: #E55338;
   --neo-pink: #F472B6;
---bg-canvas: #FBF9F5;
+
+  /* Light Mode (Default) */
+  --bg-canvas: #FBF9F5;
   --bg-card: #FFFFFF;
   --bg-card-alt: #F4EFEB;
   --bg-input: #FFFFFF;
@@ -19,7 +32,9 @@
   --border-main: #111827;
   --shadow-color: #111827;
   --nav-bg: rgba(251, 249, 245, 0.95);
---border-width: 3px;
+  
+  /* Dimensions & Physics */
+  --border-width: 3px;
   --border-radius: 16px;
   --border-radius-sm: 10px;
   --border-radius-pill: 9999px;
@@ -27,13 +42,17 @@
   --shadow-offset-lg: 6px;
   --shadow-offset-sm: 2px;
   --shadow-dir: 1; /* 1 for LTR, -1 for RTL */
---font-latin: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  
+  /* Fonts */
+  --font-latin: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-heading: 'Space Grotesk', 'Plus Jakarta Sans', system-ui, sans-serif;
   --font-arabic: 'Cairo', system-ui, -apple-system, sans-serif;
   --border-subtle: rgba(0, 0, 0, 0.1);
   
   color-scheme: light dark;
 }
+
+/* Dark Mode Overrides (High-Contrast Neobrutalism with White Hard Shadows) */
 html.dark {
   --bg-canvas: #0A0E17;
   --bg-card: #131A26;
@@ -46,6 +65,10 @@ html.dark {
   --nav-bg: rgba(10, 14, 23, 0.96);
   --border-subtle: rgba(255, 255, 255, 0.18);
 }
+
+/* --------------------------------------------------------------------------
+   Comprehensive Arabic & RTL Font Enforcement
+   -------------------------------------------------------------------------- */
 html[dir="rtl"] {
   --shadow-dir: -1;
 }
@@ -56,17 +79,23 @@ html[dir="rtl"] *,
 html[lang="ar"] * {
   font-family: var(--font-arabic) !important;
 }
+
+/* Ensure form controls, inputs, buttons, and textareas inherit Cairo in RTL/Arabic */
 html[dir="rtl"] input, html[dir="rtl"] button, html[dir="rtl"] textarea, html[dir="rtl"] select,
 html[lang="ar"] input, html[lang="ar"] button, html[lang="ar"] textarea, html[lang="ar"] select,
 html[dir="rtl"] ::placeholder, html[lang="ar"] ::placeholder {
   font-family: var(--font-arabic) !important;
 }
+
+/* Natural letter-spacing for Arabic typography */
 html[dir="rtl"] h1, html[dir="rtl"] h2, html[dir="rtl"] h3, html[dir="rtl"] h4,
 html[dir="rtl"] .neo-hero-title, html[dir="rtl"] .neo-section-title, html[dir="rtl"] .neo-card-title,
 html[lang="ar"] h1, html[lang="ar"] h2, html[lang="ar"] h3, html[lang="ar"] h4,
 html[lang="ar"] .neo-hero-title, html[lang="ar"] .neo-section-title, html[lang="ar"] .neo-card-title {
   letter-spacing: 0 !important;
 }
+
+/* Explicitly enforce Cairo for the word 'العربية' in the language selector in all modes */
 .neo-lang-option[data-lang="ar"],
 .neo-lang-option[data-lang="ar"] *,
 [data-lang="ar"],
@@ -75,6 +104,10 @@ html[lang="ar"] .neo-hero-title, html[lang="ar"] .neo-section-title, html[lang="
 [lang="ar"] * {
   font-family: var(--font-arabic) !important;
 }
+
+/* --------------------------------------------------------------------------
+   Global Reset & Base Setup
+   -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
@@ -123,6 +156,8 @@ a {
 ul, ol {
   list-style: none;
 }
+
+/* Container */
 .neo-container {
   width: 100%;
   max-width: 1240px;
@@ -138,6 +173,10 @@ ul, ol {
     padding-right: 16px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Tactile Neobrutalism Utilities
+   -------------------------------------------------------------------------- */
 .neo-box {
   background-color: var(--bg-card);
   border: var(--border-width) solid var(--border-main);
@@ -213,6 +252,8 @@ ul, ol {
   padding: 0;
   border-radius: var(--border-radius-sm);
 }
+
+/* Badges & Pills */
 .neo-badge {
   display: inline-flex;
   align-items: center;
@@ -235,6 +276,10 @@ ul, ol {
 .neo-badge-iris   { background-color: var(--neo-iris); color: #111827; }
 .neo-badge-cyan   { background-color: var(--neo-cyan); color: #111827; }
 .neo-badge-coral  { background-color: var(--neo-coral); color: #FFFFFF; }
+
+/* --------------------------------------------------------------------------
+   Navigation Bar (Header)
+   -------------------------------------------------------------------------- */
 .neo-header {
   position: sticky;
   top: 0;
@@ -255,6 +300,8 @@ ul, ol {
   height: 72px;
   gap: 16px;
 }
+
+/* Brand Logo */
 .neo-brand-wrap {
   display: flex;
   align-items: center;
@@ -301,6 +348,8 @@ ul, ol {
   text-transform: uppercase;
   color: var(--text-muted);
 }
+
+/* Desktop Nav Links */
 .neo-nav-links {
   display: flex;
   align-items: center;
@@ -328,11 +377,15 @@ ul, ol {
   border-color: var(--border-main);
   box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
 }
+
+/* Header Actions (Language & Theme) */
 .neo-header-actions {
   display: flex;
   align-items: center;
   gap: 10px;
 }
+
+/* Language Dropdown Picker */
 .neo-lang-picker {
   position: relative;
 }
@@ -412,6 +465,8 @@ html[dir="rtl"] .neo-lang-option {
   background-color: var(--neo-yellow);
   color: #111827;
 }
+
+/* Theme Toggle Button */
 .neo-theme-btn {
   width: 44px;
   height: 44px;
@@ -441,6 +496,8 @@ html[dir="rtl"] .neo-lang-option {
   stroke: #111827;
   transform: rotate(15deg);
 }
+
+/* Tablet & Mobile Navigation Bar */
 @media (max-width: 860px) {
   .neo-nav-links {
     display: none;
@@ -480,6 +537,10 @@ html[dir="rtl"] .neo-lang-option {
     gap: 6px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Hero Section (Fold Optimized)
+   -------------------------------------------------------------------------- */
 .neo-hero {
   padding: 36px 0 24px 0;
   min-height: calc(100vh - 120px);
@@ -541,6 +602,8 @@ html[dir="rtl"] .neo-lang-option {
   box-shadow: calc(3px * var(--shadow-dir)) 3px 0px var(--shadow-color);
   transform: rotate(-0.5deg);
 }
+
+/* Role Stickers */
 .neo-hero-roles {
   display: flex;
   flex-wrap: wrap;
@@ -572,6 +635,8 @@ html[dir="rtl"] .neo-lang-option {
   max-width: 580px;
   line-height: 1.6;
 }
+
+/* Hero CTA Buttons & Socials */
 .neo-hero-actions {
   display: flex;
   align-items: center;
@@ -586,6 +651,8 @@ html[dir="rtl"] .neo-lang-option {
   gap: 10px;
   margin-top: 8px;
 }
+
+/* Hero Visual / Portrait */
 .neo-hero-visual {
   display: flex;
   justify-content: center;
@@ -626,6 +693,24 @@ html[dir="rtl"] .neo-lang-option {
   box-shadow: calc(3px * var(--shadow-dir)) 3px 0px var(--shadow-color);
   white-space: nowrap;
 }
+
+/* Desktop / Mobile Hero Role Text & Badge Toggles */
+.neo-role-text-desktop {
+  display: inline;
+}
+.neo-role-text-mobile {
+  display: none !important;
+}
+.neo-photo-status-pill {
+  display: none !important;
+}
+.neo-available-badge-desktop {
+  display: inline-flex;
+}
+
+/* --------------------------------------------------------------------------
+   Hero Mobile Adaptation (Large Photo, Standardized Compact Elements)
+   -------------------------------------------------------------------------- */
 @media (max-width: 860px) {
   .neo-nav-links {
     display: none;
@@ -667,7 +752,9 @@ html[dir="rtl"] .neo-lang-option {
     border-radius: 8px;
     gap: 4px;
   }
-.neo-hero {
+
+  /* Hero Container - Clean Centered Layout */
+  .neo-hero {
     min-height: calc(100svh - 60px);
     padding: 20px 0 28px 0;
     display: flex;
@@ -694,7 +781,9 @@ html[dir="rtl"] .neo-lang-option {
     justify-content: center;
     margin: 0 auto;
   }
-.neo-hero-visual {
+
+  /* 1. Large Commanding Portrait (Slightly larger as requested) */
+  .neo-hero-visual {
     order: -1;
     margin: 0 auto 14px auto;
     display: flex;
@@ -702,6 +791,7 @@ html[dir="rtl"] .neo-lang-option {
     flex-shrink: 0;
   }
   .neo-portrait-card {
+    position: relative;
     width: clamp(165px, 48vw, 205px);
     height: clamp(165px, 48vw, 205px);
     aspect-ratio: 1 / 1;
@@ -719,16 +809,44 @@ html[dir="rtl"] .neo-lang-option {
     object-position: center top;
   }
   .neo-portrait-badge {
-    display: none;
+    display: none !important;
   }
-.neo-hero-content {
+  .neo-photo-status-pill {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 10px;
+    border: 2px solid var(--border-main);
+    border-radius: 9999px;
+    box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
+    z-index: 5;
+    white-space: nowrap;
+  }
+  .neo-photo-status-pill .neo-live-dot {
+    width: 7px;
+    height: 7px;
+    display: inline-block;
+  }
+
+  /* 2. Compact Surrounding Elements with Distinct Spacing */
+  .neo-hero-content {
     align-items: center;
     gap: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
   }
-.neo-hero-badges {
+
+  /* Group 2: Badges Row (الموقع ومتاح الآن) */
+  .neo-hero-badges {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -743,11 +861,16 @@ html[dir="rtl"] .neo-lang-option {
     border: 1.5px solid var(--border-main);
     box-shadow: calc(1.5px * var(--shadow-dir)) 1.5px 0px var(--shadow-color);
   }
+  .neo-available-badge-desktop {
+    display: none !important;
+  }
   .neo-live-dot {
     width: 6px;
     height: 6px;
   }
-.neo-hero-title {
+
+  /* Group 3: Headline & Highlight (مرحباً أنا في سطر والاسم في سطر منفصل) */
+  .neo-hero-title {
     font-family: var(--font-heading);
     font-size: clamp(1.25rem, 4.5vw, 1.6rem);
     font-weight: 900;
@@ -769,12 +892,20 @@ html[dir="rtl"] .neo-lang-option {
     margin-top: 5px;
     margin-inline-start: 0;
   }
-.neo-hero-roles {
+
+  /* Group 4: Role Chips (المسميات الوظيفية الثلاثة تحت قليلاً مع مسافة) */
+  .neo-hero-roles {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 6px;
     margin: 0 auto 16px auto;
+  }
+  .neo-role-text-desktop {
+    display: none !important;
+  }
+  .neo-role-text-mobile {
+    display: inline !important;
   }
   .neo-role-tag {
     display: inline-flex;
@@ -794,10 +925,14 @@ html[dir="rtl"] .neo-lang-option {
     height: 12px;
     stroke-width: 2.5;
   }
-.neo-hero-bio {
+
+  /* Bio is removed from Hero */
+  .neo-hero-bio {
     display: none !important;
   }
-.neo-hero-actions {
+
+  /* Group 5: Action Buttons (تواصل معي والسيرة الذاتية) */
+  .neo-hero-actions {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -817,7 +952,9 @@ html[dir="rtl"] .neo-lang-option {
     width: 13px;
     height: 13px;
   }
-.neo-hero-socials {
+
+  /* Group 6: Social Icons (أيقونات التواصل) */
+  .neo-hero-socials {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -840,6 +977,8 @@ html[dir="rtl"] .neo-lang-option {
     height: 13px;
   }
 }
+
+/* For ultra-short mobile viewport heights */
 @media (max-width: 860px) and (max-height: 580px) {
   .neo-hero {
     min-height: auto;
@@ -866,6 +1005,10 @@ html[dir="rtl"] .neo-lang-option {
     height: 25px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Section Common Headers
+   -------------------------------------------------------------------------- */
 .neo-section {
   padding: 64px 0;
   position: relative;
@@ -911,11 +1054,17 @@ html[dir="rtl"] .neo-lang-option {
   font-size: 1rem;
   color: var(--text-muted);
 }
+
+/* --------------------------------------------------------------------------
+   About Section — Balanced Bento Grid (Zero Dead Space!)
+   -------------------------------------------------------------------------- */
 .neo-about-bento {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 24px;
 }
+
+/* Bento Card Styles */
 .neo-bento-card {
   padding: 28px;
   display: flex;
@@ -944,6 +1093,8 @@ html[dir="rtl"] .neo-lang-option {
   grid-column: span 6;
   gap: 16px;
 }
+
+/* Card Header inside Bento */
 .neo-card-header {
   display: flex;
   align-items: center;
@@ -967,6 +1118,8 @@ html[dir="rtl"] .neo-lang-option {
   line-height: 1.7;
   color: var(--text-main);
 }
+
+/* Metric Triplets */
 .neo-metrics-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1001,6 +1154,8 @@ html[dir="rtl"] .neo-lang-option {
   color: var(--text-muted);
   margin-top: 4px;
 }
+
+/* Education Specific */
 .neo-edu-title {
   font-size: 1.15rem;
   font-weight: 800;
@@ -1013,6 +1168,15 @@ html[dir="rtl"] .neo-lang-option {
   gap: 8px;
   margin-top: auto;
 }
+
+.neo-edu-tags .neo-badge {
+  white-space: normal !important;
+  max-width: 100%;
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+/* Language Proficiency Progress Bars (NO GAPS!) */
 .neo-lang-rows {
   display: flex;
   flex-direction: column;
@@ -1040,6 +1204,8 @@ html[dir="rtl"] .neo-lang-option {
   color: var(--text-muted);
   margin-inline-start: 6px;
 }
+
+/* Fixed Progress Bar Track and Fill */
 .neo-progress-track {
   width: 100%;
   height: 18px;
@@ -1061,6 +1227,8 @@ html[dir="rtl"] .neo-lang-option {
 .neo-fill-arabic  { background-color: var(--neo-yellow); }
 .neo-fill-spanish { background-color: var(--neo-iris); }
 .neo-fill-english { background-color: var(--neo-cyan); }
+
+/* Bento Responsive Breakdown */
 @media (max-width: 992px) {
   .neo-bento-bio     { grid-column: span 12; }
   .neo-bento-metrics { grid-column: span 12; }
@@ -1085,7 +1253,8 @@ html[dir="rtl"] .neo-lang-option {
     font-size: 0.85rem;
     line-height: 1.55;
   }
-.neo-metrics-grid {
+  /* Key Track Record Metrics Side-by-Side in ONE row */
+  .neo-metrics-grid {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 6px !important;
@@ -1114,6 +1283,23 @@ html[dir="rtl"] .neo-lang-option {
   .neo-edu-title {
     font-size: 0.92rem;
     line-height: 1.35;
+  }
+  .neo-edu-tags {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    width: 100%;
+  }
+  .neo-edu-tags .neo-badge {
+    white-space: normal !important;
+    text-align: start;
+    max-width: 100%;
+    word-break: break-word;
+    line-height: 1.35;
+    font-size: 0.72rem;
+    padding: 4px 10px;
+    box-sizing: border-box;
   }
   .neo-lang-rows {
     gap: 10px;
@@ -1149,6 +1335,10 @@ html[dir="rtl"] .neo-lang-option {
     font-size: 0.54rem !important;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Experience Section (Unified Neobrutalist Cards)
+   -------------------------------------------------------------------------- */
 .neo-exp-list {
   display: flex;
   flex-direction: column;
@@ -1266,6 +1456,10 @@ html[dir="rtl"] .neo-lang-option {
     margin-top: 2px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Skills Section (Technical & Soft Skills Bento)
+   -------------------------------------------------------------------------- */
 .neo-skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1343,6 +1537,10 @@ html[dir="rtl"] .neo-lang-option {
 .neo-skill-item:nth-child(3n) .neo-skill-icon-wrap {
   background-color: var(--neo-iris);
 }
+
+/* --------------------------------------------------------------------------
+   Contact Section (Responsive, Zero Overflow, Balanced Margins)
+   -------------------------------------------------------------------------- */
 .neo-contact-wrap {
   width: 100%;
   max-width: 1100px;
@@ -1386,13 +1584,29 @@ html[dir="rtl"] .neo-lang-option {
 
 @media (max-width: 860px) {
   .neo-contact-wrap {
-    max-width: 100%;
+    width: 100%;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
   }
   .neo-contact-grid {
     grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
     gap: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
   }
   .neo-contact-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
     padding: 16px 14px;
     gap: 14px;
     border-radius: 12px;
@@ -1404,6 +1618,7 @@ html[dir="rtl"] .neo-lang-option {
   }
   .neo-contact-action-list {
     gap: 8px;
+    width: 100%;
   }
   .neo-contact-item {
     padding: 10px 12px;
@@ -1421,9 +1636,14 @@ html[dir="rtl"] .neo-lang-option {
     font-size: 0.68rem;
     padding: 3px 7px;
   }
+  .neo-action-badge {
+    font-size: 0.68rem;
+    padding: 3px 7px;
+  }
   .neo-social-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
+    width: 100%;
   }
   .neo-social-tile {
     padding: 8px 10px;
@@ -1453,7 +1673,7 @@ html[dir="rtl"] .neo-lang-option {
   border: 2px solid var(--border-main);
   border-radius: var(--border-radius-sm);
   box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
-  transition: all 0.12s ease;
+  transition: all 0.15s ease;
   width: 100%;
   box-sizing: border-box;
 }
@@ -1462,6 +1682,46 @@ html[dir="rtl"] .neo-lang-option {
   background-color: var(--neo-yellow);
   color: #111827;
   transform: translate(calc(-1px * var(--shadow-dir)), -1px);
+}
+
+.neo-contact-item-clickable {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.neo-contact-item-clickable:hover {
+  transform: translate(calc(-1.5px * var(--shadow-dir)), -1.5px);
+  box-shadow: calc(3px * var(--shadow-dir)) 3px 0px var(--shadow-color);
+}
+
+.neo-whatsapp-direct {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+}
+
+.neo-whatsapp-direct:hover {
+  background-color: var(--neo-mint) !important;
+  color: #111827 !important;
+}
+
+.neo-action-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 4px 9px;
+  border: 1.5px solid var(--border-main);
+  border-radius: 6px;
+  background-color: var(--neo-mint);
+  color: #111827;
+  box-shadow: calc(1.5px * var(--shadow-dir)) 1.5px 0px var(--shadow-color);
+  flex-shrink: 0;
+  transition: all 0.15s ease;
 }
 
 .neo-contact-item-left {
@@ -1502,6 +1762,10 @@ html[dir="rtl"] .neo-lang-option {
   color: #111827;
   transform: translate(calc(-1px * var(--shadow-dir)), -1px);
 }
+
+/* --------------------------------------------------------------------------
+   Mobile Navigation Bottom Dock (< 860px)
+   -------------------------------------------------------------------------- */
 .neo-mobile-dock {
   display: none;
 }
@@ -1561,10 +1825,16 @@ html[dir="rtl"] .neo-lang-option {
     border-color: var(--border-main);
     box-shadow: calc(2px * var(--shadow-dir)) 2px 0px var(--shadow-color);
   }
-body {
+
+  /* Add extra bottom space for main content so dock never overlaps content */
+  body {
     padding-bottom: 74px;
   }
 }
+
+/* --------------------------------------------------------------------------
+   HozAI Chatbot UI (Floating Neobrutalism Assistant)
+   -------------------------------------------------------------------------- */
 .neo-hozai-launcher {
   position: fixed;
   bottom: 24px;
@@ -1617,6 +1887,8 @@ html[dir="rtl"] .neo-hozai-launcher {
   border: 2px solid var(--border-main);
   border-radius: 50%;
 }
+
+/* HozAI Chat Window */
 .neo-hozai-modal {
   position: fixed;
   bottom: 92px;
@@ -1757,6 +2029,8 @@ html[dir="rtl"] .neo-hozai-modal {
 .neo-hozai-modal.show {
   display: flex;
 }
+
+/* HozAI Header */
 .neo-hozai-header {
   padding: 14px 18px;
   background-color: var(--neo-yellow);
@@ -1786,6 +2060,8 @@ html[dir="rtl"] .neo-hozai-modal {
   text-transform: uppercase;
   color: #374151;
 }
+
+/* HozAI Body / Messages */
 .neo-hozai-messages {
   flex: 1;
   padding: 16px;
@@ -1915,6 +2191,8 @@ html[dir="rtl"] .neo-msg-bot {
   line-height: 1.55;
   color: inherit;
 }
+
+/* AI Markdown Formatting Styles */
 .neo-ai-h3 {
   text-align: center;
   margin: 12px 0 8px 0;
@@ -2057,6 +2335,8 @@ html[dir="rtl"] .neo-ai-quote {
   color: #111827;
   transform: translate(calc(-1px * var(--shadow-dir)), -1px);
 }
+
+/* HozAI Footer & Input */
 .neo-hozai-footer {
   padding: 12px;
   background-color: var(--bg-card);
@@ -2112,6 +2392,8 @@ html[dir="rtl"] .neo-ai-quote {
   opacity: 0.5;
   cursor: not-allowed;
 }
+
+/* Footer Copyright */
 .neo-footer {
   padding: 32px 0;
   border-top: var(--border-width) solid var(--border-main);
